@@ -1,13 +1,13 @@
 {
   "name": "Graphics Genix Studio",
-  "short_name": "Graphics Genix",
+  "short_name": "GG Studio",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#101115",
-  "theme_color": "#101b35",
-  "description": "Create social designs, edit photos, build collages and save your creative projects with Graphics Genix Studio.",
+  "theme_color": "#08162d",
+  "description": "A premium creative studio for social designs, photo editing, collage layouts and editable projects.",
   "icons": [
     {
       "src": "icon-192.png",
