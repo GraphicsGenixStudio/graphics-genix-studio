@@ -190,6 +190,101 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 }
 @media(max-width:380px){header .row button{font-size:10px;padding:8px 7px}.brand{font-size:13px}.mobile-action-group button{font-size:12px}}
 
+
+/* FINAL CREATIVE STUDIO UX — responsive controls, calm editing, themes */
+:root{color-scheme:dark;--focus-ring:rgba(74,145,255,.35)}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+button{min-height:40px}
+.logo{letter-spacing:-2px;font-size:15px;display:grid;place-items:center;min-width:40px}
+.splash-logo{font-size:34px;letter-spacing:-4px;padding-right:3px}
+.image-controls-heading{font-size:15px;margin:4px 0 10px}
+.edit-accordion{border:1px solid var(--line);border-radius:13px;background:rgba(12,22,39,.65);margin:8px 0;overflow:hidden}
+.edit-accordion>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:12px 13px;font-weight:750;font-size:13px;color:var(--text);user-select:none}
+.edit-accordion>summary::-webkit-details-marker{display:none}
+.edit-accordion>summary:after{content:'＋';font-size:19px;color:var(--blue);font-weight:500}
+.edit-accordion[open]>summary:after{content:'−'}
+.edit-accordion[open]>summary{border-bottom:1px solid var(--line);background:rgba(66,139,255,.055)}
+.edit-accordion-body{padding:11px}
+.preset-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.photo-look{min-height:46px;border-radius:11px;font-size:12px;position:relative;overflow:hidden;touch-action:manipulation}
+.photo-look.applied{border-color:#5d9dff;background:linear-gradient(120deg,#183e70,#172342);box-shadow:inset 0 0 0 1px #5d9dff55}
+.photo-look.applied:after{content:'✓';position:absolute;top:4px;right:7px;color:#b7d5ff;font-size:11px}
+.quick-enhance{grid-column:1/-1;background:linear-gradient(100deg,#173b69,#30275c);border-color:#426fbd}
+.tap-flash{animation:tapFlash .35s ease}@keyframes tapFlash{50%{filter:brightness(1.45);transform:scale(.985)}}
+.edit-accordion input[type=range]{height:28px;accent-color:var(--blue);touch-action:pan-y;cursor:pointer}
+.edit-accordion .field{font-size:13px;line-height:1.45;margin:4px 0 12px;color:var(--muted)}
+.edit-accordion .field span{float:right;color:var(--text);font-variant-numeric:tabular-nums}
+.crop-presets button{flex:1 1 0}
+#cropModeBtn{border-radius:12px;font-size:13px}
+#cropModeHint{font-size:12px;line-height:1.55}
+.idea-card{display:flex;gap:16px;align-items:flex-start;padding:18px;border:1px solid #2a3d60;border-radius:18px;background:linear-gradient(120deg,#101e37,#0c1324 75%);max-width:780px}
+.idea-orb{display:grid;place-items:center;flex:none;width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#428fff,#795bff);font-size:24px;box-shadow:0 8px 24px #438bff35}
+.idea-copy{min-width:0}.idea-copy strong{font-size:16px;letter-spacing:-.3px}.idea-copy p{color:var(--muted);line-height:1.6;margin:7px 0 14px}.idea-copy .row button{min-height:42px}
+#themeToggle{width:40px;min-width:40px;padding:8px;font-size:17px;border-radius:12px;background:rgba(18,31,52,.8)}
+/* True light theme: readable surfaces, not a simple inverted filter */
+body[data-theme="light"]{color-scheme:light;--bg:#f3f6fb;--panel:#ffffff;--line:#dce4f0;--text:#182337;--muted:#62718a;--blue:#276ef1;background:radial-gradient(ellipse at 50% -18%,#e0ebff 0,transparent 42%),var(--bg);color:var(--text)}
+body[data-theme="light"] header{background:rgba(255,255,255,.92);border-color:#dce4f0}
+body[data-theme="light"] nav{background:rgba(249,251,255,.96);border-color:#dce4f0}
+body[data-theme="light"] nav button{color:#52627b}
+body[data-theme="light"] nav button.active{background:#e5efff;border-color:#c4d8ff;color:#17469c;box-shadow:inset 3px 0 0 #276ef1}
+body[data-theme="light"] nav button .nav-icon{background:#e8eef8;color:#42618e}
+body[data-theme="light"] nav button.active .nav-icon{background:linear-gradient(140deg,#3984ff,#795bff);color:#fff}
+body[data-theme="light"] .hero{background:radial-gradient(ellipse at 84% 12%,#cbdcff 0,transparent 33%),linear-gradient(120deg,#fff,#f0f5ff);border-color:#d8e3f6;box-shadow:0 18px 48px #253d6510}
+body[data-theme="light"] .hero h1,body[data-theme="light"] .home-greeting strong,body[data-theme="light"] h1,body[data-theme="light"] h2{color:#17233a}
+body[data-theme="light"] .hero p{color:#52627b}
+body[data-theme="light"] .home-search,body[data-theme="light"] .card,body[data-theme="light"] .toolbox,body[data-theme="light"] .properties,body[data-theme="light"] .stage,body[data-theme="light"] .project,body[data-theme="light"] .empty{background:#fff;border-color:#dce4f0;color:#182337}
+body[data-theme="light"] .card:hover{background:#f6f9ff;border-color:#9dbdf6}
+body[data-theme="light"] .home-search input{color:#182337}
+body[data-theme="light"] .input,body[data-theme="light"] select,body[data-theme="light"] textarea{background:#f8faff;color:#182337;border-color:#d4deed}
+body[data-theme="light"] button{background:#f7f9fd;color:#25344b;border-color:#d4deed}
+body[data-theme="light"] button.primary,body[data-theme="light"] .hero .primary{background:linear-gradient(100deg,#327dff,#6658f5);border-color:transparent;color:#fff}
+body[data-theme="light"] .edit-accordion{background:#fbfcff;border-color:#dce4f0}
+body[data-theme="light"] .edit-accordion>summary{color:#23324a}
+body[data-theme="light"] .edit-accordion[open]>summary{background:#edf4ff;border-color:#dce4f0}
+body[data-theme="light"] .photo-look.applied{background:#e8f1ff;color:#17469c;border-color:#8eb4ff}
+body[data-theme="light"] .quick-enhance{background:linear-gradient(100deg,#e4efff,#f0eaff);color:#17469c;border-color:#bfd2ff}
+body[data-theme="light"] .idea-card{background:linear-gradient(120deg,#fff,#f2f6ff);border-color:#dce4f0}
+body[data-theme="light"] .notice{background:#edf5ff;color:#31557f;border-color:#d0e2ff}
+body[data-theme="light"] .opacity-control{background:#f4f7fc;border-color:#dce4f0}
+body[data-theme="light"] .opacity-head strong{color:#182337}
+body[data-theme="light"] #moreMenu{background:#fff;border-color:#dce4f0;box-shadow:0 18px 55px #1d2d481f}
+body[data-theme="light"] #moreMenu button{background:transparent}
+body[data-theme="light"] .splash-logo{color:#fff}
+body[data-theme="light"] .layer-item{color:#52627b}
+body[data-theme="light"] .layer-item.active{background:#e8f1ff;border-color:#9dbdf6;color:#17469c}
+body[data-theme="light"] .home-badge{background:#edf5ff;border-color:#cfe0ff;color:#31557f}
+@media(max-width:850px){
+ .edit-accordion{margin:9px 0;border-radius:14px}
+ .edit-accordion>summary{min-height:50px;font-size:14px;padding:13px 14px}
+ .edit-accordion-body{padding:12px}
+ .idea-card{padding:15px;gap:12px}
+}
+@media(max-width:600px){
+ body[data-page="editor"] main{padding:12px 10px 116px}
+ body[data-page="editor"] #editorHeading{font-size:24px;letter-spacing:-.7px;margin:5px 0 12px}
+ body[data-page="editor"] .stage{padding:8px;background:linear-gradient(145deg,#0c1424,#080d17);border-radius:17px;min-height:0}
+ body[data-theme="light"][data-page="editor"] .stage{background:#e8edf5}
+ body[data-page="editor"] .canvas-wrap{box-shadow:0 12px 34px #0003;border-radius:3px;overflow:visible}
+ body[data-page="editor"] .toolbox,body[data-page="editor"] .properties{border-radius:16px;padding:12px}
+ body[data-page="editor"] .properties>.props-title:first-child{font-size:16px;margin-bottom:12px}
+ body[data-page="editor"] #imageControls{margin-top:8px}
+ body[data-page="editor"] .edit-accordion-body .two-col{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body[data-page="editor"] .edit-accordion-body .row.compact{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ body[data-page="editor"] .edit-accordion-body .row.compact button{min-height:44px;font-size:12px;padding:9px 7px}
+ body[data-page="editor"] .edit-accordion-body .field input[type=range]{height:32px;margin-top:6px}
+ body[data-page="editor"] .preset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body[data-page="editor"] .quick-enhance{grid-column:1/-1}
+ body[data-page="editor"] #cropModeBtn{margin:6px 0 10px}
+ body[data-page="editor"] .properties>.tool-divider{margin:14px 0}
+ body[data-page="editor"] .properties>.props-title.small{margin-top:10px}
+ header .row{gap:5px}
+ header .row button{font-size:10px;padding:8px 7px}
+ header #themeToggle{min-width:34px;width:34px;padding:7px;font-size:15px}
+ .idea-card{align-items:flex-start}
+ .idea-copy .row{display:grid;grid-template-columns:1fr;gap:8px}
+ .idea-copy .row button{width:100%}
+}
+
 </style><meta name="theme-color" content="#050914">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -199,13 +294,13 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body data-page="home">
-<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">G</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-loading"></div></div></div>
-<header><div class="brand"><div class="logo">G</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="saveBtn">Save project</button><button class="primary" id="exportBtn">Export PNG</button></div></header>
+<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">GG</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-loading"></div></div></div>
+<header><div class="brand"><div class="logo">GG</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch light or dark mode">☼</button><button id="saveBtn">Save project</button><button class="primary" id="exportBtn">Export PNG</button></div></header>
 <div class="app"><nav>
 <button class="active" data-page="home"><span class="nav-icon">⌂</span><span>Home</span></button><button data-page="create"><span class="nav-icon">＋</span><span>Create</span></button><button data-page="templates"><span class="nav-icon">▦</span><span>Templates</span></button><button data-page="editor"><span class="nav-icon">✎</span><span>Photo Editor</span></button><button data-page="brand"><span class="nav-icon">◉</span><span>Brand Kit</span></button><button data-page="projects"><span class="nav-icon">▱</span><span>My Projects</span></button><button data-page="services"><span class="nav-icon">✦</span><span>Services</span></button><button id="moreNavBtn"><span class="nav-icon">•••</span><span>More</span></button>
 <div class="note">Your creative space<br>Design posts, edit photos, make collages and keep your projects together. Saved projects stay in this browser on this device.</div>
 </nav><div id="moreMenu" aria-label="More navigation"><button data-more="brand"><span class="nav-icon">◉</span> Brand Kit</button><button data-more="projects"><span class="nav-icon">▱</span> My Projects</button><button data-more="services"><span class="nav-icon">✦</span> Services</button></div><main>
-<section class="page active" id="home"><div class="home-topline"><div class="home-greeting">YOUR CREATIVE SPACE<strong>What will you make today?</strong></div><span class="home-badge"><i></i> Ready to create</span></div><label class="home-search"><span>⌕</span><input id="homeSearch" type="search" placeholder="Search designs, formats or tools…" aria-label="Search designs, formats or tools"><kbd>QUICK FIND</kbd></label><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Your ideas.<br>Made visual.</h1><p class="muted">Create standout content, shape your photos and build a look that feels like you.</p><div class="row"><button class="primary" data-goto="create">✦ &nbsp; Start creating</button><button data-goto="templates">Explore templates&nbsp; →</button></div></div><div class="section"><div class="section-head"><h2>Start with a format</h2><p>Choose a canvas and make it yours</p></div><div class="grid" id="quick"></div></div><div class="section"><div class="section-head"><h2>Recent projects</h2><p>Your latest saved work</p></div><div id="homeProjects" class="grid"></div></div></section>
+<section class="page active" id="home"><div class="home-topline"><div class="home-greeting">YOUR CREATIVE SPACE<strong>What will you make today?</strong></div><span class="home-badge"><i></i> Ready to create</span></div><label class="home-search"><span>⌕</span><input id="homeSearch" type="search" placeholder="Search designs, formats or tools…" aria-label="Search designs, formats or tools"><kbd>QUICK FIND</kbd></label><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Your ideas.<br>Made visual.</h1><p class="muted">Create standout content, shape your photos and build a look that feels like you.</p><div class="row"><button class="primary" data-goto="create">✦ &nbsp; Start creating</button><button data-goto="templates">Explore templates&nbsp; →</button></div></div><div class="section"><div class="section-head"><h2>Start with a format</h2><p>Choose a canvas and make it yours</p></div><div class="grid" id="quick"></div></div><div class="section idea-spark"><div class="section-head"><h2>Idea Spark</h2><p>A fresh direction when you need one</p></div><div class="idea-card"><div class="idea-orb">✦</div><div class="idea-copy"><strong id="ideaTitle">Midnight editorial</strong><p id="ideaText">A cinematic, high-contrast design with a bold headline and one electric-blue detail.</p><div class="row"><button id="ideaRefresh" type="button">↻ New idea</button><button id="ideaUse" class="primary" type="button">Use this direction →</button></div></div></div><p class="muted small">Quick creative prompts run on this device. No sign-in or API required.</p></div><div class="section"><div class="section-head"><h2>Recent projects</h2><p>Your latest saved work</p></div><div id="homeProjects" class="grid"></div></div></section>
 <section class="page" id="create"><span class="eyebrow">START A PROJECT</span><h2>What are we creating?</h2><p class="muted">Choose a format. You can change the canvas colour, add text or shapes, and upload images.</p><div class="grid" id="formats"></div><div class="section"><label class="field">Custom width (px)<input class="input" id="customW" type="number" value="1080" min="100" max="3000"></label><label class="field">Custom height (px)<input class="input" id="customH" type="number" value="1350" min="100" max="3000"></label><button class="primary" id="customCreate">Create custom canvas →</button></div></section>
 <section class="page" id="templates"><span class="eyebrow">START WITH A DIRECTION</span><h2>Template starters</h2><p class="muted">These are editable starter layouts, not flattened preview images.</p><div class="grid" id="templateGrid"></div></section>
 <section class="page" id="editor"><span class="eyebrow">CREATIVE WORKSPACE</span><h2 id="editorHeading">Untitled design</h2><div class="editor-layout"><div class="toolbox"><div class="mobile-action-group"><div class="props-title">Add to canvas</div><button id="addText">T &nbsp; Add text</button><button id="addRect">▰ &nbsp; Add shape</button><button id="uploadBtn">▧ &nbsp; Upload image</button></div>
@@ -234,6 +329,7 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 <div class="props-title small">Selected layer</div>
 <div id="selectionHint" class="notice small">Select text, an image or a shape on the canvas.</div>
 
+<details class="edit-accordion layer-typography" open><summary>Text &amp; typography</summary><div class="edit-accordion-body">
 <label class="field">Text<input class="input" id="textValue" placeholder="Select a text layer"></label>
 <label class="field">Font<select class="input" id="fontFamily"><option>Arial</option><option>Inter</option><option>Georgia</option><option>Impact</option><option>Trebuchet MS</option></select></label>
 <label class="field">Weight<select class="input" id="fontWeight"><option value="400">Regular</option><option value="600">Semibold</option><option value="700" selected>Bold</option><option value="900">Black</option></select></label>
@@ -242,8 +338,10 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 <div class="row compact">
 <button id="alignLeft">Text Left</button><button id="alignCenter">Text Center</button><button id="alignRight">Text Right</button>
 </div>
+</div></details>
 
 <div class="tool-divider"></div>
+<details class="edit-accordion layer-transform" open><summary>Position &amp; transform</summary><div class="edit-accordion-body">
 <div class="props-title small">Position</div>
 <div class="position-grid">
 <button id="posLeft">← Left</button><button id="posHCenter">↔ Center</button><button id="posRight">Right →</button>
@@ -270,13 +368,15 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 <button id="flipH">↔ Flip H</button><button id="flipV">↕ Flip V</button>
 <button id="resetTransform">Reset transform</button>
 </div>
+</div></details>
 
 
 <div class="tool-divider"></div>
 <div id="imageControls">
-<div class="props-title small">Image controls</div>
-<div class="props-title small" style="margin-top:12px">Photo looks</div>
+<div class="props-title small image-controls-heading">Photo editor</div>
+<details class="edit-accordion" open><summary>Looks &amp; presets</summary><div class="edit-accordion-body">
 <div class="preset-grid">
+<button type="button" class="photo-look quick-enhance" data-look="auto">✦ Quick Enhance</button>
 <button type="button" class="photo-look" data-look="natural">Natural</button>
 <button type="button" class="photo-look" data-look="iphone">iPhone Vivid</button>
 <button type="button" class="photo-look" data-look="cinematic">Cinematic</button>
@@ -285,18 +385,21 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 <button type="button" class="photo-look" data-look="mono">B&amp;W</button>
 <button type="button" class="photo-look" data-look="dream">Dream Glow</button>
 <button type="button" class="photo-look" data-look="night">Night Pop</button>
-</div>
-<div class="props-title small" style="margin-top:12px">Fine tune</div>
+</div><div class="row compact"><button id="resetPhoto">Reset photo look</button></div></div></details>
+<details class="edit-accordion" open><summary>Light &amp; colour</summary><div class="edit-accordion-body">
 <label class="field small">Brightness <span id="photoBrightnessLabel">100%</span><input id="photoBrightness" type="range" min="50" max="160" value="100"></label>
 <label class="field small">Contrast <span id="photoContrastLabel">100%</span><input id="photoContrast" type="range" min="50" max="180" value="100"></label>
 <label class="field small">Saturation <span id="photoSaturationLabel">100%</span><input id="photoSaturation" type="range" min="0" max="200" value="100"></label>
 <label class="field small">Warm / cool <span id="photoWarmthLabel">0</span><input id="photoWarmth" type="range" min="-40" max="40" value="0"></label>
+</div></details>
+<details class="edit-accordion"><summary>Effects &amp; finish</summary><div class="edit-accordion-body">
 <label class="field small">Sepia <span id="photoSepiaLabel">0%</span><input id="photoSepia" type="range" min="0" max="100" value="0"></label>
 <label class="field small">Soft focus <span id="photoSoftnessLabel">0</span><input id="photoSoftness" type="range" min="0" max="4" step="0.5" value="0"></label>
 <label class="field small">Vignette <span id="photoVignetteLabel">0%</span><input id="photoVignette" type="range" min="0" max="90" value="0"></label>
 <label class="field small">Film grain <span id="photoGrainLabel">0%</span><input id="photoGrain" type="range" min="0" max="100" value="0"></label>
-<div class="row compact"><button id="resetPhoto">Reset photo look</button><button id="cropSquare">Square crop</button><button id="cropPortrait">4:5 crop</button></div>
-
+</div></details>
+<details class="edit-accordion"><summary>Crop &amp; frame</summary><div class="edit-accordion-body">
+<div class="row compact crop-presets"><button id="cropSquare">Square crop</button><button id="cropPortrait">4:5 crop</button></div>
 <button type="button" id="cropModeBtn">✂ &nbsp; Crop & reposition with touch</button>
 <div id="cropModeHint">CROP MODE · Drag with one finger to reposition the photo. Pinch with two fingers to zoom the crop. Tap Done when it looks right.</div>
 <div class="two-col">
@@ -311,6 +414,7 @@ h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
 <label class="field">Crop Height<input class="input" id="cropH" type="number" min="1"></label>
 </div>
 <div class="row compact"><button id="applyImageSize">Apply resize</button><button id="fitImage">Fit to canvas</button><button id="applyCrop">Apply crop</button></div>
+</div></details>
 </div>
 
 <div class="tool-divider"></div>
@@ -360,6 +464,7 @@ $('#homeSearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const 
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function card(title,sub,icon,fn){let b=document.createElement('button');b.className='card';b.innerHTML=`<span class="icon">${icon}</span><strong>${esc(title)}</strong><span class="muted small">${esc(sub)}</span>`;b.onclick=fn;return b}
 formats.forEach(f=>{$('#formats').append(card(f[0],f[1]+' px',f[2],()=>newDesign(f[0],f[3],f[4])));$('#quick').append(card(f[0],f[1]+' px',f[2],()=>newDesign(f[0],f[3],f[4])))}); 
+$('#quick').append(card('Edit a photo','Crop, retouch and create a look','✧',()=>{go('editor');setTimeout(()=>$('#fileInput').click(),120)}));
 
 function imageState(l){return{type:'image',src:l.src||'',x:l.x||0,y:l.y||0,w:l.w||100,h:l.h||100,sx:Number.isFinite(l.sx)?l.sx:0,sy:Number.isFinite(l.sy)?l.sy:0,sw:Number.isFinite(l.sw)?l.sw:(l.img?.naturalWidth||l.w||100),sh:Number.isFinite(l.sh)?l.sh:(l.img?.naturalHeight||l.h||100),rotation:l.rotation||0,opacity:l.opacity==null?1:l.opacity,photo:l.photo?{...l.photo}:undefined}}
 function serialLayers(){return layers.map(l=>l.type==='image'?imageState(l):{...l,img:undefined})}
@@ -370,6 +475,7 @@ function restore(s){const d=JSON.parse(s);layers=d.layers||[];bg=d.bg||'#08172b'
 function updateHistoryButtons(){$('#undoBtn').disabled=history.length<=1;$('#redoBtn').disabled=redoStack.length===0}
 
 function newDesign(name,w,h){projectName=name;canvas.width=w;canvas.height=h;$('#canvasW').value=w;$('#canvasH').value=h;layers=[];selected=-1;bg='#08172b';$('#bgColor').value=bg;history=[];redoStack=[];saveHistory();draw();syncProps();$('#editorHeading').textContent=name;go('editor')}
+window.applyIdeaSpark=function(name,description){newDesign(name,1080,1350);layers.push({type:'text',text:String(name||'CREATIVE IDEA').toUpperCase(),x:84,y:150,size:66,color:'#ffffff',font:'Arial',weight:700,align:'left',maxW:900});layers.push({type:'text',text:String(description||'Make something memorable.'),x:86,y:280,size:30,color:'#b7d5ff',font:'Arial',weight:400,align:'left',maxW:880});saveHistory();draw();syncProps()};
 
 function draw(){
  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle=bg;ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -636,6 +742,7 @@ newDesign('Instagram Post',1080,1350);
 // Photo Look engine and multi-image collage workflow.
 const photoBase={brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0,grayscale:0};
 const photoLooks={
+ auto:{...photoBase,brightness:106,contrast:108,saturation:108,warmth:2},
  natural:{...photoBase},
  iphone:{...photoBase,brightness:105,contrast:112,saturation:128},
  cinematic:{...photoBase,brightness:96,contrast:128,saturation:88,warmth:-12,vignette:28},
@@ -681,6 +788,8 @@ photoSliders.forEach(([key,id,label,suffix])=>{
 document.querySelectorAll('.photo-look').forEach(b=>b.addEventListener('click',()=>{
  const l=selectedPhoto();if(!l)return;
  commitMutation(()=>l.photo={...photoLooks[b.dataset.look]});
+ document.querySelectorAll('.photo-look').forEach(x=>x.classList.toggle('applied',x===b));
+ b.classList.remove('tap-flash');void b.offsetWidth;b.classList.add('tap-flash');
  showPhotoControls();
 }));
 document.getElementById('resetPhoto').addEventListener('click',()=>{
@@ -813,7 +922,39 @@ syncProps=function(){
 
 
 renderHome();renderProjects();renderLayers();updateHistoryButtons();
-</script><script>
+</script>
+<script>
+(function(){
+ const body=document.body,btn=document.getElementById('themeToggle');
+ let theme='dark';try{theme=localStorage.getItem('ggx-theme')||'dark'}catch(e){}
+ function setTheme(next){theme=next==='light'?'light':'dark';body.dataset.theme=theme;if(btn){btn.textContent=theme==='dark'?'☼':'☾';btn.setAttribute('aria-label',theme==='dark'?'Switch to light mode':'Switch to dark mode');btn.title=theme==='dark'?'Switch to light mode':'Switch to dark mode'}try{localStorage.setItem('ggx-theme',theme)}catch(e){}}
+ setTheme(theme);btn?.addEventListener('click',()=>setTheme(theme==='dark'?'light':'dark'));
+ const ideas=[
+  ['Midnight editorial','A cinematic, high-contrast layout with a bold headline, generous negative space and one electric-blue detail.','Midnight Editorial'],
+  ['Soft-focus story','Build a warm, intimate story with a full-bleed photo, a subtle grain finish and short white typography.','Soft Focus Story'],
+  ['Electric launch','Create a launch post with a giant condensed headline, a vivid gradient accent and a clear call to action.','Electric Launch'],
+  ['Quiet luxury','Use a restrained palette, refined type, a small serif headline and carefully balanced spacing.','Quiet Luxury'],
+  ['Motion-ready poster','Design around one strong focal image, oversized type and layered shapes that could later animate.','Motion Poster'],
+  ['Creator carousel','Make slide one a strong hook, use a simple three-step structure and keep each slide visually consistent.','Creator Carousel']
+ ];let ideaIndex=-1;
+ const title=document.getElementById('ideaTitle'),copy=document.getElementById('ideaText');
+ function showIdea(){ideaIndex=(ideaIndex+1)%ideas.length;title.textContent=ideas[ideaIndex][0];copy.textContent=ideas[ideaIndex][1]}
+ document.getElementById('ideaRefresh')?.addEventListener('click',showIdea);
+ showIdea();
+ document.getElementById('ideaUse')?.addEventListener('click',()=>{
+  const name=ideas[ideaIndex][2];
+  if(typeof window.applyIdeaSpark==='function'){window.applyIdeaSpark(name,ideas[ideaIndex][1])}
+  else{document.querySelector('[data-goto="create"]')?.click()}
+ });
+ // Reveal only the primary look panel on phones; advanced controls stay one tap away.
+ if(window.matchMedia('(max-width:850px)').matches){
+  document.querySelectorAll('#imageControls .edit-accordion').forEach((d,i)=>d.open=(i===0||i===1));
+  document.querySelectorAll('.layer-typography,.layer-transform').forEach(d=>d.open=false);
+ }
+})();
+</script>
+
+<script>
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
   navigator.serviceWorker.register("./sw.js").catch(()=>{});
 }
