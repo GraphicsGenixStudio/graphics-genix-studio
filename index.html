@@ -2468,4 +2468,156 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
   update();
 })();
 </script>
+
+<style id="ggx-v25-mobile-app-shell">
+@media (max-width:850px){
+  /* V25: the editor is a dedicated app workspace, not a page inside the site. */
+  body[data-page="editor"]:not([data-photo-editing="true"]){
+    position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;
+    overflow:hidden!important;overscroll-behavior:none!important;background:#0b1019!important;
+  }
+  body[data-theme="light"][data-page="editor"]:not([data-photo-editing="true"]){background:#eef2f7!important;color:#17243a!important}
+  body[data-page="editor"]:not([data-photo-editing="true"]) header,
+  body[data-page="editor"]:not([data-photo-editing="true"]) nav,
+  body[data-page="editor"]:not([data-photo-editing="true"]) #moreMenu,
+  body[data-page="editor"]:not([data-photo-editing="true"]) #editorHeading,
+  body[data-page="editor"]:not([data-photo-editing="true"]) .editor-layout>.toolbox,
+  body[data-page="editor"]:not([data-photo-editing="true"]) .editor-layout>.properties,
+  body[data-page="editor"]:not([data-photo-editing="true"]) #mobileObjectControls,
+  body[data-page="editor"]:not([data-photo-editing="true"]) .ggx-mobile-editor-bar-static{display:none!important}
+  body[data-page="editor"]:not([data-photo-editing="true"]) .app,
+  body[data-page="editor"]:not([data-photo-editing="true"]) main,
+  body[data-page="editor"]:not([data-photo-editing="true"]) #editor,
+  body[data-page="editor"]:not([data-photo-editing="true"]) .editor-layout{display:block!important;position:static!important;width:100%!important;height:100%!important;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important}
+  body[data-page="editor"]:not([data-photo-editing="true"]) .editor-layout>.stage{
+    position:fixed!important;top:calc(64px + env(safe-area-inset-top))!important;left:0!important;right:0!important;
+    bottom:calc(174px + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;min-height:0!important;
+    max-height:none!important;margin:0!important;padding:14px 12px!important;border:0!important;border-radius:0!important;
+    overflow:hidden!important;display:grid!important;place-items:center!important;z-index:20!important;background:#0b1019!important;box-shadow:none!important;
+  }
+  body[data-theme="light"][data-page="editor"]:not([data-photo-editing="true"]) .editor-layout>.stage{background:#eef2f7!important}
+  body[data-page="editor"]:not([data-photo-editing="true"]) .canvas-wrap{
+    display:grid!important;place-items:center!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;
+    overflow:hidden!important;box-shadow:0 18px 50px rgba(0,0,0,.34)!important;border-radius:3px!important;background:#111!important;
+  }
+  body[data-page="editor"]:not([data-photo-editing="true"]) .canvas-wrap canvas{display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+  body[data-page="editor"]:not([data-photo-editing="true"]) .ggx-editor-blank-state{
+    width:min(270px,78vw)!important;padding:18px 16px!important;border-radius:20px!important;background:rgba(8,16,29,.82)!important;
+    border:1px solid rgba(136,172,222,.2)!important;backdrop-filter:blur(18px)!important;color:#f7faff!important;
+  }
+  body[data-theme="light"][data-page="editor"]:not([data-photo-editing="true"]) .ggx-editor-blank-state{background:rgba(255,255,255,.9)!important;color:#17243a!important;border-color:#d8e2ee!important}
+
+  #ggxV25EditorBar{display:flex;position:fixed;top:0;left:0;right:0;height:calc(64px + env(safe-area-inset-top));padding:calc(8px + env(safe-area-inset-top)) 10px 8px;align-items:center;gap:8px;z-index:1000;background:rgba(10,16,27,.96);border-bottom:1px solid rgba(135,166,214,.16);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);color:#f7faff}
+  body[data-theme="light"] #ggxV25EditorBar{background:rgba(250,252,255,.96);border-color:#dce4ef;color:#17243a}
+  .ggx-v25-icon{width:40px;height:40px;min-width:40px;border-radius:12px!important;padding:0!important;display:grid!important;place-items:center!important;background:#16243a!important;border:1px solid #2b4161!important;color:#f4f8ff!important;font-size:22px!important}
+  body[data-theme="light"] .ggx-v25-icon{background:#eef3f8!important;border-color:#d8e1eb!important;color:#17243a!important}
+  .ggx-v25-title{min-width:0;flex:1;line-height:1.05;overflow:hidden}.ggx-v25-title strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ggx-v25-title span{display:block;font-size:8px;letter-spacing:1.7px;color:#82aee9;margin-top:4px;font-weight:800}
+  .ggx-v25-top-actions{display:flex;gap:5px}.ggx-v25-top-actions button{height:40px;min-width:40px;padding:0 9px;border-radius:12px!important;background:#16243a;border-color:#2b4161;color:#eef5ff;font-size:13px!important}.ggx-v25-top-actions .save{background:linear-gradient(135deg,#1688ff,#625bf3)!important;border-color:transparent!important;color:#fff!important;font-weight:850}
+  body[data-theme="light"] .ggx-v25-top-actions button{background:#f0f4f9;border-color:#d8e1eb;color:#17243a}
+  body[data-theme="light"] .ggx-v25-top-actions .save{color:#fff}
+
+  #ggxV25Dock{display:flex;position:fixed;left:0;right:0;bottom:0;height:calc(174px + env(safe-area-inset-bottom));padding:8px 10px calc(8px + env(safe-area-inset-bottom));flex-direction:column;gap:7px;z-index:950;background:rgba(11,17,28,.98);border-top:1px solid rgba(132,164,211,.17);box-shadow:0 -16px 45px rgba(0,0,0,.28);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);color:#f6f8fc}
+  body[data-theme="light"] #ggxV25Dock{background:rgba(250,252,255,.98);border-color:#dce4ef;color:#17243a;box-shadow:0 -16px 45px rgba(40,59,87,.12)}
+  .ggx-v25-handle{width:36px;height:4px;border-radius:99px;background:#7d8ea866;margin:0 auto 1px;flex:none}
+  .ggx-v25-context{min-height:67px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain}.ggx-v25-context::-webkit-scrollbar{display:none}
+  .ggx-v25-context button{flex:0 0 auto;min-width:72px;height:62px;padding:7px 7px;border-radius:14px!important;background:#142238;border:1px solid #293e5d;color:#cbd8e9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px!important;font-weight:800!important}.ggx-v25-context button .ico{font-size:20px;line-height:1}.ggx-v25-context button.active{background:linear-gradient(145deg,#1d82ff,#625bf3);border-color:transparent;color:#fff;box-shadow:0 8px 20px rgba(37,115,255,.22)}
+  body[data-theme="light"] .ggx-v25-context button{background:#f0f4f9;border-color:#d8e1eb;color:#506078}.ggx-v25-context button.active{color:#fff}
+  .ggx-v25-subpanel{min-height:78px;display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none}.ggx-v25-subpanel::-webkit-scrollbar{display:none}
+  .ggx-v25-subpanel .label{font-size:11px;font-weight:850;white-space:nowrap;color:#9fb0c5;margin-right:2px}.ggx-v25-subpanel button{height:46px;min-width:64px;padding:7px 9px;border-radius:12px!important;background:#111d30;border:1px solid #263c5b;color:#dce7f7;font-size:11px!important;font-weight:800!important}.ggx-v25-subpanel button.primary{background:linear-gradient(135deg,#218cff,#625bf3)!important;border-color:transparent!important;color:#fff!important}.ggx-v25-subpanel input[type=range]{width:130px;min-width:130px;accent-color:#1687ff}.ggx-v25-subpanel .sizebox{height:46px;min-width:82px;display:grid;grid-template-columns:32px 1fr 32px;align-items:center;background:#111d30;border:1px solid #263c5b;border-radius:12px;overflow:hidden}.ggx-v25-subpanel .sizebox button{height:100%;min-width:32px;border:0;background:transparent;border-radius:0!important;padding:0;font-size:19px!important}.ggx-v25-subpanel .sizebox strong{text-align:center;font-size:12px;color:#fff}.ggx-v25-subpanel select{height:46px;width:110px;margin:0;background:#111d30;color:#fff;border:1px solid #263c5b;border-radius:12px;padding:0 9px;font-size:11px}
+  body[data-theme="light"] .ggx-v25-subpanel .label{color:#718198}body[data-theme="light"] .ggx-v25-subpanel button{background:#f1f5f9;border-color:#d7e0eb;color:#25364e}body[data-theme="light"] .ggx-v25-subpanel .sizebox{background:#f1f5f9;border-color:#d7e0eb}body[data-theme="light"] .ggx-v25-subpanel .sizebox strong{color:#17243a}body[data-theme="light"] .ggx-v25-subpanel select{background:#f1f5f9;color:#17243a;border-color:#d7e0eb}
+  #ggxV25Dock button{touch-action:manipulation;transition:transform .14s ease,background .18s ease,border-color .18s ease,box-shadow .18s ease}#ggxV25Dock button:active{transform:scale(.96)}
+  .ggx-v25-toast{position:fixed;left:50%;top:calc(72px + env(safe-area-inset-top));transform:translateX(-50%);z-index:1200;background:#101a2a;color:#fff;border:1px solid #2b4161;border-radius:99px;padding:8px 12px;font-size:11px;font-weight:750;box-shadow:0 12px 30px #0005;opacity:0;pointer-events:none;transition:opacity .18s ease}.ggx-v25-toast.show{opacity:1}
+  @media(max-width:380px){#ggxV25EditorBar{height:58px;padding-top:8px}.ggx-v25-icon{width:36px;height:36px;min-width:36px}.ggx-v25-top-actions button{height:36px;min-width:36px}.ggx-v25-title strong{font-size:12px}.ggx-v25-context button{min-width:66px}.ggx-v25-subpanel button{min-width:60px}}
+}
+@media(min-width:851px){#ggxV25EditorBar,#ggxV25Dock,#ggxV25Toast{display:none!important}}
+</style>
+<script id="ggx-v25-mobile-app-shell-js">
+(function(){
+  const body=document.body;if(!body)return;
+  let bar=document.getElementById('ggxV25EditorBar'),dock=document.getElementById('ggxV25Dock'),toast=document.getElementById('ggxV25Toast');
+  if(!bar){bar=document.createElement('div');bar.id='ggxV25EditorBar';bar.innerHTML='<button class="ggx-v25-icon" id="ggxV25Back" aria-label="Back">‹</button><div class="ggx-v25-title"><strong id="ggxV25Title">Untitled design</strong><span>GRAPHICS GENIX · EDITOR</span></div><div class="ggx-v25-top-actions"><button id="ggxV25Undo" aria-label="Undo">↶</button><button id="ggxV25Redo" aria-label="Redo">↷</button><button id="ggxV25Save" class="save">Save</button></div>';body.appendChild(bar)}
+  if(!dock){dock=document.createElement('section');dock.id='ggxV25Dock';dock.setAttribute('aria-label','Graphics Genix editing tools');dock.innerHTML='<div class="ggx-v25-handle"></div><div id="ggxV25Context" class="ggx-v25-context"></div><div id="ggxV25Subpanel" class="ggx-v25-subpanel"></div>';body.appendChild(dock)}
+  if(!toast){toast=document.createElement('div');toast.id='ggxV25Toast';toast.className='ggx-v25-toast';body.appendChild(toast)}
+  const ctx=dock.querySelector('#ggxV25Context'),sub=dock.querySelector('#ggxV25Subpanel');
+  let activeTool='media',toastTimer=0;
+  const $=s=>document.querySelector(s);
+  const isMobile=()=>matchMedia('(max-width:850px)').matches;
+  const selectedLayer=()=>typeof getSelected==='function'?getSelected():null;
+  function notify(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1100)}
+  function click(id){$(id)?.click()}
+  function photoMode(){const l=selectedLayer();if(!l||l.type!=='image'){notify('Add or select a photo first');click('#uploadBtn');return}window.__ggxPhotoWorkspaceDismissed=false;body.dataset.photoEditing='true';if(typeof window.refreshMobilePhotoWorkspace==='function')window.refreshMobilePhotoWorkspace()}
+  function btn(icon,label,fn,active=false){const b=document.createElement('button');b.type='button';b.className=active?'active':'';b.innerHTML='<span class="ico">'+icon+'</span><span>'+label+'</span>';b.onclick=fn;return b}
+  function renderContext(){
+    ctx.innerHTML='';const l=selectedLayer();
+    const tools=[
+      ['▧','Photo',()=>click('#uploadBtn'),'media'],
+      ['T','Text',()=>click('#addText'),'text'],
+      ['◇','Shape',()=>click('#addRect'),'shape'],
+      ['▦','Templates',()=>go('templates'),'templates'],
+      ['▥','Collage',()=>click('#collageBtn'),'collage'],
+      ['◉','Adjust',photoMode,'adjust'],
+      ['≡','Layers',()=>showLayers(),'layers']
+    ];
+    tools.forEach(([i,n,f,k])=>ctx.appendChild(btn(i,n,f,activeTool===k)));
+  }
+  function showLayers(){
+    const lp=$('#layersPanel');if(!lp||!lp.children.length){notify('No layers yet');return}
+    const names=[...lp.querySelectorAll('.layer-item')];sub.innerHTML='<span class="label">Layers</span>';
+    names.forEach((item)=>{const b=document.createElement('button');b.textContent=item.textContent.trim()||'Layer';b.onclick=()=>item.click();sub.appendChild(b)});
+  }
+  function renderSub(){
+    sub.innerHTML='';const l=selectedLayer();
+    if(!l){
+      sub.appendChild(labelEl('Quick start'));
+      sub.appendChild(action('＋ Photo',()=>click('#uploadBtn'),true));
+      sub.appendChild(action('T Text',()=>click('#addText')));
+      sub.appendChild(action('◇ Shape',()=>click('#addRect')));
+      sub.appendChild(action('▦ Collage',()=>click('#collageBtn')));
+      sub.appendChild(action('Use template',()=>go('templates')));
+      return;
+    }
+    if(l.type==='text'){
+      sub.appendChild(labelEl('Text'));
+      const input=document.createElement('input');input.value=l.text||'';input.placeholder='Type your text';input.style.cssText='height:46px;width:150px;min-width:150px;background:#111d30;border:1px solid #263c5b;border-radius:12px;color:#fff;padding:0 10px;font-size:12px';input.oninput=()=>{const v=input.value;l.text=v;draw()};input.onchange=()=>saveHistory();sub.appendChild(input);
+      const size=document.createElement('div');size.className='sizebox';const minus=document.createElement('button');minus.textContent='−';const val=document.createElement('strong');val.textContent=Math.round(l.size||72);const plus=document.createElement('button');plus.textContent='+';minus.onclick=()=>{l.size=Math.max(8,(l.size||72)-2);val.textContent=Math.round(l.size);draw();saveHistory()};plus.onclick=()=>{l.size=Math.min(400,(l.size||72)+2);val.textContent=Math.round(l.size);draw();saveHistory()};size.append(minus,val,plus);sub.appendChild(size);
+      sub.appendChild(action('Regular',()=>{l.weight=400;draw();saveHistory()}));sub.appendChild(action('Bold',()=>{l.weight=700;draw();saveHistory()},true));sub.appendChild(action('Black',()=>{l.weight=900;draw();saveHistory()}));sub.appendChild(action('Left',()=>{l.align='left';draw();saveHistory()}));sub.appendChild(action('Center',()=>{l.align='center';draw();saveHistory()}));sub.appendChild(action('Right',()=>{l.align='right';draw();saveHistory()}));sub.appendChild(action('Delete',()=>click('#deleteBtn')));
+      return;
+    }
+    if(l.type==='image'){
+      sub.appendChild(labelEl('Photo tools'));sub.appendChild(action('Edit photo',photoMode,true));sub.appendChild(action('Looks',()=>{photoMode();setTimeout(()=>document.querySelector('[data-mtab="looks"]')?.click(),30)}));sub.appendChild(action('Crop',()=>{photoMode();setTimeout(()=>document.querySelector('[data-mtab="crop"]')?.click(),30)}));sub.appendChild(action('Fit',()=>click('#fitImage')));sub.appendChild(action('Duplicate',()=>click('#duplicateBtn')));sub.appendChild(action('Delete',()=>click('#deleteBtn')));return;
+    }
+    sub.appendChild(labelEl('Shape tools'));sub.appendChild(action('Fill',()=>$('#mobileShapeFill')?.click()));sub.appendChild(action('Shape',()=>$('#mobileShapePicker')?.click()));sub.appendChild(action('Duplicate',()=>click('#duplicateBtn')));sub.appendChild(action('Delete',()=>click('#deleteBtn')));sub.appendChild(action('Arrange',()=>{notify('Use the Arrange controls below the canvas');}));
+  }
+  function labelEl(t){const e=document.createElement('span');e.className='label';e.textContent=t;return e}
+  function action(t,f,primary=false){const b=document.createElement('button');b.type='button';b.textContent=t;if(primary)b.className='primary';b.onclick=f;return b}
+  function update(){
+    const active=body.dataset.page==='editor'&&isMobile()&&!body.dataset.photoEditing;
+    bar.style.display=active?'flex':'none';dock.style.display=active?'flex':'none';if(!active)return;
+    $('#ggxV25Title').textContent=$('#editorHeading')?.textContent||'Untitled design';
+    const u=$('#undoBtn'),r=$('#redoBtn');$('#ggxV25Undo').disabled=!!u?.disabled;$('#ggxV25Redo').disabled=!!r?.disabled;
+    const l=selectedLayer();activeTool=l?.type==='image'?'adjust':(l?.type==='text'?'text':(l?'shape':'media'));renderContext();renderSub();
+  }
+  $('#ggxV25Back').onclick=()=>{window.__ggxPhotoWorkspaceDismissed=false;go('home')};$('#ggxV25Undo').onclick=()=>click('#undoBtn');$('#ggxV25Redo').onclick=()=>click('#redoBtn');$('#ggxV25Save').onclick=()=>click('#exportBtn');
+  const oldSync=window.syncProps; if(typeof oldSync==='function')window.syncProps=function(){oldSync();update()};
+  const mo=new MutationObserver(update);mo.observe(body,{attributes:true,attributeFilter:['data-page','data-photo-editing','data-theme']});
+  const lp=$('#layersPanel');if(lp)new MutationObserver(update).observe(lp,{childList:true,subtree:true});
+  window.addEventListener('resize',update,{passive:true});
+  update();
+})();
+</script>
+<style id="ggx-v25-home-light-finish">
+@media(max-width:850px){
+ body[data-theme="light"] #home .hero h1{color:#fff!important;text-shadow:0 2px 18px rgba(0,0,0,.28)!important}
+ body[data-theme="light"] #home .hero .eyebrow{color:#8bbcff!important}
+ body[data-theme="light"] #home .hero p{color:#e8eef8!important}
+ body[data-theme="light"] #home .hero .home-action-row button:not(.primary){background:rgba(255,255,255,.96)!important;color:#17243a!important;border-color:#e2e7ef!important}
+ body[data-theme="light"] #home #quick .card{background:linear-gradient(145deg,#ffffff,#f5f8fc)!important;border-color:#dce4ee!important;box-shadow:0 8px 22px rgba(35,58,91,.07)!important;color:#17243a!important}
+ body[data-theme="light"] #home #quick .card strong{color:#17243a!important}
+ body[data-theme="light"] #home #quick .card .muted{color:#66758a!important}
+ body[data-theme="light"] #home #quick .card .icon{background:#edf4ff!important;color:#1769c5!important}
+ body[data-theme="light"] #home .home-search{background:#fff!important;border-color:#dce4ee!important;box-shadow:0 6px 20px rgba(35,58,91,.05)!important}
+ body[data-theme="light"] #home .home-search input{color:#17243a!important}
+}
+</style>
+
 </body></html>
