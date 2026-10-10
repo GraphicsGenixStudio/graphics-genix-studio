@@ -286,6 +286,29 @@ body[data-theme="light"] .home-badge{background:#edf5ff;border-color:#cfe0ff;col
 }
 
 
+
+/* MOBILE OBJECT WORKSPACE — text and shapes stay over the live canvas */
+.mobile-object-controls{display:none}
+.shape-picker-modal{display:none;position:fixed;inset:0;z-index:120;background:rgba(2,5,10,.72);backdrop-filter:blur(12px);align-items:flex-end;justify-content:center}
+.shape-picker-modal.open{display:flex;animation:pageIn .16s ease both}.shape-picker-sheet{width:min(720px,100%);max-height:82dvh;overflow:auto;background:#0b1322;border:1px solid #2a3d5c;border-radius:22px 22px 0 0;padding:16px;box-shadow:0 -20px 60px #0008}.shape-picker-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.shape-picker-head strong{display:block;font-size:20px;margin-top:4px}.shape-picker-head button{width:40px;height:40px;border-radius:50%;font-size:24px;padding:0}.shape-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}.shape-option{min-height:82px;padding:9px 5px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border-radius:13px;background:#101b2d;border-color:#263a56}.shape-option:hover{transform:translateY(-1px)}.shape-preview{height:30px;width:38px;display:grid;place-items:center;font-size:27px;color:#9ec9ff}.shape-option small{font-size:9px;color:#aab9cd;text-align:center}.splash-tagline{font-size:12px;letter-spacing:.7px;color:#e7eef8;opacity:.82}.splash-name{animation:logoTitleIn .65s .42s both}.splash-sub{animation:logoTitleIn .65s .54s both}.splash-tagline{animation:logoTitleIn .65s .64s both}
+@keyframes splashLogoCinematic{0%{opacity:0;transform:translateY(16px) scale(.78) rotate(-3deg);filter:blur(9px)}35%{opacity:1;filter:blur(0);transform:translateY(0) scale(1.05) rotate(0)}65%{transform:scale(.98)}100%{transform:scale(1)}}
+@keyframes logoTitleIn{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+.splash-inner .splash-logo{animation:splashLogoCinematic 1.15s cubic-bezier(.16,1,.3,1) both}
+@media(max-width:850px){
+ body[data-page="editor"][data-object-editing="true"]{overflow:hidden}
+ body[data-page="editor"][data-object-editing="true"] #editorHeading{display:none}
+ body[data-page="editor"][data-object-editing="true"] .editor-layout{display:block;padding:0;margin:0}
+ body[data-page="editor"][data-object-editing="true"] .editor-layout>.stage{position:fixed!important;top:72px!important;left:9px!important;right:9px!important;width:auto!important;height:38dvh!important;min-height:0!important;max-height:390px!important;padding:8px!important;margin:0!important;overflow:hidden!important;z-index:45!important;display:grid!important;place-items:center!important;border-radius:16px!important;background:#0b1320!important;border:1px solid #263957!important;box-shadow:0 12px 35px #0004}
+ body[data-page="editor"][data-object-editing="true"] .editor-layout>.toolbox{display:none!important}
+ body[data-page="editor"][data-object-editing="true"] .editor-layout>.properties{display:block!important;position:static!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+ body[data-page="editor"][data-object-editing="true"] .properties>:not(#mobileObjectControls){display:none!important}
+ body[data-page="editor"][data-object-editing="true"] #mobileObjectControls{display:block!important;position:fixed!important;left:8px!important;right:8px!important;bottom:calc(72px + env(safe-area-inset-bottom))!important;height:34dvh!important;max-height:320px!important;min-height:205px!important;overflow-y:auto!important;z-index:90!important;margin:0!important;padding:7px 10px 14px!important;border:1px solid #2a3d5c!important;border-radius:17px!important;background:rgba(9,16,31,.98)!important;box-shadow:0 15px 40px #0008!important}
+ .mobile-object-tabs{position:sticky;top:-7px;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:5px;padding:5px 0 9px;background:inherit}
+ .mobile-object-tabs button{min-height:42px;padding:7px 3px;font-size:11px}.mobile-object-tabs button.active{background:#247dff;color:#fff;border-color:#247dff}
+ .mobile-object-panel{display:none}.mobile-object-panel.active{display:block}.mobile-object-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:7px 0}.mobile-object-actions button{min-height:40px;padding:7px 4px;font-size:11px}.mobile-text-input{min-height:58px;resize:none;line-height:1.35}.shape-picker-button{width:100%;display:flex;justify-content:space-between;align-items:center;min-height:44px;margin-top:5px}.mobile-object-controls .check{min-height:40px;display:flex;align-items:center;gap:7px;padding:5px}.mobile-object-controls input[type=range]{width:100%;min-height:28px}.mobile-object-controls .field{font-size:11px}.mobile-object-controls .input{font-size:15px;min-height:42px}
+}
+@media(max-width:380px){body[data-page="editor"][data-object-editing="true"] .editor-layout>.stage{top:68px!important;height:35dvh!important}body[data-page="editor"][data-object-editing="true"] #mobileObjectControls{height:36dvh!important;min-height:190px!important}}
+
 /* MOBILE PHOTO WORKSPACE — keep the live image visible while controls are used */
 @media (max-width: 850px) {
   body[data-page="editor"][data-photo-editing="true"] { overflow-x:hidden; }
@@ -421,8 +444,8 @@ button .icon,button .nav-icon{flex-shrink:0}
 </head>
 <body data-page="home">
 <div id="appToast" role="status" aria-live="polite"></div>
-<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">GG</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-loading"></div></div></div>
-<header><div class="brand"><div class="logo" role="img" aria-label="Graphics Genix GG mark">GG</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch light or dark mode">☼</button><button id="saveBtn">Save project</button><button class="primary" id="exportBtn">Save image</button></div></header>
+<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">GG</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-tagline">Make it memorable.</div><div class="splash-loading"></div></div></div>
+<header><div class="brand"><div class="logo" role="img" aria-label="Graphics Genix GG mark">GG</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch light or dark mode">☼</button><button id="saveBtn" aria-label="Save project">Save</button><button class="primary" id="exportBtn" aria-label="Save image">Export</button></div></header>
 <div class="app"><nav>
 <button class="active" data-page="home"><span class="nav-icon">⌂</span><span>Home</span></button><button data-page="create"><span class="nav-icon">＋</span><span>Create</span></button><button data-page="templates"><span class="nav-icon">▦</span><span>Templates</span></button><button data-page="editor"><span class="nav-icon">✎</span><span>Photo Editor</span></button><button data-page="brand"><span class="nav-icon">◉</span><span>Brand Kit</span></button><button data-page="projects"><span class="nav-icon">▱</span><span>My Projects</span></button><button data-page="services"><span class="nav-icon">✦</span><span>Services</span></button><button id="moreNavBtn"><span class="nav-icon">•••</span><span>More</span></button>
 <div class="note">Your creative space<br>Design posts, edit photos, make collages and keep your projects together. Saved projects stay in this browser on this device.</div>
@@ -430,7 +453,7 @@ button .icon,button .nav-icon{flex-shrink:0}
 <section class="page active" id="home"><div class="home-topline"><div class="home-greeting">YOUR CREATIVE SPACE<strong>What will you make today?</strong></div><span class="home-badge"><i></i> Ready to create</span></div><label class="home-search"><span>⌕</span><input id="homeSearch" type="search" placeholder="Search designs, formats or tools…" aria-label="Search designs, formats or tools"><kbd>QUICK FIND</kbd></label><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Your ideas.<br>Made visual.</h1><p class="muted">Create standout content, shape your photos and build a look that feels like you.</p><div class="row home-action-row"><button class="primary" id="homeEditPhoto" type="button">▧ &nbsp; Edit a photo</button><button id="homeCreateDesign" type="button">＋ &nbsp; Create a design</button><button data-goto="templates" type="button">Explore templates&nbsp; →</button></div></div><div class="section"><div class="section-head"><h2>Start with a format</h2><p>Choose a canvas and make it yours</p></div><div class="grid" id="quick"></div></div><div class="section idea-spark"><div class="section-head"><h2>Idea Spark</h2><p>A fresh direction when you need one</p></div><div class="idea-card"><div class="idea-orb">✦</div><div class="idea-copy"><strong id="ideaTitle">Midnight editorial</strong><p id="ideaText">A cinematic, high-contrast design with a bold headline and one electric-blue detail.</p><div class="row"><button id="ideaRefresh" type="button">↻ New idea</button><button id="ideaUse" class="primary" type="button">Use this direction →</button></div></div></div><p class="muted small">Quick creative prompts run on this device. No sign-in or API required.</p></div><div class="section"><div class="section-head"><h2>Recent projects</h2><p>Your latest saved work</p></div><div id="homeProjects" class="grid"></div></div></section>
 <section class="page" id="create"><span class="eyebrow">START A PROJECT</span><h2>What are we creating?</h2><p class="muted">Choose a format. You can change the canvas colour, add text or shapes, and upload images.</p><div class="grid" id="formats"></div><div class="section"><label class="field">Custom width (px)<input class="input" id="customW" type="number" value="1080" min="100" max="3000"></label><label class="field">Custom height (px)<input class="input" id="customH" type="number" value="1350" min="100" max="3000"></label><button class="primary" id="customCreate">Create custom canvas →</button></div></section>
 <section class="page" id="templates"><span class="eyebrow">START WITH A DIRECTION</span><h2>Templates for every idea</h2><p class="muted">Choose a ready-made design, then edit every text and colour in your workspace. Templates use editable typography, shapes and colour—not synthetic AI stock photos.</p><label class="template-search"><span>⌕</span><input id="templateSearch" type="search" placeholder="Search posts, quotes, products, stories…" aria-label="Search templates"></label><div class="template-filters" id="templateFilters"><button class="active" data-filter="all">All</button><button data-filter="social">Social posts</button><button data-filter="brand">Brand & product</button><button data-filter="quotes">Quotes</button><button data-filter="events">Events</button><button data-filter="stories">Stories & covers</button></div><div class="grid template-grid" id="templateGrid"></div><div class="section collage-template-section"><div class="section-head"><div><span class="eyebrow">MULTI-PHOTO LAYOUTS</span><h2>Collage templates</h2></div><p>Choose a layout, then add your photos</p></div><div class="grid collage-template-grid" id="collageTemplateGrid"></div></div></section>
-<section class="page" id="editor"><span class="eyebrow">CREATIVE WORKSPACE</span><h2 id="editorHeading">Untitled design</h2><div class="editor-layout"><div class="toolbox"><div class="mobile-action-group"><div class="props-title">Add to canvas</div><button id="addText">T &nbsp; Add text</button><button id="addRect">▰ &nbsp; Add shape</button><button id="uploadBtn">▧ &nbsp; Upload image</button></div>
+<section class="page" id="editor"><span class="eyebrow">CREATIVE WORKSPACE</span><h2 id="editorHeading">Untitled design</h2><div class="editor-layout"><div class="toolbox"><div class="mobile-action-group"><div class="props-title">Add to canvas</div><button id="addText">T &nbsp; Add text</button><button id="addRect">◇ &nbsp; Add shape</button><button id="uploadBtn">▧ &nbsp; Upload image</button></div>
 <input id="fileInput" type="file" accept="image/*" hidden>
 <details class="advanced-tools" open><summary>Collage &amp; layer tools</summary><div class="advanced-tools-body">
 <div class="tool-divider"></div>
@@ -466,6 +489,8 @@ button .icon,button .nav-icon{flex-shrink:0}
 <button id="alignLeft">Text Left</button><button id="alignCenter">Text Center</button><button id="alignRight">Text Right</button>
 </div>
 </div></details>
+
+<details class="edit-accordion layer-shape" id="shapeControls"><summary>Shape style</summary><div class="edit-accordion-body"><label class="field">Shape<select id="shapeType" class="input"></select></label><div class="two-col"><label class="field">Fill<input id="shapeFill" class="input" type="color" value="#1687ff"></label><label class="field">Line<input id="shapeStroke" class="input" type="color" value="#ffffff"></label></div><div class="two-col"><label class="check"><input id="shapeFillOn" type="checkbox" checked> Fill</label><label class="check"><input id="shapeStrokeOn" type="checkbox" checked> Line</label></div><label class="field">Line width <span id="shapeStrokeWidthLabel">4 px</span><input id="shapeStrokeWidth" type="range" min="0" max="40" step="1" value="4"></label></div></details>
 
 <div class="tool-divider"></div>
 <details class="edit-accordion layer-transform" open><summary>Position &amp; transform</summary><div class="edit-accordion-body">
@@ -548,6 +573,55 @@ button .icon,button .nav-icon{flex-shrink:0}
 <div class="row compact"><button id="applyImageSize">Apply resize</button><button id="fitImage">Fit to canvas</button><button id="applyCrop">Apply crop</button></div>
 </div></details>
 </div>
+
+<div id="mobileObjectControls" class="mobile-object-controls" aria-label="Selected object controls">
+  <div class="mobile-object-tabs" role="tablist">
+    <button type="button" class="active" data-object-tab="content">Content</button>
+    <button type="button" data-object-tab="style">Style</button>
+    <button type="button" data-object-tab="transform">Position</button>
+  </div>
+  <section data-object-panel="content" class="mobile-object-panel active">
+    <label class="field" data-text-only>Text<textarea id="mobileTextValue" class="input mobile-text-input" rows="2" placeholder="Type your text…"></textarea></label>
+    <div class="mobile-object-actions" data-text-only>
+      <button type="button" id="mobileAddTextLine">Add line</button><button type="button" id="mobileDuplicateObject">Duplicate</button>
+    </div>
+    <div class="shape-picker-inline" data-shape-only>
+      <div class="field small">Shape</div><button type="button" id="mobileShapePicker" class="shape-picker-button">Choose a shape <span>⌄</span></button>
+    </div>
+  </section>
+  <section data-object-panel="style" class="mobile-object-panel">
+    <div class="two-col" data-text-only>
+      <label class="field">Font<select id="mobileFontFamily" class="input"><option>Arial</option><option>Inter</option><option>Georgia</option><option>Impact</option><option>Trebuchet MS</option></select></label>
+      <label class="field">Weight<select id="mobileFontWeight" class="input"><option value="400">Regular</option><option value="600">Semibold</option><option value="700">Bold</option><option value="900">Black</option></select></label>
+    </div>
+    <div class="two-col" data-text-only>
+      <label class="field">Size<input id="mobileFontSize" class="input" type="number" min="8" max="400" step="1"></label>
+      <label class="field">Color<input id="mobileTextColor" class="input" type="color" value="#ffffff"></label>
+    </div>
+    <div class="mobile-object-actions" data-text-only><button type="button" id="mobileAlignLeft">Left</button><button type="button" id="mobileAlignCenter">Center</button><button type="button" id="mobileAlignRight">Right</button></div>
+    <div data-shape-only>
+      <div class="two-col">
+        <label class="field">Fill<input id="mobileShapeFill" class="input" type="color" value="#1687ff"></label>
+        <label class="field">Line<input id="mobileShapeStroke" class="input" type="color" value="#ffffff"></label>
+      </div>
+      <div class="two-col">
+        <label class="check"><input id="mobileShapeFillOn" type="checkbox" checked> Fill</label>
+        <label class="check"><input id="mobileShapeStrokeOn" type="checkbox" checked> Line</label>
+      </div>
+      <label class="field">Line width <span id="mobileShapeStrokeWidthLabel">4 px</span><input id="mobileShapeStrokeWidth" type="range" min="0" max="40" step="1" value="4"></label>
+      <label class="field">Opacity <span id="mobileShapeOpacityLabel">100%</span><input id="mobileShapeOpacity" type="range" min="0" max="100" step="1" value="100"></label>
+    </div>
+  </section>
+  <section data-object-panel="transform" class="mobile-object-panel">
+    <div class="two-col">
+      <label class="field">X<input id="mobileObjX" class="input" type="number" step="1"></label><label class="field">Y<input id="mobileObjY" class="input" type="number" step="1"></label>
+      <label class="field">Width<input id="mobileObjW" class="input" type="number" min="1" step="1"></label><label class="field">Height<input id="mobileObjH" class="input" type="number" min="1" step="1"></label>
+    </div>
+    <div class="two-col"><label class="field">Rotation<input id="mobileObjRot" class="input" type="number" step="1"></label><label class="field">Opacity<input id="mobileObjOpacity" class="input" type="number" min="0" max="100" step="1"></label></div>
+    <div class="mobile-object-actions"><button type="button" id="mobileFlipH">Flip H</button><button type="button" id="mobileFlipV">Flip V</button><button type="button" id="mobileDeleteObject">Delete</button></div>
+  </section>
+</div>
+<div id="shapePicker" class="shape-picker-modal" aria-hidden="true"><div class="shape-picker-sheet"><div class="shape-picker-head"><div><span class="eyebrow">SHAPE LIBRARY</span><strong>Choose a shape</strong></div><button type="button" id="closeShapePicker" aria-label="Close">×</button></div><div id="shapeGrid" class="shape-grid"></div></div></div>
 
 <div class="tool-divider"></div>
 <div class="props-title small">Canvas</div>
@@ -666,7 +740,7 @@ function draw(){
  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle=bg;ctx.fillRect(0,0,canvas.width,canvas.height);
  layers.forEach((l,i)=>{ctx.save();ctx.globalAlpha=l.opacity==null?1:l.opacity;
   if(l.type==='text'){ctx.fillStyle=l.color||'#fff';ctx.font=`${l.weight||700} ${l.size||72}px ${l.font||'Arial'}`;ctx.textBaseline='top';ctx.textAlign=l.align||'left';let mw=l.maxW||canvas.width*.8;let tx=l.align==='center'?l.x+mw/2:l.align==='right'?l.x+mw:l.x;wrapText(ctx,l.text||'',tx,l.y,mw,(l.size||72)*1.2)}
-  else if(l.type==='rect'){ctx.fillStyle=l.color||'#1687ff';ctx.fillRect(l.x,l.y,l.w||100,l.h||100)}
+  else if(l.type==='shape'||l.type==='rect'){drawShapeLayer(ctx,l)}
   else if(l.type==='image'&&l.img){let sx=Math.max(0,l.sx||0),sy=Math.max(0,l.sy||0),sw=Math.max(1,Math.min(l.sw||l.img.naturalWidth,l.img.naturalWidth-sx)),sh=Math.max(1,Math.min(l.sh||l.img.naturalHeight,l.img.naturalHeight-sy)),w=l.w||sw,h=l.h||sh;ctx.translate(l.x+w/2,l.y+h/2);ctx.rotate((l.rotation||0)*Math.PI/180);ctx.scale(l.flipX?-1:1,l.flipY?-1:1);const p=l.photo||{};
   const edited=photoNeedsProcessing(p);
   const image=edited?getProcessedPhoto(l,sx,sy,sw,sh,w,h,p):l.img;
@@ -679,7 +753,7 @@ function draw(){
  canvas.style.width=(canvas.width*zoom)+'px';canvas.style.height=(canvas.height*zoom)+'px';
  if(typeof window.drawMobilePhotoPreview==='function')window.drawMobilePhotoPreview();
 }
-function wrapText(c,t,x,y,maxW,lineH){let words=String(t||'').split(/\s+/),lines=[],line='';for(const word of words){let test=line?line+' '+word:word;if(c.measureText(test).width>maxW&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);lines.forEach((ln,i)=>c.fillText(ln,x,y+i*lineH))}
+function wrapText(c,t,x,y,maxW,lineH){const paragraphs=String(t||'').split(/\n/),lines=[];for(const para of paragraphs){const words=para.split(/\s+/).filter(Boolean);if(!words.length){lines.push('');continue}let line='';for(const word of words){const test=line?line+' '+word:word;if(c.measureText(test).width>maxW&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line)}lines.forEach((ln,i)=>c.fillText(ln,x,y+i*lineH))}
 function bounds(l){if(l.type==='text'){ctx.save();ctx.font=`${l.weight||700} ${l.size||72}px ${l.font||'Arial'}`;let w=Math.min(l.maxW||canvas.width*.8,Math.max(50,ctx.measureText(l.text||'').width));ctx.restore();return{x:l.x,y:l.y,w,h:(l.size||72)*1.25}}return{x:l.x,y:l.y,w:l.w||100,h:l.h||100}}
 
 function imageCorners(l){
@@ -793,8 +867,64 @@ function resizeSelected(l,p,dragState,keepRatio=false){
 function getSelected(){return selected>=0?layers[selected]:null}
 function commitMutation(fn){saveHistory();fn();draw();syncProps()}
 
-$('#addText').onclick=()=>{saveHistory();let l={type:'text',text:'Your headline',x:canvas.width*.1,y:canvas.height*.12,size:Math.round(canvas.width*.07),color:'#ffffff',font:$('#brandFont').value||'Arial',weight:700,align:'left',maxW:canvas.width*.8};layers.push(l);selected=layers.length-1;syncProps();draw();setTimeout(()=>{let v=prompt('Type your text:',l.text);if(v!==null&&v.trim()){saveHistory();l.text=v.trim();draw();syncProps()}},50)};
-$('#addRect').onclick=()=>{saveHistory();layers.push({type:'rect',x:canvas.width*.1,y:canvas.height*.2,w:canvas.width*.3,h:canvas.height*.18,color:$('#brandColor').value||'#1687ff',opacity:1});selected=layers.length-1;syncProps();draw()};
+
+const SHAPES=[
+ ['rectangle','Rectangle'],['rounded','Rounded rectangle'],['circle','Circle'],['oval','Oval'],['triangle','Triangle'],['triangleRight','Right triangle'],['diamond','Diamond'],['parallelogram','Parallelogram'],['trapezoid','Trapezoid'],['pentagon','Pentagon'],['hexagon','Hexagon'],['heptagon','Heptagon'],['octagon','Octagon'],['star5','5-point star'],['star6','6-point star'],['star8','8-point star'],['burst','Burst 12'],['heart','Heart'],['cloud','Cloud'],['speech','Speech bubble'],['plus','Plus'],['cross','Cross'],['x','X'],['arrowRight','Arrow right'],['arrowLeft','Arrow left'],['arrowUp','Arrow up'],['arrowDown','Arrow down'],['doubleArrow','Double arrow'],['chevronRight','Chevron right'],['chevronLeft','Chevron left'],['chevronUp','Chevron up'],['chevronDown','Chevron down'],['home','Home'],['shield','Shield'],['tag','Tag'],['ticket','Ticket'],['badge','Badge'],['ring','Ring'],['crescent','Crescent'],['moon','Moon'],['sun','Sun'],['lightning','Lightning'],['droplet','Droplet'],['leaf','Leaf'],['egg','Egg'],['capsule','Capsule'],['line','Line'],['dashedLine','Dashed line'],['bracket','Bracket'],['corner','Corner'],['circleOutline','Circle outline']
+];
+const shapeMap=Object.fromEntries(SHAPES.map(x=>x));
+function polygonPath(c,n,r,rot=-Math.PI/2){c.beginPath();for(let i=0;i<n;i++){const a=rot+i*Math.PI*2/n,x=Math.cos(a)*r,y=Math.sin(a)*r;i?c.lineTo(x,y):c.moveTo(x,y)}c.closePath();}
+function starPath(c,points,outer,inner,rot=-Math.PI/2){c.beginPath();for(let i=0;i<points*2;i++){const a=rot+i*Math.PI/points,r=i%2?inner:outer,x=Math.cos(a)*r,y=Math.sin(a)*r;i?c.lineTo(x,y):c.moveTo(x,y)}c.closePath();}
+function roundedRectPath(c,x,y,w,h,r){r=Math.min(r,Math.abs(w)/2,Math.abs(h)/2);c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function drawShapePath(c,l){
+ const type=l.shape||'rectangle',w=Math.max(2,l.w||220),h=Math.max(2,l.h||160),x=-w/2,y=-h/2,rx=w/2,ry=h/2;
+ if(type==='rectangle'){c.rect(x,y,w,h)}
+ else if(type==='rounded'){roundedRectPath(c,x,y,w,h,Math.min(28,w*.16,h*.16))}
+ else if(type==='circle'||type==='circleOutline'){c.arc(0,0,Math.min(rx,ry),0,Math.PI*2)}
+ else if(type==='oval'||type==='egg'){c.ellipse(0,0,rx,ry,0,0,Math.PI*2)}
+ else if(type==='triangle'){c.beginPath();c.moveTo(0,-ry);c.lineTo(rx,ry);c.lineTo(-rx,ry);c.closePath()}
+ else if(type==='triangleRight'){c.beginPath();c.moveTo(-rx,-ry);c.lineTo(rx,-ry);c.lineTo(-rx,ry);c.closePath()}
+ else if(type==='diamond'){c.beginPath();c.moveTo(0,-ry);c.lineTo(rx,0);c.lineTo(0,ry);c.lineTo(-rx,0);c.closePath()}
+ else if(type==='parallelogram'){const s=w*.18;c.beginPath();c.moveTo(x+s,y);c.lineTo(x+w,y);c.lineTo(x+w-s,y+h);c.lineTo(x,y+h);c.closePath()}
+ else if(type==='trapezoid'){const s=w*.2;c.beginPath();c.moveTo(x+s,y);c.lineTo(x+w-s,y);c.lineTo(x+w,y+h);c.lineTo(x,y+h);c.closePath()}
+ else if(/^star(5|6|8)$/.test(type)){starPath(c,Number(type.slice(4)),Math.min(rx,ry),Math.min(rx,ry)*.46)}
+ else if(type==='burst'){starPath(c,12,Math.min(rx,ry),Math.min(rx,ry)*.68)}
+ else if(['pentagon','hexagon','heptagon','octagon'].includes(type)){polygonPath(c,Number({pentagon:5,hexagon:6,heptagon:7,octagon:8}[type]),Math.min(rx,ry))}
+ else if(type==='plus'||type==='cross'){const a=Math.min(rx,ry)*.34;c.beginPath();c.moveTo(-a,-ry);c.lineTo(a,-ry);c.lineTo(a,-a);c.lineTo(rx,-a);c.lineTo(rx,a);c.lineTo(a,a);c.lineTo(a,ry);c.lineTo(-a,ry);c.lineTo(-a,a);c.lineTo(-rx,a);c.lineTo(-rx,-a);c.lineTo(-a,-a);c.closePath()}
+ else if(type==='x'){c.beginPath();c.moveTo(-rx*.82,-ry);c.lineTo(-rx,-ry*.82);c.lineTo(0,-ry*.12);c.lineTo(rx,-ry*.82);c.lineTo(rx*.82,-ry);c.lineTo(0,0);c.lineTo(rx*.82,ry);c.lineTo(rx,ry*.82);c.lineTo(0,ry*.12);c.lineTo(-rx,ry*.82);c.lineTo(-rx*.82,ry);c.lineTo(0,0);c.closePath()}
+ else if(type.startsWith('arrow')){c.beginPath();if(type==='arrowRight'){c.moveTo(-rx,-ry*.3);c.lineTo(rx*.15,-ry*.3);c.lineTo(rx*.15,-ry*.7);c.lineTo(rx,0);c.lineTo(rx*.15,ry*.7);c.lineTo(rx*.15,ry*.3);c.lineTo(-rx,ry*.3)}else if(type==='arrowLeft'){c.moveTo(rx,-ry*.3);c.lineTo(-rx*.15,-ry*.3);c.lineTo(-rx*.15,-ry*.7);c.lineTo(-rx,0);c.lineTo(-rx*.15,ry*.7);c.lineTo(-rx*.15,ry*.3);c.lineTo(rx,ry*.3)}else if(type==='arrowUp'){c.moveTo(-rx*.3,ry);c.lineTo(-rx*.3,-ry*.15);c.lineTo(-rx*.7,-ry*.15);c.lineTo(0,-ry);c.lineTo(rx*.7,-ry*.15);c.lineTo(rx*.3,-ry*.15);c.lineTo(rx*.3,ry)}else{c.moveTo(-rx*.3,-ry);c.lineTo(-rx*.3,ry*.15);c.lineTo(-rx*.7,ry*.15);c.lineTo(0,ry);c.lineTo(rx*.7,ry*.15);c.lineTo(rx*.3,ry*.15);c.lineTo(rx*.3,-ry)}c.closePath()}
+ else if(type==='doubleArrow'){c.beginPath();c.moveTo(-rx,0);c.lineTo(-rx*.55,-ry*.55);c.lineTo(-rx*.55,-ry*.18);c.lineTo(rx*.55,-ry*.18);c.lineTo(rx*.55,-ry*.55);c.lineTo(rx,0);c.lineTo(rx*.55,ry*.55);c.lineTo(rx*.55,ry*.18);c.lineTo(-rx*.55,ry*.18);c.lineTo(-rx*.55,ry*.55);c.closePath()}
+ else if(type.startsWith('chevron')){c.beginPath();const t=Math.min(rx,ry)*.38;if(type==='chevronRight'){c.moveTo(-rx,-ry);c.lineTo(0,0);c.lineTo(-rx,ry);c.lineTo(-rx+t,ry);c.lineTo(t,0);c.lineTo(-rx+t,-ry);c.closePath()}else if(type==='chevronLeft'){c.moveTo(rx,-ry);c.lineTo(0,0);c.lineTo(rx,ry);c.lineTo(rx-t,ry);c.lineTo(-t,0);c.lineTo(rx-t,-ry);c.closePath()}else if(type==='chevronUp'){c.moveTo(-rx,ry);c.lineTo(0,0);c.lineTo(rx,ry);c.lineTo(rx,ry-t);c.lineTo(0,-t);c.lineTo(-rx,ry-t);c.closePath()}else{c.moveTo(-rx,-ry);c.lineTo(0,0);c.lineTo(rx,-ry);c.lineTo(rx,-ry+t);c.lineTo(0,t);c.lineTo(-rx,-ry+t);c.closePath()}}
+ else if(type==='home'){c.beginPath();c.moveTo(-rx,0);c.lineTo(0,-ry);c.lineTo(rx,0);c.lineTo(rx,ry);c.lineTo(-rx,ry);c.closePath();}
+ else if(type==='shield'){c.beginPath();c.moveTo(0,-ry);c.lineTo(rx,-ry*.65);c.lineTo(rx*.8,ry*.2);c.quadraticCurveTo(0,ry, -rx*.8,ry*.2);c.lineTo(-rx,-ry*.65);c.closePath()}
+ else if(type==='tag'||type==='ticket'){roundedRectPath(c,x,y,w,h,Math.min(20,h*.18));}
+ else if(type==='badge'){polygonPath(c,12,Math.min(rx,ry))}
+ else if(type==='ring'){c.arc(0,0,Math.min(rx,ry),0,Math.PI*2)}
+ else if(type==='crescent'||type==='moon'){c.arc(0,0,Math.min(rx,ry),0,Math.PI*2);c.moveTo(rx*.15,-ry);c.arc(rx*.15,0,Math.min(rx,ry),-Math.PI/2,Math.PI/2,true)}
+ else if(type==='sun'){c.arc(0,0,Math.min(rx,ry)*.62,0,Math.PI*2)}
+ else if(type==='lightning'){c.beginPath();c.moveTo(rx*.1,-ry);c.lineTo(-rx*.15,-ry*.15);c.lineTo(rx*.1,-ry*.15);c.lineTo(-rx*.2,ry);c.lineTo(rx*.15,ry*.1);c.lineTo(-rx*.02,ry*.1);c.closePath()}
+ else if(type==='droplet'){c.beginPath();c.moveTo(0,-ry);c.bezierCurveTo(rx*.8,-ry*.1,rx*.7,ry,0,ry);c.bezierCurveTo(-rx*.7,ry,-rx*.8,-ry*.1,0,-ry);c.closePath()}
+ else if(type==='leaf'){c.beginPath();c.moveTo(0,-ry);c.bezierCurveTo(rx, -ry*.45,rx*.6,ry,0,ry);c.bezierCurveTo(-rx*.6,ry,-rx,-ry*.45,0,-ry);c.closePath()}
+ else if(type==='capsule'){roundedRectPath(c,x,y,w,h,Math.min(w,h)/2)}
+ else if(type==='line'||type==='dashedLine'){c.moveTo(-rx,0);c.lineTo(rx,0)}
+ else if(type==='bracket'){c.moveTo(-rx,-ry);c.lineTo(-rx*.5,-ry);c.lineTo(-rx*.5,ry);c.lineTo(-rx,ry)}
+ else if(type==='corner'){c.moveTo(-rx,0);c.lineTo(-rx,-ry);c.lineTo(0,-ry)}
+ else {c.rect(x,y,w,h)}
+}
+function drawShapeLayer(c,l){
+ c.save();const w=l.w||220,h=l.h||160;c.translate((l.x||0)+w/2,(l.y||0)+h/2);c.rotate((l.rotation||0)*Math.PI/180);c.scale(l.flipX?-1:1,l.flipY?-1:1);
+ c.lineJoin='round';c.lineCap='round';c.setLineDash(l.shape==='dashedLine'?[Math.max(6,(l.strokeWidth||4)*3),Math.max(5,(l.strokeWidth||4)*2)]:[]);c.beginPath();drawShapePath(c,l);
+ const fillOn=l.fillEnabled!==false && !['line','dashedLine','bracket','corner','circleOutline','ring'].includes(l.shape);const strokeOn=l.strokeEnabled!==false || ['line','dashedLine','bracket','corner','circleOutline','ring'].includes(l.shape);
+ if(fillOn){c.fillStyle=l.color||'#1687ff';c.fill()} if(strokeOn&&Number(l.strokeWidth||0)>0){c.strokeStyle=l.strokeColor||'#ffffff';c.lineWidth=Number(l.strokeWidth||4);c.stroke()} c.restore();
+}
+function openShapePicker(){const m=document.getElementById('shapePicker');m.classList.add('open');m.setAttribute('aria-hidden','false');}
+function closeShapePicker(){const m=document.getElementById('shapePicker');m.classList.remove('open');m.setAttribute('aria-hidden','true');}
+function addShape(shape){saveHistory();const l={type:'shape',shape,x:canvas.width*.18,y:canvas.height*.2,w:canvas.width*.34,h:canvas.height*.22,color:$('#brandColor').value||'#1687ff',fillEnabled:!['line','dashedLine','bracket','corner','circleOutline','ring'].includes(shape),strokeEnabled:true,strokeColor:'#ffffff',strokeWidth:4,opacity:1,rotation:0};layers.push(l);selected=layers.length-1;closeShapePicker();syncProps();draw();}
+function renderShapeGrid(){const g=document.getElementById('shapeGrid');g.innerHTML='';SHAPES.forEach(([key,label])=>{const b=document.createElement('button');b.type='button';b.className='shape-option';b.dataset.shape=key;b.innerHTML=`<span class="shape-preview shape-${key}">${key==='line'?'╱':key==='circle'?'○':key==='star5'?'★':'◇'}</span><small>${label}</small>`;b.onclick=()=>addShape(key);g.appendChild(b)});}
+renderShapeGrid();
+document.getElementById('mobileShapePicker').onclick=openShapePicker;document.getElementById('closeShapePicker').onclick=closeShapePicker;document.getElementById('shapePicker').addEventListener('click',e=>{if(e.target.id==='shapePicker')closeShapePicker();});
+
+$('#addText').onclick=()=>{saveHistory();let l={type:'text',text:'Your headline',x:canvas.width*.1,y:canvas.height*.12,size:Math.round(canvas.width*.07),color:'#ffffff',font:$('#brandFont').value||'Arial',weight:700,align:'left',maxW:canvas.width*.8};layers.push(l);selected=layers.length-1;syncProps();draw();document.getElementById('mobileTextValue')?.focus();};
+$('#addRect').onclick=()=>{openShapePicker()};
 $('#uploadBtn').onclick=()=>$('#fileInput').click();
 $('#fileInput').onchange=e=>{let f=e.target.files[0];if(!f)return;window.__ggxPhotoWorkspaceDismissed=false;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{saveHistory();let scale=Math.min(canvas.width*.92/im.naturalWidth,canvas.height*.92/im.naturalHeight,1);layers.push({type:'image',img:im,src:r.result,x:(canvas.width-im.naturalWidth*scale)/2,y:(canvas.height-im.naturalHeight*scale)/2,w:im.naturalWidth*scale,h:im.naturalHeight*scale,sx:0,sy:0,sw:im.naturalWidth,sh:im.naturalHeight,opacity:1,rotation:0,photo:clonePhotoState(photoBase)});selected=layers.length-1;window.__ggxPhotoWorkspaceDismissed=false;syncProps();draw();if(typeof window.refreshMobilePhotoWorkspace==='function')window.refreshMobilePhotoWorkspace()};im.onerror=()=>alert('This image could not be opened. Please choose another photo.');im.src=r.result};r.onerror=()=>alert('The photo could not be read. Please try again.');r.readAsDataURL(f);e.target.value=''};
 $('#clearCanvas').onclick=()=>{if(confirm('Clear all objects from this canvas?')){saveHistory();layers=[];selected=-1;draw();syncProps()}};
@@ -820,11 +950,16 @@ $('#applyCrop').onclick=()=>{let l=getSelected();if(l?.type!=='image')return;let
 $('#resizeCanvas').onclick=()=>{let w=Math.max(100,Math.min(3000,+$('#canvasW').value||1080)),h=Math.max(100,Math.min(3000,+$('#canvasH').value||1350));commitMutation(()=>{canvas.width=w;canvas.height=h})};
 
 function syncProps(){
- let l=getSelected();$('#selectionHint').textContent=l?`Selected: ${l.type==='text'?'Text':l.type==='image'?'Image':'Shape'}`:'Select text, an image or a shape on the canvas.';
+ let l=getSelected();
+ $('#selectionHint').textContent=l?`Selected: ${l.type==='text'?'Text':l.type==='image'?'Image':'Shape'}`:'Select text, an image or a shape on the canvas.';
  $('#textValue').value=l?.type==='text'?l.text:'';$('#textColor').value=l?.type==='text'?(l.color||'#ffffff'):'#ffffff';$('#fontSize').value=l?.type==='text'?(l.size||72):72;$('#fontFamily').value=l?.type==='text'?(l.font||'Arial'):'Arial';$('#fontWeight').value=l?.type==='text'?String(l.weight||700):'700';
- let img=l?.type==='image';document.body.dataset.photoEditing=(img&&window.matchMedia('(max-width: 850px)').matches&&!window.__ggxPhotoWorkspaceDismissed)?'true':'false';$('#imageControls').style.display=img?'block':'none';
+ let img=l?.type==='image', object=!!l&&!img&&window.matchMedia('(max-width: 850px)').matches;
+ document.body.dataset.photoEditing=(img&&window.matchMedia('(max-width: 850px)').matches&&!window.__ggxPhotoWorkspaceDismissed)?'true':'false';
+ document.body.dataset.objectEditing=object?'true':'false';
+ $('#imageControls').style.display=img?'block':'none';
+ $('#shapeControls').style.display=l?.type==='shape'||l?.type==='rect'?'block':'none';
  if(img){$('#imgW').value=Math.round(l.w||100);$('#imgH').value=Math.round(l.h||100);$('#cropX').value=Math.round(l.sx||0);$('#cropY').value=Math.round(l.sy||0);$('#cropW').value=Math.round(l.sw||l.img?.naturalWidth||100);$('#cropH').value=Math.round(l.sh||l.img?.naturalHeight||100)}
- renderLayers();updateHistoryButtons();
+ syncTransformUI();syncShapeUI();syncMobileObjectUI();renderLayers();updateHistoryButtons();
 }
 function renderLayers(){let el=$('#layersPanel');el.innerHTML='';if(!layers.length){el.innerHTML='<div class="muted small">No layers yet.</div>';return}layers.slice().reverse().forEach((l,rev)=>{let i=layers.length-1-rev,b=document.createElement('div');b.className='layer-item'+(i===selected?' active':'');let label=l.type==='text'?(l.text||'Text'):l.type==='image'?'Image':'Shape';b.innerHTML=`<span class="layer-dot"></span><span>${esc(label.slice(0,28))}</span>`;b.onclick=()=>{selected=i;syncProps();draw()};el.appendChild(b)})}
 $('#duplicateBtn').onclick=()=>{let l=getSelected();if(!l)return;commitMutation(()=>{let copy=l.type==='image'?imageState(l):{...l};copy.x=(copy.x||0)+30;copy.y=(copy.y||0)+30;if(l.type==='image')copy.img=l.img;layers.push(copy);selected=layers.length-1})};
@@ -1129,6 +1264,31 @@ document.getElementById('collageFiles').addEventListener('change',async e=>{
  syncProps();draw();
 });
 
+
+
+function syncShapeUI(){const l=getSelected();const is=l&&(l.type==='shape'||l.type==='rect');const typeEl=document.getElementById('shapeType');if(typeEl){if(!typeEl.options.length)SHAPES.forEach(([k,n])=>{const o=document.createElement('option');o.value=k;o.textContent=n;typeEl.append(o)});typeEl.value=is?(l.shape||'rectangle'):'rectangle'}if(!is)return;const fill=l.color||'#1687ff',stroke=l.strokeColor||'#ffffff';[['shapeFill',fill],['mobileShapeFill',fill],['shapeStroke',stroke],['mobileShapeStroke',stroke]].forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v});[['shapeFillOn',l.fillEnabled!==false],['mobileShapeFillOn',l.fillEnabled!==false],['shapeStrokeOn',l.strokeEnabled!==false],['mobileShapeStrokeOn',l.strokeEnabled!==false]].forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.checked=v});const sw=Number(l.strokeWidth??4);['shapeStrokeWidth','mobileShapeStrokeWidth'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=sw});['shapeStrokeWidthLabel','mobileShapeStrokeWidthLabel'].forEach(id=>{const e=document.getElementById(id);if(e)e.textContent=sw+' px'});['mobileShapeOpacity'].forEach(id=>{const e=document.getElementById(id);if(e)e.value=Math.round((l.opacity??1)*100)});const op=Math.round((l.opacity??1)*100);const opl=document.getElementById('mobileShapeOpacityLabel');if(opl)opl.textContent=op+'%'}
+function syncMobileObjectUI(){const l=getSelected();const isText=l?.type==='text',isShape=l&&(l.type==='shape'||l.type==='rect');document.querySelectorAll('#mobileObjectControls [data-text-only]').forEach(e=>e.style.display=isText?'':'none');document.querySelectorAll('#mobileObjectControls [data-shape-only]').forEach(e=>e.style.display=isShape?'':'none');if(!l)return;const map=[['mobileTextValue',l.text||''],['mobileFontFamily',l.font||'Arial'],['mobileFontWeight',String(l.weight||700)],['mobileFontSize',l.size||72],['mobileTextColor',l.color||'#ffffff'],['mobileObjX',Math.round(l.x||0)],['mobileObjY',Math.round(l.y||0)],['mobileObjW',Math.round(l.w||bounds(l).w)],['mobileObjH',Math.round(l.h||bounds(l).h)],['mobileObjRot',Math.round(l.rotation||0)],['mobileObjOpacity',Math.round((l.opacity==null?1:l.opacity)*100)]];map.forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v});syncShapeUI()}
+function setSelectedTextField(key,id){const l=getSelected();if(l?.type!=='text')return;commitMutation(()=>{l[key]=document.getElementById(id).value});syncMobileObjectUI()}
+function setSelectedShapeField(key,id){const l=getSelected();if(!(l&&(l.type==='shape'||l.type==='rect')))return;commitMutation(()=>{l[key]=document.getElementById(id).value});syncShapeUI()}
+function setSelectedShapeBool(key,id){const l=getSelected();if(!(l&&(l.type==='shape'||l.type==='rect')))return;commitMutation(()=>{l[key]=document.getElementById(id).checked});syncShapeUI()}
+function setSelectedNumber(key,id){const l=getSelected();if(!l)return;const n=Number(document.getElementById(id).value);if(!Number.isFinite(n))return;commitMutation(()=>l[key]=n);syncMobileObjectUI()}
+
+document.getElementById('shapeType').addEventListener('change',()=>{const l=getSelected();if(!l)return;commitMutation(()=>l.shape=document.getElementById('shapeType').value);syncShapeUI()});
+[['shapeFill','color'],['mobileShapeFill','color'],['shapeStroke','strokeColor'],['mobileShapeStroke','strokeColor']].forEach(([id,key])=>document.getElementById(id).addEventListener('input',()=>{const l=getSelected();if(!(l&&(l.type==='shape'||l.type==='rect')))return;l[key]=document.getElementById(id).value;draw();syncShapeUI()}));
+[['shapeFillOn','fillEnabled'],['mobileShapeFillOn','fillEnabled'],['shapeStrokeOn','strokeEnabled'],['mobileShapeStrokeOn','strokeEnabled']].forEach(([id,key])=>document.getElementById(id).addEventListener('change',()=>setSelectedShapeBool(key,id)));
+[['shapeStrokeWidth','strokeWidth'],['mobileShapeStrokeWidth','strokeWidth']].forEach(([id,key])=>document.getElementById(id).addEventListener('input',()=>{const l=getSelected();if(!(l&&(l.type==='shape'||l.type==='rect')))return;l[key]=Number(document.getElementById(id).value);draw();syncShapeUI()}));
+document.getElementById('mobileShapeOpacity').addEventListener('input',()=>{const l=getSelected();if(!(l&&(l.type==='shape'||l.type==='rect')))return;l.opacity=Number(document.getElementById('mobileShapeOpacity').value)/100;draw();const x=document.getElementById('mobileShapeOpacityLabel');if(x)x.textContent=document.getElementById('mobileShapeOpacity').value+'%'});
+document.getElementById('mobileTextValue').addEventListener('input',()=>{const l=getSelected();if(l?.type!=='text')return;l.text=document.getElementById('mobileTextValue').value;draw()});
+document.getElementById('textValue').addEventListener('input',()=>{const l=getSelected();if(l?.type!=='text')return;l.text=document.getElementById('textValue').value;draw();syncMobileObjectUI()});
+[['mobileFontFamily','font'],['mobileFontWeight','weight'],['mobileFontSize','size'],['mobileTextColor','color']].forEach(([id,key])=>document.getElementById(id).addEventListener('input',()=>{const l=getSelected();if(l?.type!=='text')return;l[key]=key==='size'||key==='weight'?Number(document.getElementById(id).value):document.getElementById(id).value;draw();syncMobileObjectUI()}));
+[['mobileAlignLeft','left'],['mobileAlignCenter','center'],['mobileAlignRight','right']].forEach(([id,a])=>document.getElementById(id).addEventListener('click',()=>{const l=getSelected();if(l?.type!=='text')return;commitMutation(()=>l.align=a);syncMobileObjectUI()}));
+document.querySelectorAll('.mobile-object-tabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.mobile-object-tabs button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.mobile-object-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelector(`[data-object-panel="${b.dataset.objectTab}"]`)?.classList.add('active')}));
+document.getElementById('mobileAddTextLine').addEventListener('click',()=>{const l=getSelected();if(l?.type!=='text')return;l.text=(l.text||'')+'\n';draw();document.getElementById('mobileTextValue').focus()});
+document.getElementById('mobileDuplicateObject').addEventListener('click',()=>document.getElementById('duplicateBtn').click());
+document.getElementById('mobileDeleteObject').addEventListener('click',()=>document.getElementById('deleteBtn').click());
+document.getElementById('mobileFlipH').addEventListener('click',()=>document.getElementById('flipH').click());document.getElementById('mobileFlipV').addEventListener('click',()=>document.getElementById('flipV').click());
+['mobileObjX','mobileObjY','mobileObjRot','mobileObjOpacity'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{const key={mobileObjX:'x',mobileObjY:'y',mobileObjRot:'rotation',mobileObjOpacity:'opacity'}[id];const l=getSelected();if(!l)return;let n=Number(document.getElementById(id).value);if(id==='mobileObjOpacity')n/=100;commitMutation(()=>l[key]=n);syncMobileObjectUI()}));
+['mobileObjW','mobileObjH'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{const l=getSelected();if(!l)return;const key=id==='mobileObjW'?'w':'h',n=Math.max(1,Number(document.getElementById(id).value)||1);commitMutation(()=>l[key]=n);syncMobileObjectUI()}));
 
 // Professional Transform Engine
 function syncTransformUI(){
