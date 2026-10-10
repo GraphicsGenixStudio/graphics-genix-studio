@@ -1,19 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
- <defs>
-  <linearGradient id="bg" x1=".08" y1="0" x2=".95" y2="1"><stop stop-color="#08162d"/><stop offset=".55" stop-color="#174a92"/><stop offset="1" stop-color="#6b42df"/></linearGradient>
-  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8f3ff"/><stop offset=".45" stop-color="#5da8ff"/><stop offset="1" stop-color="#d5a7ff"/></linearGradient>
-  <linearGradient id="letter" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#c9e6ff"/></linearGradient>
-  <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="12"/></filter>
- </defs>
- <rect width="512" height="512" fill="url(#bg)"/>
- <circle cx="256" cy="248" r="174" fill="#53b8ff" opacity=".12" filter="url(#shadow)"/>
- <rect x="12" y="12" width="488" height="488" rx="112" fill="none" stroke="url(#rim)" stroke-width="4"/>
- <path d="M92 156 Q92 96 154 96 H358 Q420 96 420 156" fill="none" stroke="#ffffff" stroke-opacity=".15" stroke-width="3"/>
- <g fill="none" stroke="url(#letter)" stroke-width="35" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M226 181 H185 C153 181 132 204 132 237 V274 C132 308 154 330 187 330 H220 C245 330 261 313 261 288 V264 H207"/>
-  <path d="M383 181 H337 C305 181 284 204 284 237 V274 C284 308 306 330 339 330 H372 C397 330 413 313 413 288 V264 H359"/>
- </g>
- <path d="M256 365 L266 389 L290 399 L266 409 L256 433 L246 409 L222 399 L246 389 Z" fill="#d9f8ff"/>
- <circle cx="105" cy="105" r="6" fill="#a7f3ff"/><circle cx="405" cy="108" r="4" fill="#ffffff" opacity=".85"/>
- <path d="M120 447 H392" stroke="url(#rim)" stroke-width="4" stroke-linecap="round" opacity=".7"/>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111827"/><stop offset=".55" stop-color="#0b2b50"/><stop offset="1" stop-color="#16243a"/></linearGradient>
+ <linearGradient id="line" x1=".1" y1=".1" x2=".9" y2=".9"><stop stop-color="#ffffff"/><stop offset=".5" stop-color="#dbeafe"/><stop offset="1" stop-color="#72b7ff"/></linearGradient>
+</defs>
+<rect width="512" height="512" rx="116" fill="url(#bg)"/>
+<rect x="18" y="18" width="476" height="476" rx="102" fill="none" stroke="#ffffff" stroke-opacity=".18" stroke-width="3"/>
+<!-- restrained creator mark: two G forms held by an aperture frame -->
+<path d="M104 180V122H162M350 122H408V180M408 332V390H350M162 390H104V332" fill="none" stroke="#78b8ff" stroke-width="10" stroke-linecap="round"/>
+<g fill="none" stroke="url(#line)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M226 184H185C154 184 132 205 132 238V274C132 307 154 328 187 328H218C245 328 261 313 261 287V263H207"/>
+ <path d="M384 184H343C312 184 290 205 290 238V274C290 307 312 328 345 328H376C403 328 419 313 419 287V263H365"/>
+</g>
+<path d="M256 356l10 23 23 10-23 10-10 23-10-23-23-10 23-10z" fill="#fff" opacity=".92"/>
+<circle cx="112" cy="112" r="5" fill="#fff" opacity=".85"/><circle cx="400" cy="400" r="5" fill="#78b8ff" opacity=".9"/>
 </svg>

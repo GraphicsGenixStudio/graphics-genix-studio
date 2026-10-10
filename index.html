@@ -441,11 +441,72 @@ button .icon,button .nav-icon{flex-shrink:0}
 @media(prefers-reduced-motion:reduce){.template-card,.collage-card,.save-modal,#appToast{transition:none!important;animation:none!important}}
 </style>
 
+
+<style id="ggx-final-mobile-header-splash-v18">
+/* Final mobile shell: safe-area aware, crisp header, no clipped branding. */
+html,body{min-height:100%;}
+body{padding-top:0!important;}
+.brand,.brand>div:last-child,.brand small{color:#fff!important;}
+.brand small{opacity:.78!important;}
+header{isolation:isolate;}
+@media(max-width:600px){
+  header{
+    position:sticky!important;top:0!important;z-index:500!important;
+    box-sizing:border-box!important;
+    width:100%!important;
+    min-height:calc(112px + env(safe-area-inset-top))!important;
+    height:auto!important;
+    padding:calc(10px + env(safe-area-inset-top)) 12px 10px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:9px!important;
+    background:rgba(16,17,21,.985)!important;
+    -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+    border-bottom:1px solid #30333b!important;
+  }
+  body[data-theme="light"] header{background:rgba(250,250,252,.985)!important;border-bottom-color:#e0e2e8!important;}
+  header .brand{width:100%!important;min-width:0!important;height:42px!important;display:flex!important;align-items:center!important;gap:10px!important;}
+  header .brand>div:last-child{min-width:0!important;overflow:visible!important;white-space:nowrap!important;}
+  header .logo{width:42px!important;height:42px!important;min-width:42px!important;max-width:42px!important;border-radius:12px!important;filter:none!important;opacity:1!important;}
+  header .brand small{display:block!important;color:#fff!important;opacity:.78!important;}
+  header .row{
+    display:grid!important;grid-template-columns:40px minmax(0,1fr) minmax(0,1fr)!important;
+    gap:7px!important;width:100%!important;height:44px!important;align-items:stretch!important;
+  }
+  header .row button{
+    box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:none!important;
+    height:44px!important;min-height:44px!important;margin:0!important;padding:0 7px!important;
+    display:flex!important;align-items:center!important;justify-content:center!important;
+    text-align:center!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+    font-size:12px!important;font-weight:750!important;line-height:1!important;
+  }
+  header #themeToggle{width:40px!important;min-width:40px!important;padding:0!important;font-size:16px!important;}
+}
+@media(min-width:601px){
+  header .brand small{color:#fff!important;opacity:.78!important;}
+}
+/* Product-launch sequence: long enough to register, short enough to feel intentional. */
+#launchSplash{z-index:10000!important;}
+#launchSplash .splash-name,#launchSplash .splash-sub,#launchSplash .splash-tagline{color:#fff!important;}
+#launchSplash .splash-sub{opacity:.86!important;}
+#launchSplash .splash-tagline{opacity:.9!important;}
+#launchSplash .splash-loading{opacity:.55!important;}
+#launchSplash .splash-logo{animation:ggxMarkRevealFinal 1.45s cubic-bezier(.16,1,.3,1) both!important;}
+#launchSplash .splash-name{animation:ggxWordRevealFinal .8s ease .65s both!important;}
+#launchSplash .splash-sub{animation:ggxWordRevealFinal .8s ease .8s both!important;}
+#launchSplash .splash-tagline{animation:ggxWordRevealFinal .8s ease .95s both!important;}
+#launchSplash .splash-loading:after{animation:ggxLoadingFinal 2.5s cubic-bezier(.2,.65,.2,1) .45s both!important;}
+@keyframes ggxMarkRevealFinal{0%{opacity:0;transform:scale(.78);filter:blur(10px);clip-path:inset(0 50% 0 50%)}28%{opacity:1;transform:scale(1.04);filter:blur(0);clip-path:inset(0 0 0 0)}65%{transform:scale(.985)}100%{opacity:1;transform:scale(1);}}
+@keyframes ggxWordRevealFinal{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes ggxLoadingFinal{from{transform:translateX(-120%)}to{transform:translateX(280%)}}
+@media(prefers-reduced-motion:reduce){#launchSplash .splash-logo,#launchSplash .splash-name,#launchSplash .splash-sub,#launchSplash .splash-tagline,#launchSplash .splash-loading:after{animation:none!important;opacity:1!important;filter:none!important;transform:none!important;clip-path:none!important}}
+</style>
+
 </head>
 <body data-page="home">
 <div id="appToast" role="status" aria-live="polite"></div>
-<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">GG</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-tagline">Make it memorable.</div><div class="splash-loading"></div></div></div>
-<header><div class="brand"><div class="logo" role="img" aria-label="Graphics Genix GG mark">GG</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch light or dark mode">☼</button><button id="saveBtn" aria-label="Save project">Save</button><button class="primary" id="exportBtn" aria-label="Save image">Export</button></div></header>
+<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">GG</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-tagline">Create. Edit. Make it yours.</div><div class="splash-loading"></div></div></div>
+<header><div class="brand"><div class="logo" role="img" aria-label="Graphics Genix GG mark">GG</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="themeToggle" type="button" aria-label="Switch colour theme" title="Switch light or dark mode">☼</button><button id="saveBtn" aria-label="Save project">Save project</button><button class="primary" id="exportBtn" aria-label="Save image">Save image</button></div></header>
 <div class="app"><nav>
 <button class="active" data-page="home"><span class="nav-icon">⌂</span><span>Home</span></button><button data-page="create"><span class="nav-icon">＋</span><span>Create</span></button><button data-page="templates"><span class="nav-icon">▦</span><span>Templates</span></button><button data-page="editor"><span class="nav-icon">✎</span><span>Photo Editor</span></button><button data-page="brand"><span class="nav-icon">◉</span><span>Brand Kit</span></button><button data-page="projects"><span class="nav-icon">▱</span><span>My Projects</span></button><button data-page="services"><span class="nav-icon">✦</span><span>Services</span></button><button id="moreNavBtn"><span class="nav-icon">•••</span><span>More</span></button>
 <div class="note">Your creative space<br>Design posts, edit photos, make collages and keep your projects together. Saved projects stay in this browser on this device.</div>
@@ -1414,7 +1475,7 @@ renderHome();renderProjects();renderLayers();updateHistoryButtons();
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
   navigator.serviceWorker.register("./sw.js").catch(()=>{});
 }
-(function(){const splash=document.getElementById('launchSplash');if(!splash)return;let delay=1100;try{if(sessionStorage.getItem('ggx-splash-seen'))delay=450;else sessionStorage.setItem('ggx-splash-seen','1')}catch(e){}setTimeout(()=>splash.classList.add('hide'),delay);setTimeout(()=>splash.remove(),delay+550)})();
+(function(){const splash=document.getElementById('launchSplash');if(!splash)return;const delay=3500;setTimeout(()=>splash.classList.add('hide'),delay);setTimeout(()=>splash.remove(),delay+600)})();
 </script>
 <style id="ggx-iphone-workspace-styles">
 /* Graphics Genix Studio — graphite + iOS blue design system */
