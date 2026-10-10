@@ -25,6 +25,11 @@ main{padding:26px;min-width:0}.page{display:none}.page.active{display:block}.eye
 .photo-look{font-size:11px;padding:8px 6px}
 input[type=range]{width:100%;accent-color:var(--blue)}
 #collageBtn{width:100%;margin-top:4px}
+#cropModeBtn{width:100%;margin:7px 0 9px;background:linear-gradient(110deg,#143c68,#10243c);border-color:#2867a0;min-height:44px}
+#cropModeHint{font-size:11px;line-height:1.45;color:#b9d8ff;border:1px solid #234d76;background:#091c31;padding:9px;border-radius:9px;margin:7px 0 10px;display:none}
+#cropModeHint.active{display:block}
+#canvas.crop-mode{cursor:move;touch-action:none}
+
 @media(max-width:850px){.editor-layout{grid-template-columns:1fr}.toolbox,.properties{max-height:none}}
 
 
@@ -86,19 +91,68 @@ input[type=range]{width:100%;accent-color:var(--blue)}
   .grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,135px),1fr))}
 }
 
+
+/* Graphics Genix Studio — polished home + installable mobile app experience */
+:root{--bg:#070b17;--panel:#0d1426;--line:#202b43;--blue:#438bff;--text:#f7f9ff;--muted:#9aa9c2;--purple:#8b5cf6;--cyan:#39d6ff}
+body{background:radial-gradient(ellipse at 50% -18%,#142b55 0,transparent 42%),var(--bg);padding-bottom:0}
+header{background:rgba(7,11,23,.88);backdrop-filter:blur(18px);height:72px;padding:0 26px;border-bottom:1px solid rgba(118,151,207,.16)}
+.brand{gap:12px;font-size:16px;letter-spacing:-.3px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(145deg,#52a4ff,#5b5df5 62%,#9c5cff);box-shadow:0 8px 26px #286dff40;color:white;font-size:20px;position:relative;overflow:hidden}.logo:after{content:"";position:absolute;inset:1px;border:1px solid #ffffff45;border-radius:12px;pointer-events:none}.brand small{font-size:9px;letter-spacing:2.6px;color:#a9c7ff}
+header .row{gap:8px}header button{padding:10px 14px;border-radius:11px;font-size:12px}button{transition:transform .16s ease,border-color .16s ease,background .16s ease}button:active,.card:active{transform:scale(.98)}
+.app{grid-template-columns:224px minmax(0,1fr);min-height:calc(100vh - 72px)}
+nav{padding:22px 13px;background:rgba(8,13,26,.86);border-right:1px solid rgba(118,151,207,.15)}
+nav button{display:flex;align-items:center;gap:12px;min-height:44px;padding:10px 13px;margin-bottom:7px;border-radius:12px;font-size:13px;color:#aebbd2;letter-spacing:.05px}
+nav button .nav-icon{width:24px;height:24px;display:inline-grid;place-items:center;flex:none;border-radius:8px;background:#14223b;color:#90bdff;font-size:15px}
+nav button.active{background:linear-gradient(100deg,#16345b,#12213a);border-color:#2a568a;color:#fff;box-shadow:inset 3px 0 0 #4d96ff}
+nav button.active .nav-icon{background:linear-gradient(140deg,#448fff,#7859ff);color:#fff}
+nav .note{position:static;margin-top:32px;background:#0b1425;border-color:#1d2c45;border-radius:14px;font-size:11px}
+main{padding:30px clamp(18px,3vw,42px) 50px;max-width:1600px;width:100%;margin:0 auto}
+.page{animation:pageIn .24s ease both}@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.eyebrow{color:#86b6ff;letter-spacing:2.4px;font-size:10px}
+h1{font-size:clamp(34px,4vw,58px);letter-spacing:-2.6px;line-height:1.02;margin:16px 0 13px}
+h2{font-size:27px;letter-spacing:-.9px;margin:8px 0 16px}
+.home-topline{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:2px 0 24px}.home-greeting{font-size:13px;color:#a8b7cf}.home-greeting strong{color:#fff;font-size:17px;display:block;margin-top:5px;letter-spacing:-.4px}.home-badge{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #263b5e;border-radius:99px;background:#0c1b32;color:#bdd7ff;font-size:11px;white-space:nowrap}.home-badge i{width:7px;height:7px;border-radius:50%;background:#54e2b0;box-shadow:0 0 12px #54e2b080}
+.home-search{display:flex;align-items:center;gap:10px;padding:13px 15px;border:1px solid #263652;background:#0b1324;border-radius:14px;max-width:660px;margin:0 0 24px;box-shadow:0 8px 28px #00000012}.home-search span{font-size:18px;color:#83a8e8}.home-search input{background:transparent;border:0;outline:0;color:#fff;width:100%;font:inherit;font-size:13px}.home-search input::placeholder{color:#71829f}.home-search kbd{font:10px inherit;color:#8194b3;border:1px solid #293752;border-radius:6px;padding:4px 6px;white-space:nowrap}
+.hero{position:relative;overflow:hidden;padding:clamp(26px,4vw,48px);border:1px solid #263a5e;border-radius:24px;background:radial-gradient(ellipse at 84% 12%,#2957b966 0,transparent 33%),radial-gradient(ellipse at 100% 100%,#743ce433 0,transparent 40%),linear-gradient(120deg,#101e37 0%,#0b1325 58%,#10152c 100%);min-height:280px;box-shadow:0 22px 70px #00000020}
+.hero:before{content:"";position:absolute;width:250px;height:250px;border:1px solid #82b8ff2b;border-radius:50%;right:7%;top:9%;box-shadow:0 0 0 24px #6b8cff08,0 0 0 50px #6b8cff05;pointer-events:none}.hero:after{content:"✦";position:absolute;right:14%;top:24%;font-size:46px;color:#b5a0ff;filter:drop-shadow(0 0 20px #6c8bff80);transform:rotate(12deg);pointer-events:none}
+.hero h1,.hero p,.hero .row,.hero .eyebrow{position:relative;z-index:1}.hero p{max-width:510px;font-size:15px;color:#b6c4da;margin:0 0 22px;line-height:1.7}.hero .row{gap:9px}.hero .row button{border-radius:11px;padding:12px 16px}.hero .primary{background:linear-gradient(100deg,#428fff,#675eff);border-color:transparent;box-shadow:0 8px 24px #346eff36}
+.section{margin-top:30px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:15px}.section-head h2{margin:0}.section-head p{margin:0;font-size:12px;color:#899bb7}
+.grid{grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px}
+.card{position:relative;overflow:hidden;border:1px solid #202f49;background:linear-gradient(145deg,#101a2d,#0b1220);border-radius:17px;padding:17px;min-height:142px;box-shadow:0 10px 25px #00000010}.card:before{content:"";position:absolute;right:-28px;top:-38px;width:100px;height:100px;border-radius:50%;background:var(--card-glow,#357eff);opacity:.13;filter:blur(4px)}.card:hover{border-color:#477bc0;transform:translateY(-2px);background:linear-gradient(145deg,#14233d,#0b1220)}.card .icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--card-icon-bg,#142b4c);color:var(--card-icon,#80b8ff);font-size:22px;margin-bottom:13px;box-shadow:inset 0 0 0 1px #ffffff08}.card strong{font-size:13px;letter-spacing:-.1px;margin:0 0 6px}.card .muted{font-size:11px;color:#8e9fba;line-height:1.45}
+#quick .card:nth-child(1){--card-glow:#4d9bff;--card-icon-bg:#142e53;--card-icon:#82bbff}#quick .card:nth-child(2){--card-glow:#a06bff;--card-icon-bg:#2a204b;--card-icon:#c1a1ff}#quick .card:nth-child(3){--card-glow:#ff9d61;--card-icon-bg:#462a25;--card-icon:#ffc09a}#quick .card:nth-child(4){--card-glow:#41dfcf;--card-icon-bg:#103a3a;--card-icon:#83f4e4}#quick .card:nth-child(5){--card-glow:#ff6da9;--card-icon-bg:#45233b;--card-icon:#ff9cc4}
+#homeProjects .project{background:#0c1425;border-color:#1f2d45;border-radius:14px}.empty{background:#0b1323;border-color:#293b59;padding:20px;font-size:12px}
+/* Launch splash */
+#launchSplash{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#183e78 0,#0c1a36 33%,#070b17 73%);transition:opacity .45s ease,visibility .45s ease}
+#launchSplash.hide{opacity:0;visibility:hidden;pointer-events:none}.splash-inner{text-align:center;display:flex;align-items:center;flex-direction:column;gap:15px;animation:splashRise .7s cubic-bezier(.2,.8,.2,1) both}.splash-logo{width:90px;height:90px;display:grid;place-items:center;border-radius:28px;background:linear-gradient(145deg,#52a4ff,#5b5df5 62%,#a25cff);font-size:45px;font-weight:900;color:#fff;box-shadow:0 20px 65px #357cff55, inset 0 1px 0 #ffffff70;position:relative}.splash-logo:after{content:"";position:absolute;inset:4px;border:1px solid #ffffff55;border-radius:24px}.splash-name{font-weight:800;font-size:22px;letter-spacing:-.5px}.splash-sub{font-size:10px;letter-spacing:4px;color:#a9c8ff;margin-top:-10px}.splash-loading{width:90px;height:3px;border-radius:5px;background:#ffffff17;overflow:hidden;margin-top:9px}.splash-loading:after{content:"";display:block;height:100%;width:40%;background:linear-gradient(90deg,#4d9aff,#b69aff);border-radius:5px;animation:loadingSweep .9s ease-in-out infinite alternate}@keyframes splashRise{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}@keyframes loadingSweep{to{transform:translateX(150%)}}
+#moreNavBtn{display:none}#moreMenu{display:none}
+@media(max-width:850px){.app{grid-template-columns:1fr}nav{border-right:0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:6px;padding:10px;position:relative}.note{display:none}main{padding:18px 16px 40px}.editor-layout{grid-template-columns:1fr}.toolbox{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.toolbox button{margin:0}.stage{min-height:340px}}
+@media(max-width:600px){
+ body{padding-bottom:82px}header{height:64px;min-height:64px;padding:9px 13px;align-items:center;flex-wrap:nowrap;gap:8px}header .brand{font-size:14px;gap:9px;flex:1 1 auto}header .logo{width:36px;height:36px;border-radius:11px}header .row{flex:0 0 auto;width:auto;gap:6px}header .row button{padding:8px 9px;font-size:11px;min-width:0;white-space:nowrap}body[data-page="home"] header .row{display:none}
+ .app{display:block;min-height:calc(100vh - 64px)}nav{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:50;display:flex;flex-wrap:nowrap;justify-content:space-around;align-items:stretch;gap:2px;padding:8px 5px calc(8px + env(safe-area-inset-bottom));background:rgba(8,13,26,.96);backdrop-filter:blur(20px);border-top:1px solid #263653;border-bottom:0;box-shadow:0 -10px 32px #00000035}
+ nav button{display:flex;flex:1 1 20%;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:20%;min-width:0;min-height:54px;margin:0;padding:5px 2px;border:0;border-radius:10px;background:transparent;font-size:9px;line-height:1.1;color:#8798b4;white-space:nowrap}
+ nav button .nav-icon{width:27px;height:25px;font-size:16px;background:transparent;color:inherit;border-radius:8px}nav button.active{background:#142443;box-shadow:inset 0 2px 0 #5a9eff;color:#fff}nav button.active .nav-icon{background:linear-gradient(140deg,#448fff,#7859ff);color:white}
+ nav button[data-page="brand"],nav button[data-page="projects"],nav button[data-page="services"]{display:none}#moreNavBtn{display:flex}
+ #moreMenu{display:none;position:fixed;z-index:60;bottom:83px;right:12px;width:min(230px,calc(100vw - 24px));padding:8px;background:#101a2d;border:1px solid #2b3e5f;border-radius:16px;box-shadow:0 18px 55px #0009}#moreMenu.open{display:block;animation:pageIn .16s ease both}#moreMenu button{display:flex;align-items:center;gap:10px;width:100%;padding:12px;border:0;background:transparent;text-align:left;font-size:12px}#moreMenu button .nav-icon{width:28px;height:28px;border-radius:9px;background:#192b49;display:grid;place-items:center;color:#a8caff}
+ main{padding:16px 13px 28px}.home-topline{margin:4px 1px 17px}.home-greeting{font-size:12px}.home-greeting strong{font-size:16px}.home-badge{font-size:10px;padding:7px 9px}.home-search{margin-bottom:17px;padding:12px;border-radius:12px}.home-search kbd{display:none}.hero{min-height:260px;padding:24px 20px;border-radius:20px}.hero:before{width:180px;height:180px;right:-4%;top:12%}.hero:after{right:10%;top:21%;font-size:35px}.hero h1{font-size:clamp(32px,9vw,43px);letter-spacing:-1.8px;max-width:85%}.hero p{font-size:13px;max-width:290px;line-height:1.6}.hero .row{width:100%;gap:7px}.hero .row button{padding:11px 10px;font-size:11px}.section{margin-top:25px}.section-head{align-items:center}.section-head h2{font-size:21px}.section-head p{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.card{min-height:132px;padding:13px;border-radius:14px}.card .icon{width:36px;height:36px;font-size:19px;margin-bottom:12px}.card strong{font-size:12px}.card .muted{font-size:10px}.home-topline .home-badge{display:none}
+ .editor-layout{grid-template-columns:minmax(0,1fr)}.toolbox,.properties{padding:11px}.toolbox{grid-template-columns:repeat(2,minmax(0,1fr))}.stage{padding:10px;min-height:300px}.canvas-wrap canvas{max-width:100%;height:auto!important}.properties{margin-top:0}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
 </style><meta name="theme-color" content="#050914">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
-<body>
-<header><div class="brand"><div class="logo">G</div><div>Graphics Genix<small>STUDIO</small></div></div><div class="row"><button id="saveBtn">Save project</button><button class="primary" id="exportBtn">Export PNG</button></div></header>
+<body data-page="home">
+<div id="launchSplash" aria-label="Graphics Genix Studio loading"><div class="splash-inner"><div class="splash-logo">G</div><div class="splash-name">Graphics Genix</div><div class="splash-sub">CREATIVE STUDIO</div><div class="splash-loading"></div></div></div>
+<header><div class="brand"><div class="logo">G</div><div>Graphics Genix<small>CREATIVE STUDIO</small></div></div><div class="row"><button id="saveBtn">Save project</button><button class="primary" id="exportBtn">Export PNG</button></div></header>
 <div class="app"><nav>
-<button class="active" data-page="home">⌂ &nbsp; Home</button><button data-page="create">＋ &nbsp; Create</button><button data-page="templates">▦ &nbsp; Templates</button><button data-page="editor">✎ &nbsp; Photo Editor</button><button data-page="brand">◉ &nbsp; Brand Kit</button><button data-page="projects">▱ &nbsp; My Projects</button><button data-page="services">◇ &nbsp; Services</button>
-<div class="note">Local prototype<br>Projects are saved in this browser on this device. No account, paid API, or subscription is used.</div>
-</nav><main>
-<section class="page active" id="home"><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Create something<br>worth remembering.</h1><p class="muted">Design, edit and build your brand in one focused creative workspace.</p><div class="row"><button class="primary" data-goto="create">Start creating →</button><button data-goto="templates">Explore templates</button></div></div><div class="section"><h2>Quick start</h2><div class="grid" id="quick"></div></div><div class="section"><h2>Recent projects</h2><div id="homeProjects" class="grid"></div></div></section>
+<button class="active" data-page="home"><span class="nav-icon">⌂</span><span>Home</span></button><button data-page="create"><span class="nav-icon">＋</span><span>Create</span></button><button data-page="templates"><span class="nav-icon">▦</span><span>Templates</span></button><button data-page="editor"><span class="nav-icon">✎</span><span>Photo Editor</span></button><button data-page="brand"><span class="nav-icon">◉</span><span>Brand Kit</span></button><button data-page="projects"><span class="nav-icon">▱</span><span>My Projects</span></button><button data-page="services"><span class="nav-icon">✦</span><span>Services</span></button><button id="moreNavBtn"><span class="nav-icon">•••</span><span>More</span></button>
+<div class="note">Your creative space<br>Design posts, edit photos, make collages and keep your projects together. Saved projects stay in this browser on this device.</div>
+</nav><div id="moreMenu" aria-label="More navigation"><button data-more="brand"><span class="nav-icon">◉</span> Brand Kit</button><button data-more="projects"><span class="nav-icon">▱</span> My Projects</button><button data-more="services"><span class="nav-icon">✦</span> Services</button></div><main>
+<section class="page active" id="home"><div class="home-topline"><div class="home-greeting">YOUR CREATIVE SPACE<strong>What will you make today?</strong></div><span class="home-badge"><i></i> Ready to create</span></div><label class="home-search"><span>⌕</span><input id="homeSearch" type="search" placeholder="Search designs, formats or tools…" aria-label="Search designs, formats or tools"><kbd>QUICK FIND</kbd></label><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Your ideas.<br>Made visual.</h1><p class="muted">Create standout content, shape your photos and build a look that feels like you.</p><div class="row"><button class="primary" data-goto="create">✦ &nbsp; Start creating</button><button data-goto="templates">Explore templates&nbsp; →</button></div></div><div class="section"><div class="section-head"><h2>Start with a format</h2><p>Choose a canvas and make it yours</p></div><div class="grid" id="quick"></div></div><div class="section"><div class="section-head"><h2>Recent projects</h2><p>Your latest saved work</p></div><div id="homeProjects" class="grid"></div></div></section>
 <section class="page" id="create"><span class="eyebrow">START A PROJECT</span><h2>What are we creating?</h2><p class="muted">Choose a format. You can change the canvas colour, add text or shapes, and upload images.</p><div class="grid" id="formats"></div><div class="section"><label class="field">Custom width (px)<input class="input" id="customW" type="number" value="1080" min="100" max="3000"></label><label class="field">Custom height (px)<input class="input" id="customH" type="number" value="1350" min="100" max="3000"></label><button class="primary" id="customCreate">Create custom canvas →</button></div></section>
 <section class="page" id="templates"><span class="eyebrow">START WITH A DIRECTION</span><h2>Template starters</h2><p class="muted">These are editable starter layouts, not flattened preview images.</p><div class="grid" id="templateGrid"></div></section>
 <section class="page" id="editor"><span class="eyebrow">CREATIVE WORKSPACE</span><h2 id="editorHeading">Untitled design</h2><div class="editor-layout"><div class="toolbox"><div class="props-title">Add to canvas</div><button id="addText">T &nbsp; Add text</button><button id="addRect">▰ &nbsp; Add shape</button><button id="uploadBtn">▧ &nbsp; Upload image</button>
@@ -188,6 +242,8 @@ input[type=range]{width:100%;accent-color:var(--blue)}
 <label class="field small">Film grain <span id="photoGrainLabel">0%</span><input id="photoGrain" type="range" min="0" max="100" value="0"></label>
 <div class="row compact"><button id="resetPhoto">Reset photo look</button><button id="cropSquare">Square crop</button><button id="cropPortrait">4:5 crop</button></div>
 
+<button type="button" id="cropModeBtn">✂ &nbsp; Crop & reposition with touch</button>
+<div id="cropModeHint">CROP MODE · Drag with one finger to reposition the photo. Pinch with two fingers to zoom the crop. Tap Done when it looks right.</div>
 <div class="two-col">
 <label class="field">Width<input class="input" id="imgW" type="number" min="20" max="5000"></label>
 <label class="field">Height<input class="input" id="imgH" type="number" min="20" max="5000"></label>
@@ -221,22 +277,29 @@ input[type=range]{width:100%;accent-color:var(--blue)}
 <script>
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const formats=[
- ['Instagram Post','1080 × 1350','▯',1080,1350],
- ['Instagram Story','1080 × 1920','▯',1080,1920],
- ['Poster','2480 × 3508','▯',900,1273],
- ['YouTube Thumbnail','1280 × 720','▰',1280,720],
- ['Logo / Brand','1000 × 1000','□',1000,1000]
+ ['Instagram Post','1080 × 1350','▣',1080,1350],
+ ['Instagram Story','1080 × 1920','▤',1080,1920],
+ ['YouTube Thumbnail','1280 × 720','▶',1280,720],
+ ['Logo / Brand','1000 × 1000','✦',1000,1000],
+ ['Poster','2480 × 3508','▧',900,1273]
 ];
 let layers=[],selected=-1,bg='#08172b',history=[],redoStack=[],projectName='Untitled design',zoom=1,drag=null;
+let cropMode=false,cropGesture=null;const cropPointers=new Map();
 const canvas=$('#canvas'),ctx=canvas.getContext('2d');
 
 function go(p){
   $$('.page').forEach(x=>x.classList.toggle('active',x.id===p));
   $$('nav button[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===p));
+  document.body.dataset.page=p;$('#moreMenu')?.classList.remove('open');
   if(p==='editor'){draw();syncProps()} if(p==='projects')renderProjects(); if(p==='home')renderHome();
 }
 $$('nav button[data-page]').forEach(b=>b.onclick=()=>go(b.dataset.page));
 $$('[data-goto]').forEach(b=>b.onclick=()=>go(b.dataset.goto));
+$('#moreNavBtn').addEventListener('click',()=>$('#moreMenu').classList.toggle('open'));
+$$('[data-more]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.more)));
+document.addEventListener('click',e=>{if(!e.target.closest('#moreMenu')&&!e.target.closest('#moreNavBtn'))$('#moreMenu')?.classList.remove('open')});
+$('#homeSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();$('#quick').querySelectorAll('.card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'':'none');if(q.includes('photo')||q.includes('edit'))$('#quick').querySelectorAll('.card').forEach(c=>{if(c.textContent.toLowerCase().includes('instagram')||c.textContent.toLowerCase().includes('logo')||c.textContent.toLowerCase().includes('poster'))c.style.display=''});});
+$('#homeSearch').addEventListener('keydown',e=>{if(e.key!=='Enter')return;const q=e.target.value.toLowerCase();if(q.includes('template'))go('templates');else if(q.includes('photo')||q.includes('edit')||q.includes('collage'))go('editor');else if(q.includes('brand')||q.includes('logo'))go('brand');else if(q.includes('project')||q.includes('recent'))go('projects');else if(q.includes('service')||q.includes('designer'))go('services');else if(q.includes('create')||q.includes('post')||q.includes('story')||q.includes('poster')||q.includes('thumbnail'))go('create')});
 
 function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function card(title,sub,icon,fn){let b=document.createElement('button');b.className='card';b.innerHTML=`<span class="icon">${icon}</span><strong>${esc(title)}</strong><span class="muted small">${esc(sub)}</span>`;b.onclick=fn;return b}
@@ -422,7 +485,18 @@ $('#deleteBtn').onclick=()=>{if(selected<0)return;commitMutation(()=>{layers.spl
 
 function pos(e){let r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}
 canvas.addEventListener('pointerdown',e=>{
- let p=pos(e),active=getSelected(),hitControl=active?handleHit(active,p):null;
+ let p=pos(e),active=getSelected();
+ if(cropMode&&active?.type==='image'){
+   e.preventDefault();canvas.setPointerCapture(e.pointerId);cropPointers.set(e.pointerId,p);
+   if(cropPointers.size===1){
+     saveHistory();cropGesture={mode:'move',pointerId:e.pointerId,start:p,sx:active.sx||0,sy:active.sy||0,sw:active.sw||active.img.naturalWidth,sh:active.sh||active.img.naturalHeight,changed:false};
+   }else if(cropPointers.size===2){
+     const pts=[...cropPointers.values()],dist=Math.max(1,Math.hypot(pts[1].x-pts[0].x,pts[1].y-pts[0].y));
+     cropGesture={mode:'pinch',startDistance:dist,sx:active.sx||0,sy:active.sy||0,sw:active.sw||active.img.naturalWidth,sh:active.sh||active.img.naturalHeight,centerX:(active.sx||0)+(active.sw||active.img.naturalWidth)/2,centerY:(active.sy||0)+(active.sh||active.img.naturalHeight)/2,changed:true};
+   }
+   return;
+ }
+ let hitControl=active?handleHit(active,p):null;
  if(hitControl){
    drag={mode:hitControl.type,index:hitControl.index,start:p,rotation:active.rotation||0,orig:{x:active.x,y:active.y,w:active.w||bounds(active).w,h:active.h||bounds(active).h,rotation:active.rotation||0},changed:false};
    canvas.setPointerCapture(e.pointerId);return;
@@ -434,13 +508,30 @@ canvas.addEventListener('pointerdown',e=>{
      let q=localPointForImage(l,p);if(Math.abs(q.x)<=l.w/2&&Math.abs(q.y)<=l.h/2){hit=i;break}
    }else if(p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h){hit=i;break}
  }
- selected=hit;syncProps();draw();
+ if(cropMode&&hit!==selected){cropMode=false;cropPointers.clear();cropGesture=null;document.getElementById('cropModeHint').classList.remove('active');document.getElementById('cropModeBtn').textContent='✂  Crop & reposition with touch';canvas.classList.remove('crop-mode')}selected=hit;syncProps();draw();
  if(hit>=0){let l=layers[hit];drag={mode:'move',x:p.x,y:p.y,lx:l.x,ly:l.y,changed:false};canvas.setPointerCapture(e.pointerId)}
 });
 canvas.addEventListener('pointermove',e=>{
+ if(cropMode&&cropPointers.has(e.pointerId)&&cropGesture){
+   e.preventDefault();cropPointers.set(e.pointerId,pos(e));const l=selectedPhoto();if(!l)return;
+   const iw=l.img?.naturalWidth||l.sw,ih=l.img?.naturalHeight||l.sh,ratio=(l.w||100)/(l.h||100);
+   if(cropPointers.size>=2&&cropGesture.mode==='pinch'){
+     const pts=[...cropPointers.values()],dist=Math.max(1,Math.hypot(pts[1].x-pts[0].x,pts[1].y-pts[0].y));
+     const scale=cropGesture.startDistance/dist;let sw=Math.max(20,Math.min(iw,cropGesture.sw*scale)),sh=sw/ratio;
+     if(sh>ih){sh=ih;sw=sh*ratio}if(sw>iw){sw=iw;sh=sw/ratio}
+     l.sw=sw;l.sh=sh;l.sx=Math.max(0,Math.min(iw-sw,cropGesture.centerX-sw/2));l.sy=Math.max(0,Math.min(ih-sh,cropGesture.centerY-sh/2));cropGesture.changed=true;
+   }else if(cropGesture.mode==='move'){
+     const q=cropPointers.get(e.pointerId),dx=q.x-cropGesture.start.x,dy=q.y-cropGesture.start.y;
+     const sw=cropGesture.sw,sh=cropGesture.sh;l.sw=sw;l.sh=sh;
+     l.sx=Math.max(0,Math.min(iw-sw,cropGesture.sx-dx*sw/Math.max(1,l.w||100)));
+     l.sy=Math.max(0,Math.min(ih-sh,cropGesture.sy-dy*sh/Math.max(1,l.h||100)));
+     if(Math.abs(dx)+Math.abs(dy)>.1)cropGesture.changed=true;
+   }
+   draw();return;
+ }
  if(!drag){const l=getSelected(),p=pos(e),hc=l?handleHit(l,p):null;if(hc?.type==='rotate')canvas.style.cursor='grab';
-else if(hc?.type==='resize')canvas.style.cursor=({0:'nwse-resize',1:'ns-resize',2:'nesw-resize',3:'ew-resize',4:'nwse-resize',5:'ns-resize',6:'nesw-resize',7:'ew-resize'})[hc.index]||'default';
-else canvas.style.cursor='default';return}
+ else if(hc?.type==='resize')canvas.style.cursor=({0:'nwse-resize',1:'ns-resize',2:'nesw-resize',3:'ew-resize',4:'nwse-resize',5:'ns-resize',6:'nesw-resize',7:'ew-resize'})[hc.index]||'default';
+ else canvas.style.cursor='default';return}
  if(selected<0)return;
  let p=pos(e),l=layers[selected];
  if(drag.mode==='move'){
@@ -457,8 +548,16 @@ else canvas.style.cursor='default';return}
    draw();syncProps();
  }
 });
-canvas.addEventListener('pointerup',e=>{if(drag?.changed)syncProps();drag=null});
-canvas.addEventListener('pointercancel',()=>{drag=null;syncProps()});
+canvas.addEventListener('pointerup',e=>{
+ if(cropPointers.has(e.pointerId)){
+   cropPointers.delete(e.pointerId);
+   if(cropPointers.size===0){if(cropGesture?.changed)saveHistory();cropGesture=null;syncProps();draw()}
+   else {const [id,q]=cropPointers.entries().next().value,l=selectedPhoto();cropGesture={mode:'move',pointerId:id,start:q,sx:l.sx||0,sy:l.sy||0,sw:l.sw||l.img.naturalWidth,sh:l.sh||l.img.naturalHeight,changed:true}}
+   return;
+ }
+ if(drag?.changed)syncProps();drag=null
+});
+canvas.addEventListener('pointercancel',e=>{if(cropPointers.has(e.pointerId)){cropPointers.delete(e.pointerId);if(!cropPointers.size){if(cropGesture?.changed)saveHistory();cropGesture=null;syncProps();draw()}}else{drag=null;syncProps()}});
 canvas.addEventListener('dblclick',e=>{let p=pos(e);for(let i=layers.length-1;i>=0;i--){let l=layers[i],b=bounds(l);if(l.type==='text'&&p.x>=b.x&&p.x<=b.x+b.w&&p.y>=b.y&&p.y<=b.y+b.h){let v=prompt('Edit text:',l.text||'');if(v!==null)commitMutation(()=>l.text=v);break}}});
 
 $('#zoomIn').onclick=()=>{zoom=Math.min(2,zoom+.1);$('#zoomLabel').textContent=Math.round(zoom*100)+'%';draw()};$('#zoomOut').onclick=()=>{zoom=Math.max(.4,zoom-.1);$('#zoomLabel').textContent=Math.round(zoom*100)+'%';draw()};$('#zoomFit').onclick=()=>{zoom=1;$('#zoomLabel').textContent='100%';draw()};
@@ -491,6 +590,22 @@ const photoLooks={
  night:{...photoBase,brightness:92,contrast:138,saturation:122,vignette:32}
 };
 function selectedPhoto(){const l=getSelected();return l&&l.type==='image'?l:null}
+function setCropMode(on){
+ const l=selectedPhoto();if(on&&!l){alert('Select a photo on the canvas first.');return}
+ cropMode=!!on;cropPointers.clear();cropGesture=null;drag=null;
+ const btn=document.getElementById('cropModeBtn'),hint=document.getElementById('cropModeHint');
+ btn.textContent=cropMode?'✓  Done cropping':'✂  Crop & reposition with touch';
+ hint.classList.toggle('active',cropMode);canvas.classList.toggle('crop-mode',cropMode);
+ if(cropMode&&l){
+  const iw=l.img?.naturalWidth||l.sw,ih=l.img?.naturalHeight||l.sh,ratio=(l.w||100)/(l.h||100);
+  let sw=Math.max(1,l.sw||iw),sh=Math.max(1,l.sh||ih);
+  if(sw/sh>ratio)sw=sh*ratio;else sh=sw/ratio;
+  const cx=(l.sx||0)+(l.sw||iw)/2,cy=(l.sy||0)+(l.sh||ih)/2;
+  l.sw=sw;l.sh=sh;l.sx=Math.max(0,Math.min(iw-sw,cx-sw/2));l.sy=Math.max(0,Math.min(ih-sh,cy-sh/2));
+  saveHistory();draw();syncProps();
+ } else {draw();syncProps()}
+}
+document.getElementById('cropModeBtn').addEventListener('click',()=>setCropMode(!cropMode));
 function showPhotoControls(){
  const l=selectedPhoto(),p={...photoBase,...(l&&l.photo||{})};
  const controls=[['brightness','photoBrightness','photoBrightnessLabel','%'],['contrast','photoContrast','photoContrastLabel','%'],['saturation','photoSaturation','photoSaturationLabel','%'],['warmth','photoWarmth','photoWarmthLabel',''],['sepia','photoSepia','photoSepiaLabel','%'],['softness','photoSoftness','photoSoftnessLabel',''],['vignette','photoVignette','photoVignetteLabel','%'],['grain','photoGrain','photoGrainLabel','%']];
@@ -646,4 +761,5 @@ renderHome();renderProjects();renderLayers();updateHistoryButtons();
 if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
   navigator.serviceWorker.register("./sw.js").catch(()=>{});
 }
+(function(){const splash=document.getElementById('launchSplash');if(!splash)return;let delay=1100;try{if(sessionStorage.getItem('ggx-splash-seen'))delay=450;else sessionStorage.setItem('ggx-splash-seen','1')}catch(e){}setTimeout(()=>splash.classList.add('hide'),delay);setTimeout(()=>splash.remove(),delay+550)})();
 </script></body></html>
