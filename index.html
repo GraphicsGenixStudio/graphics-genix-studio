@@ -2620,4 +2620,110 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
 }
 </style>
 
+
+
+<style id="ggx-v26-final-editor">
+@media (max-width:850px){
+  /* GG v26: locked mobile editor shell. Never expose the desktop property stack on phones. */
+  body[data-page="editor"]{
+    position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;overflow:hidden!important;overscroll-behavior:none!important;
+  }
+  body[data-page="editor"] header,
+  body[data-page="editor"] nav,
+  body[data-page="editor"] #moreMenu,
+  body[data-page="editor"] #editorHeading,
+  body[data-page="editor"] .editor-layout>.toolbox,
+  body[data-page="editor"] .editor-layout>.properties,
+  body[data-page="editor"] #mobileObjectControls,
+  body[data-page="editor"] .ggx-mobile-editor-bar-static{display:none!important}
+
+  body[data-page="editor"] main,
+  body[data-page="editor"] #editor,
+  body[data-page="editor"] .editor-layout{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;display:block!important}
+
+  body[data-page="editor"] .editor-layout>.stage{
+    position:fixed!important;top:calc(64px + env(safe-area-inset-top))!important;left:0!important;right:0!important;
+    bottom:calc(198px + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;min-height:0!important;
+    margin:0!important;padding:14px 12px!important;border:0!important;border-radius:0!important;overflow:hidden!important;
+    display:grid!important;place-items:center!important;z-index:20!important;background:#0b1019!important;box-shadow:none!important;
+  }
+  body[data-theme="light"][data-page="editor"] .editor-layout>.stage{background:#eef2f7!important}
+  body[data-page="editor"] .canvas-wrap{display:grid!important;place-items:center!important;max-width:100%!important;max-height:100%!important;overflow:hidden!important;border-radius:5px!important;box-shadow:0 18px 48px #0005!important;background:#111!important}
+  body[data-page="editor"] .canvas-wrap canvas{display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+
+  #ggxV26Bar{display:flex!important;position:fixed!important;top:0!important;left:0!important;right:0!important;height:calc(64px + env(safe-area-inset-top))!important;
+    padding:calc(8px + env(safe-area-inset-top)) 10px 8px!important;align-items:center!important;gap:8px!important;z-index:5000!important;
+    background:rgba(9,15,25,.97)!important;border-bottom:1px solid rgba(132,164,211,.18)!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important;color:#f8fbff!important}
+  body[data-theme="light"] #ggxV26Bar{background:rgba(250,252,255,.97)!important;border-color:#dbe4ee!important;color:#17243a!important}
+  #ggxV26Bar .v26-icon{width:40px!important;height:40px!important;min-width:40px!important;border-radius:12px!important;border:1px solid #2c4362!important;background:#15243a!important;color:#fff!important;display:grid!important;place-items:center!important;font-size:23px!important;padding:0!important}
+  body[data-theme="light"] #ggxV26Bar .v26-icon{background:#eef3f8!important;border-color:#d7e1ec!important;color:#17243a!important}
+  #ggxV26Bar .v26-title{min-width:0;flex:1;line-height:1.05;overflow:hidden}
+  #ggxV26Bar .v26-title strong{display:block;font-size:12px;font-weight:850;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #ggxV26Bar .v26-title small{display:block;margin-top:4px;font-size:7px;letter-spacing:1.8px;color:#83aef0;font-weight:850}
+  #ggxV26Bar .v26-actions{display:flex;gap:5px;align-items:center}
+  #ggxV26Bar .v26-actions button{height:40px;min-width:40px;padding:0 9px;border-radius:12px!important;background:#15243a!important;border:1px solid #2c4362!important;color:#eef5ff!important;font-size:13px!important;font-weight:850!important}
+  #ggxV26Bar .v26-actions .save{background:linear-gradient(135deg,#1688ff,#625bf3)!important;border-color:transparent!important;color:#fff!important}
+  body[data-theme="light"] #ggxV26Bar .v26-actions button{background:#eef3f8!important;border-color:#d7e1ec!important;color:#17243a!important}
+  body[data-theme="light"] #ggxV26Bar .v26-actions .save{color:#fff!important}
+  #ggxV26Bar button:disabled{opacity:.38!important}
+
+  #ggxV26Dock{display:flex!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;height:calc(198px + env(safe-area-inset-bottom))!important;
+    padding:8px 10px calc(8px + env(safe-area-inset-bottom))!important;flex-direction:column!important;gap:7px!important;z-index:4900!important;
+    background:rgba(10,17,28,.98)!important;border-top:1px solid rgba(132,164,211,.18)!important;border-radius:22px 22px 0 0!important;
+    box-shadow:0 -18px 48px #0005!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important;color:#f7faff!important}
+  body[data-theme="light"] #ggxV26Dock{background:rgba(250,252,255,.98)!important;border-color:#dce4ef!important;color:#17243a!important;box-shadow:0 -18px 48px #263a581f!important}
+  #ggxV26Dock .handle{width:38px;height:4px;border-radius:99px;background:#7f91aa77;margin:0 auto 1px;flex:none}
+  #ggxV26Tools{display:flex!important;gap:7px!important;overflow-x:auto!important;scrollbar-width:none!important;overscroll-behavior-x:contain!important;padding:0 1px!important;flex:none!important}
+  #ggxV26Tools::-webkit-scrollbar{display:none!important}
+  #ggxV26Tools button{flex:0 0 66px!important;height:64px!important;border-radius:15px!important;border:1px solid #2a405f!important;background:#142238!important;color:#cbd8e9!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;font-size:9px!important;font-weight:850!important;padding:6px!important;touch-action:manipulation!important;transition:transform .14s ease,background .18s ease,box-shadow .18s ease!important}
+  #ggxV26Tools button .ico{font-size:20px!important;line-height:1!important}
+  #ggxV26Tools button.active{background:linear-gradient(145deg,#218cff,#625bf3)!important;border-color:transparent!important;color:#fff!important;box-shadow:0 8px 20px #247bff3d!important}
+  body[data-theme="light"] #ggxV26Tools button{background:#f0f4f9!important;border-color:#d7e1ec!important;color:#506078!important}
+  #ggxV26Tools button:active{transform:scale(.95)!important}
+  #ggxV26Sub{display:flex!important;align-items:center!important;gap:7px!important;min-height:78px!important;overflow-x:auto!important;scrollbar-width:none!important;padding:0 1px!important}
+  #ggxV26Sub::-webkit-scrollbar{display:none!important}
+  #ggxV26Sub .label{font-size:11px;font-weight:850;white-space:nowrap;color:#9fb0c5}
+  body[data-theme="light"] #ggxV26Sub .label{color:#718198}
+  #ggxV26Sub button,#ggxV26Sub input,#ggxV26Sub select{flex:0 0 auto!important}
+  #ggxV26Sub button{height:46px!important;min-width:64px!important;padding:7px 10px!important;border-radius:12px!important;background:#111d30!important;border:1px solid #263c5b!important;color:#dce7f7!important;font-size:11px!important;font-weight:800!important}
+  #ggxV26Sub button.primary{background:linear-gradient(135deg,#218cff,#625bf3)!important;border-color:transparent!important;color:#fff!important}
+  body[data-theme="light"] #ggxV26Sub button{background:#f1f5f9!important;border-color:#d7e0eb!important;color:#25364e!important}
+  #ggxV26Sub input[type=text]{height:46px!important;width:150px!important;min-width:150px!important;border-radius:12px!important;border:1px solid #263c5b!important;background:#111d30!important;color:#fff!important;padding:0 10px!important;font-size:12px!important}
+  body[data-theme="light"] #ggxV26Sub input[type=text]{background:#f1f5f9!important;border-color:#d7e0eb!important;color:#17243a!important}
+  #ggxV26Sub input[type=range]{width:135px!important;min-width:135px!important;accent-color:#1687ff!important;touch-action:pan-x!important}
+  #ggxV26Sub .sizebox{height:46px!important;min-width:84px!important;display:grid!important;grid-template-columns:30px 1fr 30px!important;align-items:center!important;background:#111d30!important;border:1px solid #263c5b!important;border-radius:12px!important;overflow:hidden!important}
+  #ggxV26Sub .sizebox button{height:100%!important;min-width:30px!important;border:0!important;background:transparent!important;padding:0!important;font-size:19px!important;border-radius:0!important}
+  #ggxV26Sub .sizebox strong{font-size:12px;color:#fff;text-align:center}
+  body[data-theme="light"] #ggxV26Sub .sizebox{background:#f1f5f9!important;border-color:#d7e0eb!important}body[data-theme="light"] #ggxV26Sub .sizebox strong{color:#17243a}
+  #ggxV26Sub select{height:46px!important;width:112px!important;border-radius:12px!important;border:1px solid #263c5b!important;background:#111d30!important;color:#fff!important;padding:0 9px!important;font-size:11px!important}
+  body[data-theme="light"] #ggxV26Sub select{background:#f1f5f9!important;border-color:#d7e0eb!important;color:#17243a!important}
+  @media(max-width:380px){#ggxV26Bar{height:58px!important;padding-top:8px!important}#ggxV26Bar .v26-icon{width:36px!important;height:36px!important;min-width:36px!important}#ggxV26Bar .v26-actions button{height:36px!important;min-width:36px!important;padding:0 7px!important}#ggxV26Bar .v26-title strong{font-size:11px!important}#ggxV26Dock{height:calc(190px + env(safe-area-inset-bottom))!important}body[data-page="editor"] .editor-layout>.stage{top:58px!important;bottom:calc(190px + env(safe-area-inset-bottom))!important}}
+}
+</style>
+<script id="ggx-v26-final-editor-js">
+(function(){
+  const B=document.body;if(!B)return;const $=s=>document.querySelector(s);const mobile=()=>matchMedia('(max-width:850px)').matches;
+  let bar=document.getElementById('ggxV26Bar'),dock=document.getElementById('ggxV26Dock');
+  if(!bar){bar=document.createElement('div');bar.id='ggxV26Bar';bar.innerHTML='<button class="v26-icon" id="ggxV26Back" aria-label="Back to home">‹</button><div class="v26-title"><strong id="ggxV26Title">Untitled design</strong><small>GRAPHICS GENIX · EDITOR</small></div><div class="v26-actions"><button id="ggxV26Undo" aria-label="Undo">↶</button><button id="ggxV26Redo" aria-label="Redo">↷</button><button id="ggxV26Save" class="save">Save</button></div>';B.appendChild(bar)}
+  if(!dock){dock=document.createElement('section');dock.id='ggxV26Dock';dock.innerHTML='<div class="handle"></div><div id="ggxV26Tools"></div><div id="ggxV26Sub"></div>';B.appendChild(dock)}
+  const toolsEl=$('#ggxV26Tools'),sub=$('#ggxV26Sub');let active='media';
+  const selected=()=>typeof getSelected==='function'?getSelected():null;
+  const click=id=>$(id)?.click();
+  const notify=m=>{let t=document.getElementById('ggxV26Toast');if(!t){t=document.createElement('div');t.id='ggxV26Toast';t.style.cssText='position:fixed;left:50%;top:80px;transform:translateX(-50%);z-index:6000;background:#101a2a;color:#fff;border:1px solid #2b4161;border-radius:99px;padding:8px 12px;font-size:11px;font-weight:800;opacity:0;transition:opacity .18s';B.appendChild(t)}t.textContent=m;t.style.opacity='1';clearTimeout(t._x);t._x=setTimeout(()=>t.style.opacity='0',1100)};
+  function action(label,fn,primary){const b=document.createElement('button');b.type='button';b.textContent=label;if(primary)b.className='primary';b.onclick=fn;return b}
+  function tool(icon,label,key,fn){const b=document.createElement('button');b.type='button';b.innerHTML='<span class="ico">'+icon+'</span><span>'+label+'</span>';b.className=active===key?'active':'';b.onclick=()=>{active=key;fn();render()};return b}
+  function photoEdit(){const l=selected();if(!l||l.type!=='image'){notify('Choose a photo first');click('#uploadBtn');return}B.dataset.photoEditing='true';window.__ggxPhotoWorkspaceDismissed=false;if(typeof window.refreshMobilePhotoWorkspace==='function')window.refreshMobilePhotoWorkspace();}
+  function renderTools(){toolsEl.innerHTML='';toolsEl.append(tool('▧','Photo','media',()=>click('#uploadBtn')));toolsEl.append(tool('T','Text','text',()=>click('#addText')));toolsEl.append(tool('◇','Shape','shape',()=>click('#addRect')));toolsEl.append(tool('▦','Template','templates',()=>go('templates')));toolsEl.append(tool('▥','Collage','collage',()=>click('#collageBtn')));toolsEl.append(tool('◉','Adjust','adjust',photoEdit));toolsEl.append(tool('≡','Layers','layers',()=>renderLayers()));}
+  function renderLayers(){sub.innerHTML='';sub.append(Object.assign(document.createElement('span'),{className:'label',textContent:'Layers'}));const lp=$('#layersPanel');if(!lp){sub.append(action('No layers',()=>{}));return}lp.querySelectorAll('.layer-item').forEach((it,i)=>{const b=action(it.textContent.trim()||('Layer '+(i+1)),()=>it.click());sub.append(b)})}
+  function renderSub(){sub.innerHTML='';const l=selected();if(!l){sub.append(Object.assign(document.createElement('span'),{className:'label',textContent:'Start'}));sub.append(action('＋ Photo',()=>click('#uploadBtn'),true));sub.append(action('T Text',()=>click('#addText')));sub.append(action('◇ Shape',()=>click('#addRect')));sub.append(action('▦ Collage',()=>click('#collageBtn')));sub.append(action('Use template',()=>go('templates')));return}
+    if(l.type==='text'){sub.append(Object.assign(document.createElement('span'),{className:'label',textContent:'Text'}));const inp=document.createElement('input');inp.type='text';inp.value=l.text||'';inp.placeholder='Type text';inp.oninput=()=>{l.text=inp.value;draw()};sub.append(inp);const sb=document.createElement('div');sb.className='sizebox';const mi=action('−',()=>{l.size=Math.max(8,(l.size||72)-2);v.textContent=Math.round(l.size);draw();saveHistory()});const v=document.createElement('strong');v.textContent=Math.round(l.size||72);const pl=action('+',()=>{l.size=Math.min(400,(l.size||72)+2);v.textContent=Math.round(l.size);draw();saveHistory()});sb.append(mi,v,pl);sub.append(sb);sub.append(action('Regular',()=>{l.weight=400;draw();saveHistory()}));sub.append(action('Bold',()=>{l.weight=700;draw();saveHistory()},true));sub.append(action('Black',()=>{l.weight=900;draw();saveHistory()}));sub.append(action('Left',()=>{l.align='left';draw();saveHistory()}));sub.append(action('Center',()=>{l.align='center';draw();saveHistory()}));sub.append(action('Right',()=>{l.align='right';draw();saveHistory()}));sub.append(action('Delete',()=>click('#deleteBtn')));return}
+    if(l.type==='image'){sub.append(Object.assign(document.createElement('span'),{className:'label',textContent:'Photo'}));sub.append(action('Edit photo',photoEdit,true));sub.append(action('Looks',()=>{photoEdit();setTimeout(()=>document.querySelector('[data-mtab="looks"]')?.click(),80)}));sub.append(action('Crop',()=>{photoEdit();setTimeout(()=>document.querySelector('[data-mtab="crop"]')?.click(),80)}));sub.append(action('Fit',()=>click('#fitImage')));sub.append(action('Duplicate',()=>click('#duplicateBtn')));sub.append(action('Delete',()=>click('#deleteBtn')));return}
+    sub.append(Object.assign(document.createElement('span'),{className:'label',textContent:'Shape'}));sub.append(action('Fill',()=>$('#mobileShapeFill')?.click()));sub.append(action('Duplicate',()=>click('#duplicateBtn')));sub.append(action('Delete',()=>click('#deleteBtn')));}
+  function render(){const on=B.dataset.page==='editor'&&mobile();bar.style.display=on?'flex':'none';dock.style.display=on?'flex':'none';if(!on)return;$('#ggxV26Title').textContent=$('#editorHeading')?.textContent||'Untitled design';const u=$('#undoBtn'),r=$('#redoBtn');$('#ggxV26Undo').disabled=!!u?.disabled;$('#ggxV26Redo').disabled=!!r?.disabled;const l=selected();active=l?.type==='image'?'adjust':l?.type==='text'?'text':l?'shape':'media';renderTools();if(active==='layers')renderLayers();else renderSub()}
+  $('#ggxV26Back').onclick=()=>{B.dataset.photoEditing='false';window.__ggxPhotoWorkspaceDismissed=false;go('home')};$('#ggxV26Undo').onclick=()=>click('#undoBtn');$('#ggxV26Redo').onclick=()=>click('#redoBtn');$('#ggxV26Save').onclick=()=>click('#exportBtn');
+  const mo=new MutationObserver(render);mo.observe(B,{attributes:true,attributeFilter:['data-page','data-photo-editing','data-theme','data-object-editing']});const lp=$('#layersPanel');if(lp)new MutationObserver(render).observe(lp,{childList:true,subtree:true});window.addEventListener('resize',render,{passive:true});
+  setTimeout(render,0);setTimeout(render,150);setTimeout(render,500);
+})();
+</script>
+
 </body></html>
