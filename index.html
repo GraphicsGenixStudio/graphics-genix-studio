@@ -637,9 +637,9 @@ header{isolation:isolate;}
 
 <div id="mobileObjectControls" class="mobile-object-controls" aria-label="Selected object controls">
   <div class="mobile-object-tabs" role="tablist">
-    <button type="button" class="active" data-object-tab="content">Content</button>
+    <button type="button" class="active" data-object-tab="content">Edit</button>
     <button type="button" data-object-tab="style">Style</button>
-    <button type="button" data-object-tab="transform">Position</button>
+    <button type="button" data-object-tab="transform">Arrange</button>
   </div>
   <section data-object-panel="content" class="mobile-object-panel active">
     <label class="field" data-text-only>Text<textarea id="mobileTextValue" class="input mobile-text-input" rows="2" placeholder="Type your text…"></textarea></label>
@@ -648,6 +648,17 @@ header{isolation:isolate;}
     </div>
     <div class="shape-picker-inline" data-shape-only>
       <div class="field small">Shape</div><button type="button" id="mobileShapePicker" class="shape-picker-button">Choose a shape <span>⌄</span></button>
+    </div>
+    <div class="mobile-empty-tools" data-no-selection>
+      <div class="mobile-empty-title">Start editing</div>
+      <div class="mobile-empty-actions">
+        <button type="button" id="mobileQuickAddText">T&nbsp; Text</button>
+        <button type="button" id="mobileQuickAddShape">◇ Shape</button>
+        <button type="button" id="mobileQuickUpload">＋ Photo</button>
+      </div>
+    </div>
+    <div class="mobile-object-actions mobile-text-actions" data-text-only>
+      <button type="button" id="mobileQuickDuplicate">Duplicate</button><button type="button" id="mobileQuickDelete">Delete</button>
     </div>
   </section>
   <section data-object-panel="style" class="mobile-object-panel">
@@ -658,6 +669,17 @@ header{isolation:isolate;}
     <div class="two-col" data-text-only>
       <label class="field">Size<input id="mobileFontSize" class="input" type="number" min="8" max="400" step="1"></label>
       <label class="field">Color<input id="mobileTextColor" class="input" type="color" value="#ffffff"></label>
+    </div>
+    <div class="mobile-size-stepper" data-text-only>
+      <button type="button" id="mobileFontMinus" aria-label="Decrease text size">−</button>
+      <div><span>Text size</span><strong id="mobileFontSizeLabel">72</strong></div>
+      <button type="button" id="mobileFontPlus" aria-label="Increase text size">＋</button>
+    </div>
+    <div class="mobile-style-quick" data-text-only>
+      <button type="button" id="mobileQuickRegular">Regular</button>
+      <button type="button" id="mobileQuickBold" class="active">Bold</button>
+      <button type="button" id="mobileQuickBlack">Black</button>
+    </div>
     </div>
     <div class="mobile-object-actions" data-text-only><button type="button" id="mobileAlignLeft">Left</button><button type="button" id="mobileAlignCenter">Center</button><button type="button" id="mobileAlignRight">Right</button></div>
     <div data-shape-only>
@@ -2105,6 +2127,119 @@ body:not([data-page="editor"]) #themeToggle{display:flex!important}
     if(t.closest('.stage,.shape-picker-sheet,#mobileObjectControls,.template-filters'))return;
     if(Math.abs(window.scrollX)>0)window.scrollTo(0,window.scrollY);
   },{passive:true});
+})();
+</script>
+
+<style id="ggx-editor-workspace-v21">
+/* v21 — mobile editing is a fixed creative workspace: live canvas above, tools below. */
+@media(max-width:850px){
+  body[data-page="editor"]{overflow:hidden!important;overscroll-behavior:none!important}
+  body[data-page="editor"] main{padding:0!important;margin:0!important;max-width:none!important}
+  body[data-page="editor"] #editor{padding:0!important;margin:0!important}
+  body[data-page="editor"] #editor>.eyebrow,
+  body[data-page="editor"] #editor>h2{display:none!important}
+  body[data-page="editor"] .editor-layout{display:block!important;position:static!important;height:calc(100dvh - 62px - env(safe-area-inset-top) - 78px)!important;min-height:0!important;margin:0!important;padding:0!important}
+  body[data-page="editor"] .editor-layout>.toolbox,
+  body[data-page="editor"] .editor-layout>.properties{display:none!important}
+  body[data-page="editor"] .editor-layout>.stage{position:fixed!important;top:calc(62px + env(safe-area-inset-top))!important;left:0!important;right:0!important;bottom:calc(var(--ggx-edit-sheet, 39dvh) + 72px + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:12px!important;border:0!important;border-radius:0!important;overflow:hidden!important;display:grid!important;place-items:center!important;z-index:30!important;background:#080d17!important;box-shadow:none!important}
+  body[data-theme="light"][data-page="editor"] .editor-layout>.stage{background:#eef2f7!important}
+  body[data-page="editor"] .editor-layout>.stage>.canvas-wrap{max-width:100%!important;max-height:100%!important;display:grid!important;place-items:center!important;box-shadow:0 18px 45px #0005!important;border-radius:2px!important;overflow:hidden!important}
+  body[data-page="editor"] .editor-layout>.stage canvas{display:block!important;max-width:100%!important;max-height:100%!important;width:auto!important;height:auto!important;object-fit:contain!important}
+  body[data-page="editor"] #mobileObjectControls{display:block!important;position:fixed!important;left:0!important;right:0!important;bottom:calc(72px + env(safe-area-inset-bottom))!important;height:var(--ggx-edit-sheet,39dvh)!important;min-height:230px!important;max-height:390px!important;overflow:hidden!important;z-index:80!important;margin:0!important;padding:0 12px 10px!important;border:0!important;border-top:1px solid rgba(120,150,196,.18)!important;border-radius:22px 22px 0 0!important;background:rgba(10,17,30,.98)!important;color:#f7f9ff!important;box-shadow:0 -18px 50px rgba(0,0,0,.28)!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important}
+  body[data-theme="light"][data-page="editor"] #mobileObjectControls{background:rgba(250,252,255,.98)!important;color:#17243a!important;border-top-color:#dce4ef!important;box-shadow:0 -16px 45px rgba(24,42,70,.12)!important}
+  body[data-page="editor"] #mobileObjectControls:before{content:"";display:block;width:38px;height:4px;border-radius:99px;background:#64748b66;margin:7px auto 7px}
+  body[data-page="editor"] .mobile-object-tabs{position:sticky!important;top:0!important;z-index:10!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:5px!important;padding:3px!important;margin:0 -2px 8px!important;border-radius:13px!important;background:#111d31!important}
+  body[data-theme="light"][data-page="editor"] .mobile-object-tabs{background:#edf2f8!important}
+  body[data-page="editor"] .mobile-object-tabs button{min-height:38px!important;border:0!important;border-radius:10px!important;background:transparent!important;color:#8494aa!important;font-size:11px!important;font-weight:750!important;padding:5px!important}
+  body[data-page="editor"] .mobile-object-tabs button.active{background:linear-gradient(135deg,#218cff,#625bf3)!important;color:#fff!important;box-shadow:0 6px 18px rgba(53,120,255,.25)!important}
+  body[data-page="editor"] .mobile-object-panel{display:none!important;overflow:auto!important;height:calc(100% - 57px)!important;padding:0 1px 18px!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important}
+  body[data-page="editor"] .mobile-object-panel.active{display:block!important}
+  body[data-page="editor"] .mobile-object-controls .field{font-size:10px!important;font-weight:650!important;color:#8fa0b8!important}
+  body[data-theme="light"][data-page="editor"] .mobile-object-controls .field{color:#718099!important}
+  body[data-page="editor"] .mobile-object-controls .input{min-height:42px!important;margin:5px 0 8px!important;padding:9px 11px!important;border-radius:11px!important;background:#07101e!important;border-color:#263b5b!important;color:#fff!important;font-size:14px!important}
+  body[data-theme="light"][data-page="editor"] .mobile-object-controls .input{background:#fff!important;border-color:#d7e0ec!important;color:#17243a!important}
+  .mobile-text-input{min-height:50px!important;font-size:16px!important!important}
+  .mobile-object-actions{gap:7px!important;margin:7px 0!important}
+  .mobile-object-actions button{min-height:42px!important;border-radius:11px!important}
+  .mobile-size-stepper{display:grid;grid-template-columns:48px 1fr 48px;gap:8px;align-items:center;margin:4px 0 8px}
+  .mobile-size-stepper button{height:44px;border-radius:12px;font-size:22px;padding:0;background:#15243a;border:1px solid #2a405f;color:#fff}
+  body[data-theme="light"] .mobile-size-stepper button{background:#edf3fa;border-color:#d4deeb;color:#18263c}
+  .mobile-size-stepper div{text-align:center;background:#101d31;border:1px solid #263b5a;border-radius:12px;padding:5px}
+  body[data-theme="light"] .mobile-size-stepper div{background:#f3f6fa;border-color:#dbe3ee}
+  .mobile-size-stepper span{display:block;font-size:9px;color:#8496af;text-transform:uppercase;letter-spacing:1.1px}
+  .mobile-size-stepper strong{display:block;font-size:16px;color:#fff}
+  body[data-theme="light"] .mobile-size-stepper strong{color:#17243a}
+  .mobile-style-quick{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:5px 0 8px}
+  .mobile-style-quick button{min-height:39px;border-radius:11px;background:#111d30;border:1px solid #273d5b;color:#aebbd0;font-size:10px;font-weight:750}
+  .mobile-style-quick button.active{background:#eaf2ff;border-color:#6aa6ff;color:#1554aa}
+  body[data-theme="light"] .mobile-style-quick button{background:#f2f5f9;border-color:#d8e0ea;color:#65748a}
+  body[data-theme="light"] .mobile-style-quick button.active{background:#e7f0ff;border-color:#72aaff;color:#1554aa}
+  .mobile-empty-tools{padding-top:5px}
+  .mobile-empty-title{font-size:12px;font-weight:800;margin:2px 0 8px;color:#dbe5f5}
+  body[data-theme="light"] .mobile-empty-title{color:#27374e}
+  .mobile-empty-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+  .mobile-empty-actions button{min-height:50px;border-radius:13px;font-size:11px;background:#111f34;border-color:#2a4162;color:#dce7f7}
+  .mobile-empty-actions button:first-child{background:linear-gradient(135deg,#218cff,#625bf3);border-color:transparent;color:#fff}
+  body[data-theme="light"] .mobile-empty-actions button{background:#f1f5fa;border-color:#d6e0ec;color:#25364e}
+  body[data-theme="light"] .mobile-empty-actions button:first-child{background:linear-gradient(135deg,#218cff,#625bf3);color:#fff}
+}
+@media(max-width:380px){body[data-page="editor"] #mobileObjectControls{min-height:220px;height:41dvh!important}.mobile-size-stepper{grid-template-columns:44px 1fr 44px}}
+</style>
+<style id="ggx-editor-workspace-v21-fix">
+@media(max-width:850px){
+  /* The mobile controls live inside .properties; keep the shell but expose only the sheet. */
+  body[data-page="editor"] .editor-layout>.properties{display:block!important;position:static!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+  body[data-page="editor"] .editor-layout>.properties>:not(#mobileObjectControls){display:none!important}
+  body[data-page="editor"][data-photo-editing="true"] .editor-layout>.properties{display:none!important}
+  body[data-page="editor"][data-photo-editing="true"] #mobileObjectControls{display:none!important}
+  body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{top:60px!important;left:0!important;right:0!important;bottom:calc(clamp(282px,43dvh,390px) + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;padding:12px 10px!important;margin:0!important;border:0!important;border-radius:0!important;overflow:hidden!important;z-index:20!important;display:grid!important;place-items:center!important;background:#101115!important;box-shadow:none!important}
+  body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{background:#f2f3f7!important}
+}
+</style>
+<script id="ggx-editor-workspace-v21-js">
+(function(){
+  const body=document.body;
+  const controls=document.getElementById('mobileObjectControls');
+  if(!controls)return;
+  function mobile(){return window.matchMedia('(max-width:850px)').matches}
+  function updateSheet(){
+    const h=(window.visualViewport&&window.visualViewport.height)||window.innerHeight;
+    const sheet=Math.max(230,Math.min(390,Math.round(h*.39)));
+    document.documentElement.style.setProperty('--ggx-edit-sheet',sheet+'px');
+  }
+  updateSheet(); window.addEventListener('resize',updateSheet,{passive:true}); window.visualViewport?.addEventListener('resize',updateSheet,{passive:true});
+  function sync(){
+    if(!mobile()||body.dataset.page!=='editor')return;
+    const l=typeof getSelected==='function'?getSelected():null;
+    document.querySelectorAll('#mobileObjectControls [data-no-selection]').forEach(e=>e.style.display=l?'none':'block');
+    document.querySelectorAll('#mobileObjectControls [data-text-only]').forEach(e=>e.style.display=l?.type==='text'?'':'none');
+    document.querySelectorAll('#mobileObjectControls [data-shape-only]').forEach(e=>e.style.display=l&&(l.type==='shape'||l.type==='rect')?'':'none');
+    const active=controls.querySelector('.mobile-object-tabs button.active');
+    if(!active){controls.querySelector('[data-object-tab="content"]')?.classList.add('active')}
+    const size=document.getElementById('mobileFontSizeLabel'); if(size&&l?.type==='text')size.textContent=String(Math.round(l.size||72));
+    controls.querySelectorAll('.mobile-style-quick button').forEach(b=>b.classList.toggle('active',String(l?.weight||700)===b.dataset.weight));
+  }
+  const oldSync=window.syncProps;
+  if(typeof oldSync==='function'){
+    window.syncProps=function(){oldSync();sync();};
+  }
+  ['mobileFontMinus','mobileFontPlus'].forEach(id=>document.getElementById(id)?.addEventListener('click',function(){
+    const l=typeof getSelected==='function'?getSelected():null;if(l?.type!=='text')return;
+    const next=Math.max(8,Math.min(400,Number(l.size||72)+(id==='mobileFontPlus'?4:-4)));
+    commitMutation(()=>l.size=next);syncMobileObjectUI();draw();sync();
+  }));
+  [['mobileQuickRegular',400],['mobileQuickBold',700],['mobileQuickBlack',900]].forEach(([id,w])=>document.getElementById(id)?.addEventListener('click',()=>{
+    const l=typeof getSelected==='function'?getSelected():null;if(l?.type!=='text')return;commitMutation(()=>l.weight=w);syncMobileObjectUI();draw();sync();
+  }));
+  document.getElementById('mobileQuickDuplicate')?.addEventListener('click',()=>document.getElementById('mobileDuplicateObject')?.click());
+  document.getElementById('mobileQuickDelete')?.addEventListener('click',()=>document.getElementById('mobileDeleteObject')?.click());
+  document.getElementById('mobileQuickAddText')?.addEventListener('click',()=>document.getElementById('addText')?.click());
+  document.getElementById('mobileQuickAddShape')?.addEventListener('click',()=>document.getElementById('addRect')?.click());
+  document.getElementById('mobileQuickUpload')?.addEventListener('click',()=>document.getElementById('uploadBtn')?.click());
+  controls.addEventListener('click',e=>{const b=e.target.closest('[data-object-tab]');if(!b)return;controls.querySelectorAll('.mobile-object-tabs button').forEach(x=>x.classList.toggle('active',x===b));controls.querySelectorAll('.mobile-object-panel').forEach(x=>x.classList.toggle('active',x.dataset.objectPanel===b.dataset.objectTab));});
+  sync();
+  const mo=new MutationObserver(sync);mo.observe(body,{attributes:true,attributeFilter:['data-page','data-object-editing','data-photo-editing']});
+  window.addEventListener('resize',sync,{passive:true});
 })();
 </script>
 </body></html>
