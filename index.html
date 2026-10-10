@@ -554,7 +554,7 @@ function draw(){
   if(p.grain){let seed=17;ctx.globalAlpha=Math.min(.15,p.grain/100);for(let n=0;n<Math.min(700,Math.round(w*h/1500));n++){seed=(seed*9301+49297)%233280;const gx=-w/2+(seed/233280)*w;seed=(seed*9301+49297)%233280;const gy=-h/2+(seed/233280)*h;ctx.fillStyle=seed%2?'#fff':'#000';ctx.fillRect(gx,gy,1.5,1.5)}ctx.globalAlpha=l.opacity==null?1:l.opacity}}
   ctx.restore();
  });
- drawSelectionUI();
+ if(document.body.dataset.photoEditing!=='true')drawSelectionUI();
  canvas.style.width=(canvas.width*zoom)+'px';canvas.style.height=(canvas.height*zoom)+'px';
 }
 function wrapText(c,t,x,y,maxW,lineH){let words=String(t||'').split(/\s+/),lines=[],line='';for(const word of words){let test=line?line+' '+word:word;if(c.measureText(test).width>maxW&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);lines.forEach((ln,i)=>c.fillText(ln,x,y+i*lineH))}
@@ -674,7 +674,7 @@ function commitMutation(fn){saveHistory();fn();draw();syncProps()}
 $('#addText').onclick=()=>{saveHistory();let l={type:'text',text:'Your headline',x:canvas.width*.1,y:canvas.height*.12,size:Math.round(canvas.width*.07),color:'#ffffff',font:$('#brandFont').value||'Arial',weight:700,align:'left',maxW:canvas.width*.8};layers.push(l);selected=layers.length-1;syncProps();draw();setTimeout(()=>{let v=prompt('Type your text:',l.text);if(v!==null&&v.trim()){saveHistory();l.text=v.trim();draw();syncProps()}},50)};
 $('#addRect').onclick=()=>{saveHistory();layers.push({type:'rect',x:canvas.width*.1,y:canvas.height*.2,w:canvas.width*.3,h:canvas.height*.18,color:$('#brandColor').value||'#1687ff',opacity:1});selected=layers.length-1;syncProps();draw()};
 $('#uploadBtn').onclick=()=>$('#fileInput').click();
-$('#fileInput').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{saveHistory();let scale=Math.min(canvas.width*.7/im.naturalWidth,canvas.height*.7/im.naturalHeight,1);layers.push({type:'image',img:im,src:r.result,x:(canvas.width-im.naturalWidth*scale)/2,y:(canvas.height-im.naturalHeight*scale)/2,w:im.naturalWidth*scale,h:im.naturalHeight*scale,sx:0,sy:0,sw:im.naturalWidth,sh:im.naturalHeight,opacity:1,rotation:0});selected=layers.length-1;syncProps();draw()};im.src=r.result};r.readAsDataURL(f);e.target.value=''};
+$('#fileInput').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{saveHistory();let scale=Math.min(canvas.width*.92/im.naturalWidth,canvas.height*.92/im.naturalHeight,1);layers.push({type:'image',img:im,src:r.result,x:(canvas.width-im.naturalWidth*scale)/2,y:(canvas.height-im.naturalHeight*scale)/2,w:im.naturalWidth*scale,h:im.naturalHeight*scale,sx:0,sy:0,sw:im.naturalWidth,sh:im.naturalHeight,opacity:1,rotation:0});selected=layers.length-1;syncProps();draw()};im.src=r.result};r.readAsDataURL(f);e.target.value=''};
 $('#clearCanvas').onclick=()=>{if(confirm('Clear all objects from this canvas?')){saveHistory();layers=[];selected=-1;draw();syncProps()}};
 $('#undoBtn').onclick=()=>{if(history.length>1){redoStack.push(history.pop());restore(history[history.length-1])}};
 $('#redoBtn').onclick=()=>{if(redoStack.length){history.push(redoStack.pop());restore(history[history.length-1])}};
@@ -1000,6 +1000,7 @@ const previousSyncPropsForTransform=syncProps;
 syncProps=function(){
  previousSyncPropsForTransform();
  syncTransformUI();
+ if(typeof window.refreshMobilePhotoWorkspace==='function')window.refreshMobilePhotoWorkspace();
 };
 
 
@@ -1041,4 +1042,152 @@ if ("serviceWorker" in navigator && (location.protocol === "https:" || location.
   navigator.serviceWorker.register("./sw.js").catch(()=>{});
 }
 (function(){const splash=document.getElementById('launchSplash');if(!splash)return;let delay=1100;try{if(sessionStorage.getItem('ggx-splash-seen'))delay=450;else sessionStorage.setItem('ggx-splash-seen','1')}catch(e){}setTimeout(()=>splash.classList.add('hide'),delay);setTimeout(()=>splash.remove(),delay+550)})();
-</script></body></html>
+</script>
+<style id="ggx-iphone-workspace-styles">
+/* Graphics Genix Studio — graphite + iOS blue design system */
+:root{--bg:#101115;--panel:#191b21;--line:#30333b;--blue:#0a84ff;--text:#f5f5f7;--muted:#a1a3ad}
+body{background:var(--bg);color:var(--text)}
+header{background:rgba(20,21,26,.94);border-color:#2b2d34;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+nav{background:#15161b;border-color:#2b2d34}
+nav button.active{background:#222a35;border-color:#344355;color:#fff}
+.toolbox,.properties,.project,.card{background:#191b21;border-color:#30333b}
+button,.btn{background:#22242b;border-color:#3a3d46;border-radius:12px}
+button.primary{background:#0a84ff;border-color:#0a84ff}
+.hero{background:radial-gradient(ellipse at 88% 0%,#193553 0%,transparent 46%),linear-gradient(135deg,#1a1c22,#111217);border-color:#343740}
+body[data-theme="light"]{--bg:#f2f3f7;--panel:#fff;--line:#d9dce4;--text:#17181c;--muted:#666b78;background:#f2f3f7;color:#17181c}
+body[data-theme="light"] header{background:rgba(250,250,252,.92);border-color:#e0e2e8}
+body[data-theme="light"] nav{background:#fafafd;border-color:#e0e2e8}
+body[data-theme="light"] .toolbox,body[data-theme="light"] .properties,body[data-theme="light"] .project,body[data-theme="light"] .card{background:#fff;border-color:#e0e2e8}
+body[data-theme="light"] button,body[data-theme="light"] .btn{background:#f4f5f8;border-color:#dfe2e9;color:#20222a}
+body[data-theme="light"] button.primary{background:#0a84ff;color:white;border-color:#0a84ff}
+body[data-theme="light"] .hero{background:radial-gradient(ellipse at 88% 0%,#dceaff 0%,transparent 48%),linear-gradient(135deg,#fff,#f1f4fa);border-color:#e1e5ed}
+/* Photo edit mode takes over the phone viewport: no page scrolling, no hidden preview. */
+.mobile-photo-topbar,.mobile-photo-dock{display:none}
+@media(max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"]{overflow:hidden!important;height:100dvh;overscroll-behavior:none;background:#111216}
+ body[data-page="editor"][data-photo-editing="true"] header,
+ body[data-page="editor"][data-photo-editing="true"] nav,
+ body[data-page="editor"][data-photo-editing="true"] #moreMenu,
+ body[data-page="editor"][data-photo-editing="true"] #editorHeading{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] main{position:fixed!important;inset:0!important;padding:0!important;margin:0!important;width:100%!important;height:100dvh!important;overflow:hidden!important;z-index:10}
+ body[data-page="editor"][data-photo-editing="true"] #editor{display:block!important;position:static!important;height:100%!important;overflow:visible!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout{display:block!important;position:static!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{position:fixed!important;top:58px!important;left:0!important;right:0!important;bottom:calc(42dvh + 4px)!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;padding:12px!important;margin:0!important;border:0!important;border-radius:0!important;overflow:hidden!important;z-index:20!important;display:grid!important;place-items:center!important;background:#111216!important;box-shadow:none!important}
+ body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{background:#f2f3f7!important}
+ body[data-page="editor"][data-photo-editing="true"] .canvas-wrap{display:grid!important;place-items:center!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;overflow:hidden!important;box-shadow:none!important;line-height:0!important}
+ body[data-page="editor"][data-photo-editing="true"] .canvas-wrap canvas{display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:calc(58dvh - 68px)!important;object-fit:contain!important;touch-action:none!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.toolbox{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.properties{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] #imageControls{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-topbar{display:flex!important;position:fixed;z-index:120;top:0;left:0;right:0;height:58px;align-items:center;justify-content:space-between;gap:8px;padding:0 13px;background:rgba(24,25,30,.96);border-bottom:1px solid #30323a;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+ body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .mobile-photo-topbar{background:rgba(250,250,252,.96);border-color:#e1e3e9}
+ .mobile-photo-brand{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:750;letter-spacing:-.2px;white-space:nowrap}
+ .mobile-photo-brand-mark{width:29px;height:29px;border-radius:10px;display:grid;place-items:center;background:#0a84ff;color:#fff;font-size:12px;font-weight:900}
+ .mobile-photo-topbar button{height:36px;min-width:38px;padding:0 10px;border-radius:11px;font-size:12px;background:#292b32;border-color:#41434b}
+ body[data-theme="light"] .mobile-photo-topbar button{background:#f0f1f5;border-color:#dfe1e8;color:#20222a}
+ .mobile-photo-topbar .mobile-done{background:#0a84ff!important;border-color:#0a84ff!important;color:#fff!important;padding:0 14px;font-weight:750}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{display:block!important;position:fixed;z-index:110;left:0;right:0;bottom:0;height:42dvh;min-height:270px;max-height:440px;padding:0 14px calc(8px + env(safe-area-inset-bottom));background:#202126;border-top:1px solid #383a42;border-radius:22px 22px 0 0;box-shadow:0 -18px 50px #0003;color:#f5f5f7;overflow:hidden}
+ body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{background:#fafafd;border-color:#e1e3e9;color:#17181c;box-shadow:0 -18px 50px #25334d16}
+ .mobile-photo-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:13px 0 10px;border-bottom:1px solid #383a42}
+ body[data-theme="light"] .mobile-photo-tabs{border-color:#e2e4eb}
+ .mobile-photo-tabs button{min-height:36px;padding:7px 2px;border:0;border-radius:10px;background:transparent;color:#aeb0b9;font-size:12px;font-weight:700}
+ .mobile-photo-tabs button[aria-pressed="true"]{background:#33353d;color:#fff}
+ body[data-theme="light"] .mobile-photo-tabs button{color:#737783}
+ body[data-theme="light"] .mobile-photo-tabs button[aria-pressed="true"]{background:#e6efff;color:#075dbb}
+ .mobile-photo-toolstrip{display:flex;align-items:stretch;gap:6px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding:10px 0 8px;min-height:77px}
+ .mobile-photo-toolstrip::-webkit-scrollbar,.mobile-photo-presets::-webkit-scrollbar{display:none}
+ .mobile-photo-tool{flex:0 0 70px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:62px;padding:5px 3px;border:1px solid transparent!important;background:transparent!important;color:#aeb0b9!important;font-size:10px!important;white-space:nowrap}
+ .mobile-photo-tool .tool-glyph{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;border:1px solid #4a4c54;font-size:17px;color:#f5f5f7;background:#2b2d34}
+ .mobile-photo-tool[aria-pressed="true"]{color:#fff!important}
+ .mobile-photo-tool[aria-pressed="true"] .tool-glyph{background:#0a84ff;border-color:#0a84ff;color:#fff;box-shadow:0 0 0 4px #0a84ff20}
+ body[data-theme="light"] .mobile-photo-tool{color:#656a75!important}
+ body[data-theme="light"] .mobile-photo-tool .tool-glyph{background:#f0f1f5;border-color:#d6d9e1;color:#30343d}
+ body[data-theme="light"] .mobile-photo-tool[aria-pressed="true"]{color:#075dbb!important}
+ body[data-theme="light"] .mobile-photo-tool[aria-pressed="true"] .tool-glyph{background:#0a84ff;border-color:#0a84ff;color:white}
+ .mobile-photo-slider-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 1px 2px;font-size:12px;color:#c8cad2}
+ .mobile-photo-slider-head strong{font-size:13px;color:#fff;font-variant-numeric:tabular-nums}
+ body[data-theme="light"] .mobile-photo-slider-head{color:#646976}
+ body[data-theme="light"] .mobile-photo-slider-head strong{color:#17181c}
+ .mobile-photo-range{width:100%;height:34px;min-height:34px;margin:4px 0 2px;accent-color:#0a84ff;touch-action:pan-x}
+ .mobile-photo-presets{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:12px 0 10px}
+ .mobile-photo-preset{flex:0 0 90px;height:57px;border-radius:12px!important;padding:6px!important;font-size:10px!important;background:linear-gradient(135deg,#292b33,#17181d)!important;border-color:#41434b!important;white-space:normal}
+ .mobile-photo-preset[aria-pressed="true"]{border:2px solid #0a84ff!important;color:#fff!important}
+ body[data-theme="light"] .mobile-photo-preset{background:linear-gradient(135deg,#fff,#eceff5)!important;border-color:#dfe2e9!important;color:#2c3039!important}
+ body[data-theme="light"] .mobile-photo-preset[aria-pressed="true"]{border-color:#0a84ff!important}
+ .mobile-photo-crop-tools{display:flex;gap:8px;padding:12px 0 8px}
+ .mobile-photo-crop-tools button{flex:1;min-height:43px;font-size:12px}
+ .mobile-photo-bottom{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:2px}
+ .mobile-photo-bottom button{font-size:11px;padding:7px 11px;min-height:32px;background:transparent;border-color:transparent;color:#aeb0b9}
+ .mobile-photo-bottom .mobile-photo-reset{color:#c8cad2}
+ body[data-theme="light"] .mobile-photo-bottom button{color:#687080}
+ .mobile-photo-hint{font-size:10px;color:#858893;line-height:1.35;padding-top:2px}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-tabs button:active,.mobile-photo-tool:active{transform:scale(.97)}
+}
+@media(max-height:700px) and (max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{height:45dvh;min-height:250px;padding-bottom:4px}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{bottom:calc(45dvh + 4px)!important}
+ .mobile-photo-toolstrip{min-height:65px;padding:5px 0}
+ .mobile-photo-tool{min-height:56px}
+}
+</style>
+<script id="ggx-iphone-workspace-script">
+(function(){
+ const body=document.body;
+ if(document.querySelector('.mobile-photo-dock'))return;
+ const top=document.createElement('div');top.className='mobile-photo-topbar';top.innerHTML='<button type="button" class="mobile-photo-exit" aria-label="Back to design tools">‹</button><div class="mobile-photo-brand"><span class="mobile-photo-brand-mark">GG</span><span>Edit Photo</span></div><button type="button" class="mobile-photo-compare">Compare</button><button type="button" class="mobile-done">Done</button>';
+ const dock=document.createElement('section');dock.className='mobile-photo-dock';dock.setAttribute('aria-label','Photo editing controls');dock.innerHTML='<div class="mobile-photo-tabs" role="tablist" aria-label="Photo editing sections"><button type="button" data-mtab="looks" aria-pressed="false">Looks</button><button type="button" data-mtab="adjust" aria-pressed="true">Adjust</button><button type="button" data-mtab="effects" aria-pressed="false">Effects</button><button type="button" data-mtab="crop" aria-pressed="false">Crop</button></div><div class="mobile-photo-content"></div><div class="mobile-photo-bottom"><button type="button" class="mobile-photo-reset">↺ Reset</button><span class="mobile-photo-hint">Changes preview live</span><button type="button" class="mobile-photo-apply">Done ✓</button></div>';
+ body.append(top,dock);
+ const content=dock.querySelector('.mobile-photo-content');
+ const settings={
+  adjust:[['brightness','Brightness','☼','photoBrightness','photoBrightnessLabel','%'],['contrast','Contrast','◐','photoContrast','photoContrastLabel','%'],['saturation','Saturation','◉','photoSaturation','photoSaturationLabel','%'],['warmth','Warmth','☀','photoWarmth','photoWarmthLabel','']],
+  effects:[['sepia','Sepia','◒','photoSepia','photoSepiaLabel','%'],['softness','Soft focus','◌','photoSoftness','photoSoftnessLabel',''],['vignette','Vignette','◉','photoVignette','photoVignetteLabel','%'],['grain','Grain','▦','photoGrain','photoGrainLabel','%']]
+ };
+ let tab='adjust',activeSetting='brightness',compareBackup=null;
+ const originals=()=>Object.fromEntries([...document.querySelectorAll('#imageControls input[type="range"]')].map(el=>[el.id,el]));
+ function chosen(){return typeof selectedPhoto==='function'?selectedPhoto():null}
+ function updateActive(){
+  const conf=(settings[tab]||[]).find(x=>x[0]===activeSetting)||(settings[tab]||[])[0];
+  content.innerHTML='';
+  if(tab==='looks'){
+   const row=document.createElement('div');row.className='mobile-photo-presets';
+   const names=[['auto','Auto'],['natural','Original'],['iphone','Vivid'],['cinematic','Cinematic'],['film','Film'],['warm','Warm'],['mono','Mono'],['dream','Glow'],['night','Night']];
+   names.forEach(([key,label])=>{const b=document.createElement('button');b.type='button';b.className='mobile-photo-preset';b.textContent=label;b.dataset.look=key;b.setAttribute('aria-pressed',String((chosen()?.photo?.__look||'natural')===key));b.addEventListener('click',()=>{const old=document.querySelector('#imageControls .photo-look[data-look="'+key+'"]');if(old)old.click();const l=chosen();if(l)l.photo={...l.photo,__look:key};row.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));updateActive();});row.appendChild(b)});
+   content.appendChild(row);
+   const tip=document.createElement('div');tip.className='mobile-photo-hint';tip.textContent='Tap a look to preview it. Choose Adjust for precise controls.';content.appendChild(tip);
+  }else if(tab==='adjust'||tab==='effects'){
+   const row=document.createElement('div');row.className='mobile-photo-toolstrip';
+   settings[tab].forEach(conf=>{const b=document.createElement('button');b.type='button';b.className='mobile-photo-tool';b.setAttribute('aria-pressed',String(conf[0]===activeSetting));b.innerHTML='<span class="tool-glyph">'+conf[2]+'</span><span>'+conf[1]+'</span>';b.addEventListener('click',()=>{activeSetting=conf[0];updateActive()});row.appendChild(b)});
+   content.appendChild(row);
+   const original=document.getElementById(conf[3]);
+   const val=original?original.value:0;
+   const head=document.createElement('div');head.className='mobile-photo-slider-head';head.innerHTML='<span>'+conf[1]+'</span><strong>'+val+conf[5]+'</strong>';content.appendChild(head);
+   const slider=document.createElement('input');slider.className='mobile-photo-range';slider.type='range';slider.min=original?.min??0;slider.max=original?.max??100;slider.step=original?.step??1;slider.value=val;slider.setAttribute('aria-label',conf[1]);
+   slider.addEventListener('input',()=>{if(!original)return;original.value=slider.value;original.dispatchEvent(new Event('input',{bubbles:true}));head.querySelector('strong').textContent=slider.value+conf[5]});
+   slider.addEventListener('change',()=>{if(!original)return;original.dispatchEvent(new Event('change',{bubbles:true}));});
+   content.appendChild(slider);
+  }else{
+   const row=document.createElement('div');row.className='mobile-photo-crop-tools';
+   [['cropSquare','□ Square'],['cropPortrait','▯ 4:5'],['cropModeBtn',cropMode?'✓ Finish crop':'✂ Reposition / zoom']].forEach(([id,label])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>{document.getElementById(id)?.click();if(id==='cropModeBtn'){b.textContent=cropMode?'✓ Finish crop':'✂ Reposition / zoom';const hint=dock.querySelector('.mobile-photo-hint');if(hint)hint.textContent=cropMode?'Drag the photo or pinch to zoom. Tap Finish crop when ready.':'Crop mode is off.'}});row.appendChild(b)});content.appendChild(row);
+   const hint=document.createElement('div');hint.className='mobile-photo-hint';hint.textContent='Drag the image to reposition it; pinch with two fingers to zoom while crop mode is active.';content.appendChild(hint);
+  }
+ }
+ function setTab(next){tab=next;dock.querySelectorAll('[data-mtab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mtab===tab)));if(tab==='adjust'&&!settings.adjust.some(x=>x[0]===activeSetting))activeSetting='brightness';if(tab==='effects'&&!settings.effects.some(x=>x[0]===activeSetting))activeSetting='sepia';updateActive()}
+ dock.querySelectorAll('[data-mtab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.mtab)));
+ function exitWorkspace(){if(cropMode&&typeof setCropMode==='function')setCropMode(false);body.dataset.photoEditing='false';body.style.overflow='';if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw()}
+ top.querySelector('.mobile-photo-exit').addEventListener('click',exitWorkspace);
+ top.querySelector('.mobile-done').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
+ dock.querySelector('.mobile-photo-apply').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
+ top.querySelector('.mobile-photo-compare').addEventListener('pointerdown',e=>{e.preventDefault();const l=chosen();if(!l)return;compareBackup=l.photo?{...l.photo}:{};l.photo={...(typeof photoBase!=='undefined'?photoBase:{})};if(typeof draw==='function')draw()});
+ function restoreCompare(){if(compareBackup===null)return;const l=chosen();if(l)l.photo=compareBackup;compareBackup=null;if(typeof draw==='function')draw()}
+ ['pointerup','pointercancel','pointerleave','blur'].forEach(ev=>top.querySelector('.mobile-photo-compare').addEventListener(ev,restoreCompare));
+ dock.querySelector('.mobile-photo-reset').addEventListener('click',()=>{const l=chosen();if(!l)return;if(tab==='adjust'||tab==='effects'){const conf=[...(settings.adjust||[]),...(settings.effects||[])].find(x=>x[0]===activeSetting);if(conf){const input=document.getElementById(conf[3]);if(input){input.value=({brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0})[conf[0]];input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));updateActive()}}else{document.getElementById('resetPhoto')?.click();updateActive()}}else{document.getElementById('resetPhoto')?.click();updateActive()}});
+ function refresh(){const l=chosen();const mobile=window.matchMedia('(max-width:850px)').matches;body.dataset.photoEditing=String(!!(mobile&&body.dataset.page==='editor'&&l));if(l){updateActive()} }
+ window.refreshMobilePhotoWorkspace=refresh;
+ window.addEventListener('resize',refresh);
+ // The first direct photo upload opens in Adjust, matching the iPhone/VN workflow.
+ const upload=document.getElementById('fileInput');upload?.addEventListener('change',()=>{setTimeout(()=>{if(chosen()){setTab('adjust');refresh()}},50)});
+ refresh();
+})();
+</script>
+
+</body></html>
