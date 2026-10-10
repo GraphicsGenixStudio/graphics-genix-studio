@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
-<title>Graphics Genix Studio — Creative Workspace v22</title>
+<title>Graphics Genix Studio — Creative Workspace v23</title>
 <style>
 :root{--bg:#050914;--panel:#0a1220;--line:#1a2a40;--blue:#1687ff;--text:#f4f7fb;--muted:#91a2b9}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px Inter,system-ui,Segoe UI,Arial,sans-serif}
@@ -2212,6 +2212,9 @@ body:not([data-page="editor"]) #themeToggle{display:flex!important}
   /* The mobile controls live inside .properties; keep the shell but expose only the sheet. */
   body[data-page="editor"] .editor-layout>.properties{display:block!important;position:static!important;width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
   body[data-page="editor"] .editor-layout>.properties>:not(#mobileObjectControls){display:none!important}
+  body[data-page="editor"][data-photo-editing="true"] .ggx-mobile-editor-bar{display:none!important}
+  body[data-page="editor"][data-photo-editing="true"] .editor-layout>.properties{display:none!important}
+  body[data-page="editor"][data-photo-editing="true"] #mobileObjectControls{display:none!important}
   body[data-page="editor"][data-photo-editing="true"] .editor-layout>.properties{display:none!important}
   body[data-page="editor"][data-photo-editing="true"] #mobileObjectControls{display:none!important}
   body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{top:60px!important;left:0!important;right:0!important;bottom:calc(clamp(282px,43dvh,390px) + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;padding:12px 10px!important;margin:0!important;border:0!important;border-radius:0!important;overflow:hidden!important;z-index:20!important;display:grid!important;place-items:center!important;background:#101115!important;box-shadow:none!important}
@@ -2262,6 +2265,161 @@ body:not([data-page="editor"]) #themeToggle{display:flex!important}
   sync();
   const mo=new MutationObserver(sync);mo.observe(body,{attributes:true,attributeFilter:['data-page','data-object-editing','data-photo-editing']});
   window.addEventListener('resize',sync,{passive:true});
+})();
+</script>
+
+<style id="ggx-v23-final-polish">
+/* GG Studio v23 — native mobile editing shell + strict theme contrast */
+:root{--ggx-radius:18px;--ggx-ease:cubic-bezier(.22,.8,.22,1)}
+html{scroll-behavior:smooth}
+button,.card,.mobile-photo-tool,.mobile-photo-tabs button,.mobile-photo-preset{transition:transform .16s var(--ggx-ease),background-color .2s ease,border-color .2s ease,box-shadow .2s ease,opacity .2s ease}
+button:active,.card:active{transform:scale(.975)}
+
+/* Light mode: never allow dark card typography to survive the theme switch. */
+body[data-theme="light"] #home #quick .card,
+body[data-theme="light"] #home #quick .card:hover{
+  background:linear-gradient(145deg,#ffffff 0%,#f7f9fd 100%)!important;
+  color:#162238!important;border-color:#d9e2ef!important;
+  box-shadow:0 8px 24px rgba(34,55,88,.08)!important;
+}
+body[data-theme="light"] #home #quick .card strong{color:#162238!important}
+body[data-theme="light"] #home #quick .card .muted{color:#63728a!important}
+body[data-theme="light"] #home #quick .card .icon{background:#edf4ff!important;color:#1768d2!important}
+body[data-theme="light"] #home .hero{color:#f7f9ff!important}
+body[data-theme="light"] #home .hero h1{color:#fff!important;text-shadow:0 2px 18px rgba(0,0,0,.22)!important}
+body[data-theme="light"] #home .hero p{color:#d2ddec!important}
+body[data-theme="light"] #home .hero .eyebrow{color:#8abaff!important}
+body[data-theme="light"] #home .hero .home-action-row button:not(.primary){color:#eef5ff!important;background:rgba(255,255,255,.055)!important;border-color:rgba(168,198,239,.28)!important}
+body[data-theme="light"] #home .hero .home-action-row button.primary{color:#fff!important}
+body[data-theme="light"] #home .section-head h2{color:#17243a!important}
+body[data-theme="light"] #home .home-greeting{color:#718199!important}
+body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
+
+/* Mobile editor is an app surface, not a webpage. */
+@media(max-width:850px){
+  body[data-page="editor"]{overflow:hidden!important;height:100dvh!important;overscroll-behavior:none!important}
+  body[data-page="editor"] header{display:none!important}
+  body[data-page="editor"] nav{display:none!important}
+  body[data-page="editor"] main{position:fixed!important;inset:0!important;padding:0!important;margin:0!important;height:100dvh!important;overflow:hidden!important;background:var(--bg)!important}
+  body[data-page="editor"] #editor{display:block!important;position:relative!important;width:100%!important;height:100%!important;padding:0!important;margin:0!important}
+  body[data-page="editor"] #editor>.eyebrow,body[data-page="editor"] #editor>h2{display:none!important}
+
+  .ggx-mobile-editor-bar{position:fixed;z-index:220;top:0;left:0;right:0;height:60px;padding:8px 10px env(safe-area-inset-top) 10px;display:grid;grid-template-columns:40px minmax(0,1fr) auto;align-items:center;gap:8px;background:rgba(10,15,25,.94);border-bottom:1px solid rgba(139,169,214,.16);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);color:#f7f9ff}
+  .ggx-mobile-editor-bar .ggx-editor-back{width:40px;height:40px;padding:0;border-radius:13px;background:#172235;border:1px solid #293c5b;color:#fff;font-size:23px;line-height:1}
+  .ggx-editor-title{min-width:0;display:flex;align-items:center;gap:9px;font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ggx-editor-title img{width:30px;height:30px;border-radius:9px;flex:none}
+  .ggx-editor-actions{display:flex;gap:5px;align-items:center}
+  .ggx-editor-actions button{height:38px;min-width:38px;padding:0 9px;border-radius:11px;background:#172235;border:1px solid #293c5b;color:#dce8f8;font-size:12px}
+  .ggx-editor-actions button.ggx-export{background:#0a84ff;border-color:#0a84ff;color:#fff;font-weight:800;padding:0 12px}
+
+  body[data-theme="light"] .ggx-mobile-editor-bar{background:rgba(250,251,253,.94);border-color:#dde4ee;color:#17243a}
+  body[data-theme="light"] .ggx-mobile-editor-bar .ggx-editor-back,
+  body[data-theme="light"] .ggx-editor-actions button{background:#f0f4f9;border-color:#d6e0ec;color:#26364d}
+  body[data-theme="light"] .ggx-editor-actions button.ggx-export{background:#0a84ff;border-color:#0a84ff;color:#fff}
+
+  /* Stage always owns the visual focus. */
+  body[data-page="editor"] .editor-layout{display:block!important;width:100%!important;height:100%!important;margin:0!important;padding:0!important}
+  body[data-page="editor"] .editor-layout>.toolbox{display:none!important}
+  body[data-page="editor"] .editor-layout>.properties{display:block!important;position:static!important;width:100%!important;padding:0!important;margin:0!important;border:0!important;background:transparent!important;box-shadow:none!important}
+  body[data-page="editor"] .editor-layout>.properties>:not(#mobileObjectControls){display:none!important}
+  body[data-page="editor"] .editor-layout>.stage{position:fixed!important;top:60px!important;left:0!important;right:0!important;bottom:var(--ggx-edit-sheet,36dvh)!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;margin:0!important;padding:16px!important;border:0!important;border-radius:0!important;overflow:hidden!important;z-index:20!important;display:grid!important;place-items:center!important;background:#0a101b!important;box-shadow:none!important}
+  body[data-theme="light"][data-page="editor"] .editor-layout>.stage{background:#eef2f7!important}
+  body[data-page="editor"] .canvas-wrap{max-width:100%!important;max-height:100%!important;display:grid!important;place-items:center!important;box-shadow:0 20px 50px rgba(0,0,0,.35)!important;border-radius:4px!important;overflow:hidden!important}
+  body[data-page="editor"] .canvas-wrap canvas{display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important}
+
+  /* Empty editor: don't show an enormous meaningless blank canvas. */
+  body[data-page="editor"][data-editor-empty="true"] .editor-layout>.stage{background:radial-gradient(circle at 50% 30%,#18355d 0%,#0b1423 44%,#070c15 100%)!important}
+  body[data-theme="light"][data-page="editor"][data-editor-empty="true"] .editor-layout>.stage{background:radial-gradient(circle at 50% 20%,#e7f0ff 0%,#eef2f7 54%,#e7ebf2 100%)!important}
+  body[data-page="editor"][data-editor-empty="true"] .canvas-wrap{display:none!important}
+  .ggx-editor-empty-card{width:min(330px,88vw);text-align:center;padding:24px 20px;border:1px solid rgba(135,171,224,.22);border-radius:24px;background:rgba(11,20,35,.58);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 22px 60px rgba(0,0,0,.22);color:#fff}
+  .ggx-editor-empty-card .ggx-empty-mark{width:52px;height:52px;margin:0 auto 14px;border-radius:16px;background:url("icon.svg") center/cover no-repeat;box-shadow:0 12px 28px rgba(10,132,255,.22)}
+  .ggx-editor-empty-card h3{margin:0 0 7px;font-size:21px;letter-spacing:-.5px}
+  .ggx-editor-empty-card p{margin:0;color:#aebed4;font-size:12px;line-height:1.55}
+  body[data-theme="light"] .ggx-editor-empty-card{background:rgba(255,255,255,.78);border-color:#d5dfed;color:#17243a;box-shadow:0 20px 50px rgba(36,59,94,.12)}
+  body[data-theme="light"] .ggx-editor-empty-card p{color:#6c7b91}
+
+  /* Bottom sheet is the only control surface. */
+  body[data-page="editor"] #mobileObjectControls{display:block!important;position:fixed!important;left:0!important;right:0!important;bottom:0!important;height:var(--ggx-edit-sheet,36dvh)!important;min-height:220px!important;max-height:390px!important;overflow:hidden!important;z-index:120!important;margin:0!important;padding:0 13px calc(8px + env(safe-area-inset-bottom))!important;border:0!important;border-top:1px solid rgba(125,158,205,.18)!important;border-radius:24px 24px 0 0!important;background:rgba(11,18,31,.98)!important;color:#f7f9ff!important;box-shadow:0 -18px 50px rgba(0,0,0,.28)!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important}
+  body[data-theme="light"][data-page="editor"] #mobileObjectControls{background:rgba(251,252,254,.98)!important;color:#17243a!important;border-top-color:#dce4ef!important;box-shadow:0 -18px 50px rgba(36,56,87,.12)!important}
+  body[data-page="editor"] #mobileObjectControls:before{content:"";display:block;width:38px;height:4px;border-radius:99px;background:#71839c66;margin:7px auto 7px}
+  body[data-page="editor"] .mobile-object-tabs{position:sticky!important;top:0!important;z-index:10!important;display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:5px!important;padding:3px!important;margin:0 0 8px!important;border-radius:13px!important;background:#152239!important}
+  body[data-theme="light"][data-page="editor"] .mobile-object-tabs{background:#edf2f8!important}
+  body[data-page="editor"] .mobile-object-tabs button{min-height:40px!important;border:0!important;border-radius:10px!important;background:transparent!important;color:#8798ae!important;font-size:11px!important;font-weight:800!important}
+  body[data-page="editor"] .mobile-object-tabs button.active{background:linear-gradient(135deg,#218cff,#625bf3)!important;color:#fff!important;box-shadow:0 6px 18px rgba(53,120,255,.24)!important}
+  body[data-page="editor"] .mobile-object-panel{display:none!important;height:calc(100% - 57px)!important;overflow:auto!important;padding:0 1px 18px!important;-webkit-overflow-scrolling:touch!important;overscroll-behavior:contain!important}
+  body[data-page="editor"] .mobile-object-panel.active{display:block!important}
+  body[data-page="editor"] .mobile-empty-tools{padding:7px 0 0}
+  body[data-page="editor"] .mobile-empty-title{font-size:17px!important;font-weight:850!important;margin:5px 0 4px!important;color:#eef4ff!important}
+  body[data-theme="light"] .mobile-empty-title{color:#17243a!important}
+  body[data-page="editor"] .mobile-empty-tools:after{content:"Choose a starting point — you can change everything later.";display:block;color:#8fa0b7;font-size:11px;line-height:1.4;margin:0 0 10px}
+  body[data-theme="light"] .mobile-empty-tools:after{color:#738198}
+  body[data-page="editor"] .mobile-empty-actions{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}
+  body[data-page="editor"] .mobile-empty-actions button{min-height:56px!important;border-radius:14px!important;font-size:11px!important;font-weight:800!important}
+  body[data-page="editor"] .mobile-empty-actions button:first-child{background:linear-gradient(135deg,#218cff,#625bf3)!important;border-color:transparent!important;color:#fff!important}
+  body[data-theme="light"] .mobile-empty-actions button{background:#f0f4f9!important;border-color:#d6e0ec!important;color:#24364d!important}
+  body[data-theme="light"] .mobile-empty-actions button:first-child{background:linear-gradient(135deg,#218cff,#625bf3)!important;color:#fff!important}
+
+  /* When something is selected, make the controls feel like tools, not forms. */
+  body[data-page="editor"][data-object-editing="true"] .ggx-editor-empty-card{display:none!important}
+  body[data-page="editor"][data-object-editing="true"] .editor-layout>.stage{bottom:var(--ggx-edit-sheet,39dvh)!important}
+  body[data-page="editor"][data-object-editing="true"] #mobileObjectControls{height:var(--ggx-edit-sheet,39dvh)!important}
+}
+@media(max-width:380px){
+  .ggx-mobile-editor-bar{height:56px}
+  body[data-page="editor"] .editor-layout>.stage{top:56px!important}
+  body[data-page="editor"] #mobileObjectControls{min-height:215px!important}
+}
+</style>
+<script id="ggx-v23-final-polish-js">
+(function(){
+  const body=document.body;
+  const editor=document.getElementById('editor');
+  if(!editor)return;
+  // Build a dedicated mobile editor chrome once. Photo editing keeps its own specialized top bar.
+  if(!document.querySelector('.ggx-mobile-editor-bar')){
+    const bar=document.createElement('div');
+    bar.className='ggx-mobile-editor-bar';
+    bar.innerHTML='<button class="ggx-editor-back" type="button" aria-label="Back">‹</button><div class="ggx-editor-title"><img src="icon.svg" alt=""><span>Untitled design</span></div><div class="ggx-editor-actions"><button type="button" data-ed-action="undo" aria-label="Undo">↶</button><button type="button" data-ed-action="redo" aria-label="Redo">↷</button><button type="button" class="ggx-export" data-ed-action="export">Save</button></div>';
+    document.body.appendChild(bar);
+    bar.querySelector('.ggx-editor-back').onclick=()=>{window.__ggxPhotoWorkspaceDismissed=false; if(typeof go==='function')go('home')};
+    bar.querySelector('[data-ed-action="undo"]').onclick=()=>document.getElementById('undoBtn')?.click();
+    bar.querySelector('[data-ed-action="redo"]').onclick=()=>document.getElementById('redoBtn')?.click();
+    bar.querySelector('[data-ed-action="export"]').onclick=()=>document.getElementById('exportBtn')?.click();
+  }
+  const titleEl=document.querySelector('.ggx-editor-title span');
+  function updateEmpty(){
+    const empty=Array.isArray(window.layers)?window.layers.length===0:false;
+    body.dataset.editorEmpty=empty?'true':'false';
+    const title=document.getElementById('editorHeading')?.textContent||'Untitled design';
+    if(titleEl)titleEl.textContent=title;
+    let card=document.querySelector('.ggx-editor-empty-card');
+    const stage=document.querySelector('#editor .stage');
+    if(!stage)return;
+    if(!card){
+      card=document.createElement('div');card.className='ggx-editor-empty-card';
+      card.innerHTML='<div class="ggx-empty-mark"></div><h3>Start creating</h3><p>Bring in a photo, add a title, or start with a simple shape.</p>';
+      stage.appendChild(card);
+    }
+  }
+  // layers is lexical in the main script, so inspect the canvas visually through project name + canvas state as a fallback.
+  function sync(){
+    const empty=(window.__ggxHasLayers===false)||((document.getElementById('editorHeading')?.textContent||'Untitled design')==='Untitled design' && !document.body.dataset.objectEditing && !document.body.dataset.photoEditing && document.querySelectorAll('#layersPanel .layer-item').length===0);
+    body.dataset.editorEmpty=empty?'true':'false';
+    if(titleEl)titleEl.textContent=document.getElementById('editorHeading')?.textContent||'Untitled design';
+    updateEmptyCard(empty);
+  }
+  function updateEmptyCard(empty){
+    const stage=document.querySelector('#editor .stage');if(!stage)return;
+    let card=stage.querySelector('.ggx-editor-empty-card');
+    if(!card){card=document.createElement('div');card.className='ggx-editor-empty-card';card.innerHTML='<div class="ggx-empty-mark"></div><h3>Start creating</h3><p>Bring in a photo, add a title, or start with a simple shape.</p>';stage.appendChild(card)}
+    card.style.display=empty?'block':'none';
+  }
+  // Observe the layer list rather than touching the editor's internal state.
+  const lp=document.getElementById('layersPanel');
+  if(lp)new MutationObserver(sync).observe(lp,{childList:true,subtree:true});
+  new MutationObserver(()=>{if(body.dataset.page==='editor')sync()}).observe(body,{attributes:true,attributeFilter:['data-page','data-object-editing','data-photo-editing']});
+  window.addEventListener('resize',sync,{passive:true});
+  sync();
 })();
 </script>
 </body></html>
