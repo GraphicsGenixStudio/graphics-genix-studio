@@ -2726,4 +2726,38 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
 })();
 </script>
 
+
+<style id="ggx-v27-editor-state-lock">
+/* GG v27: the editor is an exclusive mobile screen. Never let another page leak underneath it. */
+@media (max-width:850px){
+  body[data-page="editor"] .page{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+  body[data-page="editor"] #editor{display:block!important;visibility:visible!important;pointer-events:auto!important;position:fixed!important;inset:0!important;z-index:100!important;}
+  body[data-page="editor"] main{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;padding:0!important;margin:0!important;overflow:hidden!important;}
+  body[data-page="editor"] #editor .editor-layout{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;margin:0!important;padding:0!important;overflow:hidden!important;}
+  body[data-page="editor"] #home,body[data-page="editor"] #create,body[data-page="editor"] #templates,body[data-page="editor"] #photoEditor,body[data-page="editor"] #projects,body[data-page="editor"] #brand,body[data-page="editor"] #services{display:none!important;}
+  body[data-page="editor"] #ggxV26Bar,body[data-page="editor"] #ggxV26Dock{visibility:visible!important;pointer-events:auto!important;}
+  body[data-page="editor"] .editor-layout>.stage{z-index:110!important;}
+}
+</style>
+<script id="ggx-v27-editor-state-lock-js">
+(function(){
+  const body=document.body;
+  function lock(){
+    if(!body||body.dataset.page!=='editor')return;
+    document.querySelectorAll('.page').forEach(p=>{
+      const on=p.id==='editor';
+      p.classList.toggle('active',on);
+      p.style.removeProperty('display');
+    });
+    const editor=document.getElementById('editor');
+    if(editor)editor.classList.add('active');
+  }
+  const mo=new MutationObserver(lock);
+  mo.observe(body,{attributes:true,attributeFilter:['data-page']});
+  document.addEventListener('visibilitychange',lock);
+  window.addEventListener('resize',lock,{passive:true});
+  setTimeout(lock,0);setTimeout(lock,100);setTimeout(lock,500);
+})();
+</script>
+
 </body></html>
