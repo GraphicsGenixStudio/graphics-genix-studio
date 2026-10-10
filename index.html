@@ -700,7 +700,7 @@ $('#resizeCanvas').onclick=()=>{let w=Math.max(100,Math.min(3000,+$('#canvasW').
 function syncProps(){
  let l=getSelected();$('#selectionHint').textContent=l?`Selected: ${l.type==='text'?'Text':l.type==='image'?'Image':'Shape'}`:'Select text, an image or a shape on the canvas.';
  $('#textValue').value=l?.type==='text'?l.text:'';$('#textColor').value=l?.type==='text'?(l.color||'#ffffff'):'#ffffff';$('#fontSize').value=l?.type==='text'?(l.size||72):72;$('#fontFamily').value=l?.type==='text'?(l.font||'Arial'):'Arial';$('#fontWeight').value=l?.type==='text'?String(l.weight||700):'700';
- let img=l?.type==='image';document.body.dataset.photoEditing=(img&&window.matchMedia('(max-width: 850px)').matches)?'true':'false';$('#imageControls').style.display=img?'block':'none';
+ let img=l?.type==='image';document.body.dataset.photoEditing=(img&&window.matchMedia('(max-width: 850px)').matches&&!window.__ggxPhotoWorkspaceDismissed)?'true':'false';$('#imageControls').style.display=img?'block':'none';
  if(img){$('#imgW').value=Math.round(l.w||100);$('#imgH').value=Math.round(l.h||100);$('#cropX').value=Math.round(l.sx||0);$('#cropY').value=Math.round(l.sy||0);$('#cropW').value=Math.round(l.sw||l.img?.naturalWidth||100);$('#cropH').value=Math.round(l.sh||l.img?.naturalHeight||100)}
  renderLayers();updateHistoryButtons();
 }
@@ -1173,7 +1173,7 @@ body[data-theme="light"] .hero{background:radial-gradient(ellipse at 88% 0%,#dce
  }
  function setTab(next){tab=next;dock.querySelectorAll('[data-mtab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mtab===tab)));if(tab==='adjust'&&!settings.adjust.some(x=>x[0]===activeSetting))activeSetting='brightness';if(tab==='effects'&&!settings.effects.some(x=>x[0]===activeSetting))activeSetting='sepia';updateActive()}
  dock.querySelectorAll('[data-mtab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.mtab)));
- function exitWorkspace(){if(cropMode&&typeof setCropMode==='function')setCropMode(false);body.dataset.photoEditing='false';body.style.overflow='';if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw()}
+ function exitWorkspace(){window.__ggxPhotoWorkspaceDismissed=true;if(cropMode&&typeof setCropMode==='function')setCropMode(false);body.dataset.photoEditing='false';body.style.overflow='';if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw()}
  top.querySelector('.mobile-photo-exit').addEventListener('click',exitWorkspace);
  top.querySelector('.mobile-done').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
  dock.querySelector('.mobile-photo-apply').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
@@ -1181,11 +1181,12 @@ body[data-theme="light"] .hero{background:radial-gradient(ellipse at 88% 0%,#dce
  function restoreCompare(){if(compareBackup===null)return;const l=chosen();if(l)l.photo=compareBackup;compareBackup=null;if(typeof draw==='function')draw()}
  ['pointerup','pointercancel','pointerleave','blur'].forEach(ev=>top.querySelector('.mobile-photo-compare').addEventListener(ev,restoreCompare));
  dock.querySelector('.mobile-photo-reset').addEventListener('click',()=>{const l=chosen();if(!l)return;if(tab==='adjust'||tab==='effects'){const conf=[...(settings.adjust||[]),...(settings.effects||[])].find(x=>x[0]===activeSetting);if(conf){const input=document.getElementById(conf[3]);if(input){input.value=({brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0})[conf[0]];input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));updateActive()}}else{document.getElementById('resetPhoto')?.click();updateActive()}}else{document.getElementById('resetPhoto')?.click();updateActive()}});
- function refresh(){const l=chosen();const mobile=window.matchMedia('(max-width:850px)').matches;body.dataset.photoEditing=String(!!(mobile&&body.dataset.page==='editor'&&l));if(l){updateActive()} }
+ function refresh(){const l=chosen();const mobile=window.matchMedia('(max-width:850px)').matches;body.dataset.photoEditing=String(!!(mobile&&body.dataset.page==='editor'&&l&&!window.__ggxPhotoWorkspaceDismissed));if(l&&!window.__ggxPhotoWorkspaceDismissed){updateActive()} }
  window.refreshMobilePhotoWorkspace=refresh;
+ const pageObserver=new MutationObserver(()=>{if(body.dataset.page==='editor'&&chosen()&&!window.__ggxPhotoWorkspaceDismissed)refresh()});pageObserver.observe(body,{attributes:true,attributeFilter:['data-page']});
  window.addEventListener('resize',refresh);
  // The first direct photo upload opens in Adjust, matching the iPhone/VN workflow.
- const upload=document.getElementById('fileInput');upload?.addEventListener('change',()=>{setTimeout(()=>{if(chosen()){setTab('adjust');refresh()}},50)});
+ const upload=document.getElementById('fileInput');upload?.addEventListener('change',()=>{setTimeout(()=>{if(chosen()){window.__ggxPhotoWorkspaceDismissed=false;setTab('adjust');refresh()}},120)});
  refresh();
 })();
 </script>
