@@ -351,7 +351,7 @@ body[data-theme="light"] .home-badge{background:#edf5ff;border-color:#cfe0ff;col
 
 /* App identity: use the custom GG monogram artwork consistently in the header and launch screen. */
 .logo,.splash-logo{background-image:url("icon.svg")!important;background-size:cover!important;background-position:center!important;color:transparent!important;font-size:0!important;letter-spacing:0!important;padding:0!important}
-</style><meta name="theme-color" content="#050914">
+</style><meta name="theme-color" content="#101b35">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
@@ -366,7 +366,7 @@ body[data-theme="light"] .home-badge{background:#edf5ff;border-color:#cfe0ff;col
 <button class="active" data-page="home"><span class="nav-icon">⌂</span><span>Home</span></button><button data-page="create"><span class="nav-icon">＋</span><span>Create</span></button><button data-page="templates"><span class="nav-icon">▦</span><span>Templates</span></button><button data-page="editor"><span class="nav-icon">✎</span><span>Photo Editor</span></button><button data-page="brand"><span class="nav-icon">◉</span><span>Brand Kit</span></button><button data-page="projects"><span class="nav-icon">▱</span><span>My Projects</span></button><button data-page="services"><span class="nav-icon">✦</span><span>Services</span></button><button id="moreNavBtn"><span class="nav-icon">•••</span><span>More</span></button>
 <div class="note">Your creative space<br>Design posts, edit photos, make collages and keep your projects together. Saved projects stay in this browser on this device.</div>
 </nav><div id="moreMenu" aria-label="More navigation"><button data-more="brand"><span class="nav-icon">◉</span> Brand Kit</button><button data-more="projects"><span class="nav-icon">▱</span> My Projects</button><button data-more="services"><span class="nav-icon">✦</span> Services</button></div><main>
-<section class="page active" id="home"><div class="home-topline"><div class="home-greeting">YOUR CREATIVE SPACE<strong>What will you make today?</strong></div><span class="home-badge"><i></i> Ready to create</span></div><label class="home-search"><span>⌕</span><input id="homeSearch" type="search" placeholder="Search designs, formats or tools…" aria-label="Search designs, formats or tools"><kbd>QUICK FIND</kbd></label><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Your ideas.<br>Made visual.</h1><p class="muted">Create standout content, shape your photos and build a look that feels like you.</p><div class="row"><button class="primary" data-goto="create">✦ &nbsp; Start creating</button><button data-goto="templates">Explore templates&nbsp; →</button></div></div><div class="section"><div class="section-head"><h2>Start with a format</h2><p>Choose a canvas and make it yours</p></div><div class="grid" id="quick"></div></div><div class="section idea-spark"><div class="section-head"><h2>Idea Spark</h2><p>A fresh direction when you need one</p></div><div class="idea-card"><div class="idea-orb">✦</div><div class="idea-copy"><strong id="ideaTitle">Midnight editorial</strong><p id="ideaText">A cinematic, high-contrast design with a bold headline and one electric-blue detail.</p><div class="row"><button id="ideaRefresh" type="button">↻ New idea</button><button id="ideaUse" class="primary" type="button">Use this direction →</button></div></div></div><p class="muted small">Quick creative prompts run on this device. No sign-in or API required.</p></div><div class="section"><div class="section-head"><h2>Recent projects</h2><p>Your latest saved work</p></div><div id="homeProjects" class="grid"></div></div></section>
+<section class="page active" id="home"><div class="home-topline"><div class="home-greeting">YOUR CREATIVE SPACE<strong>What will you make today?</strong></div><span class="home-badge"><i></i> Ready to create</span></div><label class="home-search"><span>⌕</span><input id="homeSearch" type="search" placeholder="Search designs, formats or tools…" aria-label="Search designs, formats or tools"><kbd>QUICK FIND</kbd></label><div class="hero"><span class="eyebrow">GRAPHICS GENIX STUDIO</span><h1>Your ideas.<br>Made visual.</h1><p class="muted">Create standout content, shape your photos and build a look that feels like you.</p><div class="row home-action-row"><button class="primary" id="homeEditPhoto" type="button">▧ &nbsp; Edit a photo</button><button id="homeCreateDesign" type="button">＋ &nbsp; Create a design</button><button data-goto="templates" type="button">Explore templates&nbsp; →</button></div></div><div class="section"><div class="section-head"><h2>Start with a format</h2><p>Choose a canvas and make it yours</p></div><div class="grid" id="quick"></div></div><div class="section idea-spark"><div class="section-head"><h2>Idea Spark</h2><p>A fresh direction when you need one</p></div><div class="idea-card"><div class="idea-orb">✦</div><div class="idea-copy"><strong id="ideaTitle">Midnight editorial</strong><p id="ideaText">A cinematic, high-contrast design with a bold headline and one electric-blue detail.</p><div class="row"><button id="ideaRefresh" type="button">↻ New idea</button><button id="ideaUse" class="primary" type="button">Use this direction →</button></div></div></div><p class="muted small">Quick creative prompts run on this device. No sign-in or API required.</p></div><div class="section"><div class="section-head"><h2>Recent projects</h2><p>Your latest saved work</p></div><div id="homeProjects" class="grid"></div></div></section>
 <section class="page" id="create"><span class="eyebrow">START A PROJECT</span><h2>What are we creating?</h2><p class="muted">Choose a format. You can change the canvas colour, add text or shapes, and upload images.</p><div class="grid" id="formats"></div><div class="section"><label class="field">Custom width (px)<input class="input" id="customW" type="number" value="1080" min="100" max="3000"></label><label class="field">Custom height (px)<input class="input" id="customH" type="number" value="1350" min="100" max="3000"></label><button class="primary" id="customCreate">Create custom canvas →</button></div></section>
 <section class="page" id="templates"><span class="eyebrow">START WITH A DIRECTION</span><h2>Template starters</h2><p class="muted">These are editable starter layouts, not flattened preview images.</p><div class="grid" id="templateGrid"></div></section>
 <section class="page" id="editor"><span class="eyebrow">CREATIVE WORKSPACE</span><h2 id="editorHeading">Untitled design</h2><div class="editor-layout"><div class="toolbox"><div class="mobile-action-group"><div class="props-title">Add to canvas</div><button id="addText">T &nbsp; Add text</button><button id="addRect">▰ &nbsp; Add shape</button><button id="uploadBtn">▧ &nbsp; Upload image</button></div>
@@ -453,10 +453,14 @@ body[data-theme="light"] .home-badge{background:#edf5ff;border-color:#cfe0ff;col
 <button type="button" class="photo-look" data-look="night">Night Pop</button>
 </div><div class="row compact"><button id="resetPhoto">Reset photo look</button></div></div></details>
 <details class="edit-accordion" open><summary>Light &amp; colour</summary><div class="edit-accordion-body">
-<label class="field small">Brightness <span id="photoBrightnessLabel">100%</span><input id="photoBrightness" type="range" min="50" max="160" value="100"></label>
-<label class="field small">Contrast <span id="photoContrastLabel">100%</span><input id="photoContrast" type="range" min="50" max="180" value="100"></label>
+<label class="field small">Brightness <span id="photoBrightnessLabel">100%</span><input id="photoBrightness" type="range" min="50" max="200" value="100"></label>
+<label class="field small">Contrast <span id="photoContrastLabel">100%</span><input id="photoContrast" type="range" min="50" max="200" value="100"></label>
 <label class="field small">Saturation <span id="photoSaturationLabel">100%</span><input id="photoSaturation" type="range" min="0" max="200" value="100"></label>
 <label class="field small">Warm / cool <span id="photoWarmthLabel">0</span><input id="photoWarmth" type="range" min="-40" max="40" value="0"></label>
+<label class="field small">Highlights <span id="photoHighlightsLabel">0</span><input id="photoHighlights" type="range" min="-100" max="100" value="0"></label>
+<label class="field small">Shadows <span id="photoShadowsLabel">0</span><input id="photoShadows" type="range" min="-100" max="100" value="0"></label>
+<label class="field small">Vibrance <span id="photoVibranceLabel">0</span><input id="photoVibrance" type="range" min="-100" max="100" value="0"></label>
+<label class="field small">Hue shift <span id="photoHueLabel">0°</span><input id="photoHue" type="range" min="-180" max="180" value="0"></label>
 </div></details>
 <details class="edit-accordion"><summary>Effects &amp; finish</summary><div class="edit-accordion-body">
 <label class="field small">Sepia <span id="photoSepiaLabel">0%</span><input id="photoSepia" type="range" min="0" max="100" value="0"></label>
@@ -531,8 +535,10 @@ function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function card(title,sub,icon,fn){let b=document.createElement('button');b.className='card';b.innerHTML=`<span class="icon">${icon}</span><strong>${esc(title)}</strong><span class="muted small">${esc(sub)}</span>`;b.onclick=fn;return b}
 formats.forEach(f=>{$('#formats').append(card(f[0],f[1]+' px',f[2],()=>newDesign(f[0],f[3],f[4])));$('#quick').append(card(f[0],f[1]+' px',f[2],()=>newDesign(f[0],f[3],f[4])))}); 
 $('#quick').append(card('Edit a photo','Crop, retouch and create a look','✧',()=>{go('editor');setTimeout(()=>$('#fileInput').click(),120)}));
+$('#homeEditPhoto')?.addEventListener('click',()=>{go('editor');setTimeout(()=>$('#fileInput').click(),180)});
+$('#homeCreateDesign')?.addEventListener('click',()=>go('create'));
 
-function imageState(l){return{type:'image',src:l.src||'',x:l.x||0,y:l.y||0,w:l.w||100,h:l.h||100,sx:Number.isFinite(l.sx)?l.sx:0,sy:Number.isFinite(l.sy)?l.sy:0,sw:Number.isFinite(l.sw)?l.sw:(l.img?.naturalWidth||l.w||100),sh:Number.isFinite(l.sh)?l.sh:(l.img?.naturalHeight||l.h||100),rotation:l.rotation||0,opacity:l.opacity==null?1:l.opacity,photo:l.photo?{...l.photo}:undefined}}
+function imageState(l){return{type:'image',src:l.src||'',x:l.x||0,y:l.y||0,w:l.w||100,h:l.h||100,sx:Number.isFinite(l.sx)?l.sx:0,sy:Number.isFinite(l.sy)?l.sy:0,sw:Number.isFinite(l.sw)?l.sw:(l.img?.naturalWidth||l.w||100),sh:Number.isFinite(l.sh)?l.sh:(l.img?.naturalHeight||l.h||100),rotation:l.rotation||0,opacity:l.opacity==null?1:l.opacity,photo:l.photo?{...l.photo,hsl:l.photo.hsl?JSON.parse(JSON.stringify(l.photo.hsl)):undefined}:undefined}}
 function serialLayers(){return layers.map(l=>l.type==='image'?imageState(l):{...l,img:undefined})}
 function snapshot(){return JSON.stringify({layers:serialLayers(),bg,w:canvas.width,h:canvas.height,name:projectName})}
 function saveHistory(clearRedo=true){const s=snapshot();if(history[history.length-1]!==s)history.push(s);if(history.length>60)history.shift();if(clearRedo)redoStack=[];updateHistoryButtons()}
@@ -543,34 +549,54 @@ function updateHistoryButtons(){$('#undoBtn').disabled=history.length<=1;$('#red
 function newDesign(name,w,h){projectName=name;canvas.width=w;canvas.height=h;$('#canvasW').value=w;$('#canvasH').value=h;layers=[];selected=-1;bg='#08172b';$('#bgColor').value=bg;history=[];redoStack=[];saveHistory();draw();syncProps();$('#editorHeading').textContent=name;go('editor')}
 window.applyIdeaSpark=function(name,description){newDesign(name,1080,1350);layers.push({type:'text',text:String(name||'CREATIVE IDEA').toUpperCase(),x:84,y:150,size:66,color:'#ffffff',font:'Arial',weight:700,align:'left',maxW:900});layers.push({type:'text',text:String(description||'Make something memorable.'),x:86,y:280,size:30,color:'#b7d5ff',font:'Arial',weight:400,align:'left',maxW:880});saveHistory();draw();syncProps()};
 
-// Pixel-based photo rendering: reliable on iPhone Safari even when CanvasRenderingContext2D.filter is unavailable.
+// Pixel-based photo processing. Neutral values preserve the source; all active controls are applied to pixels.
 const ggxImageIds=new WeakMap();let ggxNextImageId=1;
+const hslChannels=['red','orange','yellow','green','aqua','blue','purple','magenta'];
+function emptyHsl(){return Object.fromEntries(hslChannels.map(k=>[k,{h:0,s:0,l:0}]));}
+function clonePhotoState(p={}){const src=p.hsl||{};return {...photoBase,...p,hsl:Object.fromEntries(hslChannels.map(k=>[k,{h:Number(src[k]?.h||0),s:Number(src[k]?.s||0),l:Number(src[k]?.l||0)}]))};}
+function clamp01(v){return Math.max(0,Math.min(1,v));}
+function photoNeedsProcessing(p={}){return ['brightness','contrast','saturation','warmth','sepia','grayscale','softness','fade','hue','vibrance','highlights','shadows','grain'].some(k=>Number(p[k]??({brightness:100,contrast:100,saturation:100}[k]??0))!==({'brightness':100,'contrast':100,'saturation':100}[k]??0))||Object.values(p.hsl||{}).some(c=>c&&((+c.h||0)!==0||(+c.s||0)!==0||(+c.l||0)!==0));}
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min;let h=0,s=0,l=(max+min)/2;if(d){s=d/(1-Math.abs(2*l-1));if(max===r)h=((g-b)/d)%6;else if(max===g)h=(b-r)/d+2;else h=(r-g)/d+4;h=(h*60+360)%360;}return[h,s,l];}
+function hslToRgb(h,s,l){h=((h%360)+360)%360;s=clamp01(s);l=clamp01(l);const c=(1-Math.abs(2*l-1))*s,x=c*(1-Math.abs((h/60)%2-1)),m=l-c/2;let r=0,g=0,b=0;if(h<60){r=c;g=x}else if(h<120){r=x;g=c}else if(h<180){g=c;b=x}else if(h<240){g=x;b=c}else if(h<300){r=x;b=c}else{r=c;b=x}return[(r+m)*255,(g+m)*255,(b+m)*255];}
 function getProcessedPhoto(l,sx,sy,sw,sh,w,h,p){
- const values=['brightness','contrast','saturation','warmth','sepia','grayscale','softness','vignette','grain','fade'].map(k=>Number(p[k]??0));
- const key=[(ggxImageIds.get(l.img)||(ggxImageIds.set(l.img,ggxNextImageId),ggxNextImageId++)),sx,sy,sw,sh,Math.round(w),Math.round(h),...values].join('|');
- if(l._ggxPhotoCache?.key===key)return l._ggxPhotoCache.canvas;
+ const keys=['brightness','contrast','saturation','warmth','sepia','grayscale','softness','vignette','grain','fade','hue','vibrance','highlights','shadows'];
+ const values=keys.map(k=>Number(p[k]??({brightness:100,contrast:100,saturation:100}[k]??0)));
+ const hslKey=JSON.stringify(p.hsl||{});
+ const key=[(ggxImageIds.get(l.img)||(ggxImageIds.set(l.img,ggxNextImageId),ggxNextImageId++)),sx,sy,sw,sh,Math.round(w),Math.round(h),...values,hslKey].join('|');
+ if(l._ggxPhotoCaches?.has(key))return l._ggxPhotoCaches.get(key);
  const scale=Math.min(1,1800/Math.max(w,h)),pw=Math.max(1,Math.round(w*scale)),ph=Math.max(1,Math.round(h*scale));
  const out=document.createElement('canvas');out.width=pw;out.height=ph;const oc=out.getContext('2d',{willReadFrequently:true});
  oc.drawImage(l.img,sx,sy,sw,sh,0,0,pw,ph);
  const frame=oc.getImageData(0,0,pw,ph),d=frame.data;
- const bright=Number(p.brightness??100)/100,contrast=Number(p.contrast??100)/100,sat=Number(p.saturation??100)/100,warm=Number(p.warmth??0),sepia=Math.max(0,Math.min(1,Number(p.sepia??0)/100)),gray=Math.max(0,Math.min(1,Number(p.grayscale??0)/100)),fade=Math.max(0,Math.min(1,Number(p.fade??0)/100));
- const cf=contrast, cb=128*(1-cf);
+ const bright=Number(p.brightness??100)/100,contrast=Number(p.contrast??100)/100,sat=Number(p.saturation??100)/100,warm=Number(p.warmth??0),sepia=clamp01(Number(p.sepia??0)/100),gray=clamp01(Number(p.grayscale??0)/100),fade=clamp01(Number(p.fade??0)/100),hueShift=Number(p.hue??0),vibrance=Number(p.vibrance??0)/100,highlights=Number(p.highlights??0)/100,shadows=Number(p.shadows??0)/100,grain=Number(p.grain??0)/100;
+ const cf=contrast,cb=128*(1-cf),angle=hueShift*Math.PI/180,co=Math.cos(angle),si=Math.sin(angle);
+ const hm=[.213+.787*co-.213*si,.715-.715*co-.715*si,.072-.072*co+.928*si,.213-.213*co+.143*si,.715+.285*co+.140*si,.072-.072*co-.283*si,.213-.213*co-.787*si,.715-.715*co+.715*si,.072+.928*co+.072*si];
+ const channels=p.hsl||{},centers={red:0,orange:30,yellow:60,green:120,aqua:180,blue:220,purple:270,magenta:320};
+ const hasHsl=Object.values(channels).some(c=>c&&((+c.h||0)!==0||(+c.s||0)!==0||(+c.l||0)!==0));
+ let seed=0x12345678;
  for(let i=0;i<d.length;i+=4){
   let r=d[i]*bright,g=d[i+1]*bright,b=d[i+2]*bright;
   r=r*cf+cb;g=g*cf+cb;b=b*cf+cb;
-  const lum=.2126*r+.7152*g+.0722*b;
-  r=lum+(r-lum)*sat;g=lum+(g-lum)*sat;b=lum+(b-lum)*sat;
-  if(sepia){const sr=.393*r+.769*g+.189*b,sg=.349*r+.686*g+.168*b,sb=.272*r+.534*g+.131*b;r=r*(1-sepia)+sr*sepia;g=g*(1-sepia)+sg*sepia;b=b*(1-sepia)+sb*sepia}
-  if(gray){const y=.2126*r+.7152*g+.0722*b;r=r*(1-gray)+y*gray;g=g*(1-gray)+y*gray;b=b*(1-gray)+y*gray}
-  if(warm){r+=warm*.78;g+=warm*.12;b-=warm*.72}
-  if(fade){r=r*(1-fade*.28)+255*fade*.28;g=g*(1-fade*.28)+255*fade*.28;b=b*(1-fade*.28)+255*fade*.28}
-  d[i]=Math.max(0,Math.min(255,r));d[i+1]=Math.max(0,Math.min(255,g));d[i+2]=Math.max(0,Math.min(255,b));
+  let lum=.2126*r+.7152*g+.0722*b;
+  const shMask=1-clamp01(lum/190),hiMask=clamp01((lum-70)/185);
+  const shadowGain=shadows*62*shMask,highlightGain=highlights*62*hiMask;
+  r+=shadowGain+highlightGain;g+=shadowGain+highlightGain;b+=shadowGain+highlightGain;
+  lum=.2126*r+.7152*g+.0722*b;
+  let sr=lum+(r-lum)*sat,sg=lum+(g-lum)*sat,sb=lum+(b-lum)*sat;
+  if(vibrance!==0){const mx=Math.max(sr,sg,sb),mn=Math.min(sr,sg,sb),spread=(mx-mn)/255,boost=1+vibrance*(1-spread);sr=lum+(sr-lum)*boost;sg=lum+(sg-lum)*boost;sb=lum+(sb-lum)*boost;}
+  if(hueShift){const rr=sr*hm[0]+sg*hm[1]+sb*hm[2],gg=sr*hm[3]+sg*hm[4]+sb*hm[5],bb=sr*hm[6]+sg*hm[7]+sb*hm[8];sr=rr;sg=gg;sb=bb;}
+  if(hasHsl){let [hh,ss,ll]=rgbToHsl(sr,sg,sb),nearest='red',dist=999;for(const name of hslChannels){let dd=Math.abs(hh-centers[name]);dd=Math.min(dd,360-dd);if(dd<dist){dist=dd;nearest=name;}}const weight=clamp01(1-dist/36),adj=channels[nearest]||{};hh=(hh+(+adj.h||0)*weight+360)%360;ss=clamp01(ss*(1+(+adj.s||0)/100*weight));ll=clamp01(ll+(+adj.l||0)/100*.35*weight);[sr,sg,sb]=hslToRgb(hh,ss,ll);}
+  if(sepia){const tr=.393*sr+.769*sg+.189*sb,tg=.349*sr+.686*sg+.168*sb,tb=.272*sr+.534*sg+.131*sb;sr=sr*(1-sepia)+tr*sepia;sg=sg*(1-sepia)+tg*sepia;sb=sb*(1-sepia)+tb*sepia;}
+  if(gray){const y=.2126*sr+.7152*sg+.0722*sb;sr=sr*(1-gray)+y*gray;sg=sg*(1-gray)+y*gray;sb=sb*(1-gray)+y*gray;}
+  if(warm){sr+=warm*.78;sg+=warm*.12;sb-=warm*.72;}
+  if(fade){sr=sr*(1-fade*.28)+255*fade*.28;sg=sg*(1-fade*.28)+255*fade*.28;sb=sb*(1-fade*.28)+255*fade*.28;}
+  if(grain){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;const noise=((seed>>>0)/4294967295-.5)*grain*74;sr+=noise;sg+=noise;sb+=noise;}
+  d[i]=Math.max(0,Math.min(255,sr));d[i+1]=Math.max(0,Math.min(255,sg));d[i+2]=Math.max(0,Math.min(255,sb));
  }
  oc.putImageData(frame,0,0);
- // A lightweight soft-focus blend works without browser-specific canvas filters.
  const softness=Math.max(0,Number(p.softness??0));
- if(softness>0){const blur=document.createElement('canvas');const factor=Math.max(2,Math.round(3+softness*2));blur.width=Math.max(1,Math.round(pw/factor));blur.height=Math.max(1,Math.round(ph/factor));const bc=blur.getContext('2d');bc.imageSmoothingEnabled=true;bc.drawImage(out,0,0,blur.width,blur.height);oc.globalAlpha=Math.min(.55,softness*.17);oc.imageSmoothingEnabled=true;oc.drawImage(blur,0,0,blur.width,blur.height,0,0,pw,ph);oc.globalAlpha=1;}
- l._ggxPhotoCache={key,canvas:out};return out;
+ if(softness>0){const blur=document.createElement('canvas'),factor=Math.max(2,Math.round(3+softness*2));blur.width=Math.max(1,Math.round(pw/factor));blur.height=Math.max(1,Math.round(ph/factor));const bc=blur.getContext('2d');bc.imageSmoothingEnabled=true;bc.drawImage(out,0,0,blur.width,blur.height);oc.globalAlpha=Math.min(.62,softness*.17);oc.imageSmoothingEnabled=true;oc.drawImage(blur,0,0,blur.width,blur.height,0,0,pw,ph);oc.globalAlpha=1;}
+ if(!l._ggxPhotoCaches)l._ggxPhotoCaches=new Map();l._ggxPhotoCaches.set(key,out);while(l._ggxPhotoCaches.size>2)l._ggxPhotoCaches.delete(l._ggxPhotoCaches.keys().next().value);return out;
 }
 function draw(){
  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle=bg;ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -578,15 +604,16 @@ function draw(){
   if(l.type==='text'){ctx.fillStyle=l.color||'#fff';ctx.font=`${l.weight||700} ${l.size||72}px ${l.font||'Arial'}`;ctx.textBaseline='top';ctx.textAlign=l.align||'left';let mw=l.maxW||canvas.width*.8;let tx=l.align==='center'?l.x+mw/2:l.align==='right'?l.x+mw:l.x;wrapText(ctx,l.text||'',tx,l.y,mw,(l.size||72)*1.2)}
   else if(l.type==='rect'){ctx.fillStyle=l.color||'#1687ff';ctx.fillRect(l.x,l.y,l.w||100,l.h||100)}
   else if(l.type==='image'&&l.img){let sx=Math.max(0,l.sx||0),sy=Math.max(0,l.sy||0),sw=Math.max(1,Math.min(l.sw||l.img.naturalWidth,l.img.naturalWidth-sx)),sh=Math.max(1,Math.min(l.sh||l.img.naturalHeight,l.img.naturalHeight-sy)),w=l.w||sw,h=l.h||sh;ctx.translate(l.x+w/2,l.y+h/2);ctx.rotate((l.rotation||0)*Math.PI/180);ctx.scale(l.flipX?-1:1,l.flipY?-1:1);const p=l.photo||{};
-  const edited=['brightness','contrast','saturation','warmth','sepia','grayscale','softness','fade'].some(k=>Number(p[k]??({'brightness':100,'contrast':100,'saturation':100}[k]??0))!==({'brightness':100,'contrast':100,'saturation':100}[k]??0));
+  const edited=photoNeedsProcessing(p);
   const image=edited?getProcessedPhoto(l,sx,sy,sw,sh,w,h,p):l.img;
   if(edited)ctx.drawImage(image,0,0,image.width,image.height,-w/2,-h/2,w,h);else ctx.drawImage(image,sx,sy,sw,sh,-w/2,-h/2,w,h);
   if(p.vignette){const vg=ctx.createRadialGradient(0,0,Math.min(w,h)*.12,0,0,Math.max(w,h)*.68);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(.58,'rgba(0,0,0,0)');vg.addColorStop(1,`rgba(0,0,0,${Math.min(.82,Number(p.vignette)/100)})`);ctx.fillStyle=vg;ctx.fillRect(-w/2,-h/2,w,h)}
-  if(p.grain){let seed=17;ctx.globalAlpha=Math.min(.23,Number(p.grain)/100);for(let n=0;n<Math.min(2200,Math.round(w*h/800));n++){seed=(seed*9301+49297)%233280;const gx=-w/2+(seed/233280)*w;seed=(seed*9301+49297)%233280;const gy=-h/2+(seed/233280)*h;ctx.fillStyle=seed%2?'#fff':'#000';ctx.fillRect(gx,gy,Math.max(.7,w/1000),Math.max(.7,w/1000))}ctx.globalAlpha=l.opacity==null?1:l.opacity}}
+}
   ctx.restore();
  });
  if(document.body.dataset.photoEditing!=='true')drawSelectionUI();
  canvas.style.width=(canvas.width*zoom)+'px';canvas.style.height=(canvas.height*zoom)+'px';
+ if(typeof window.drawMobilePhotoPreview==='function')window.drawMobilePhotoPreview();
 }
 function wrapText(c,t,x,y,maxW,lineH){let words=String(t||'').split(/\s+/),lines=[],line='';for(const word of words){let test=line?line+' '+word:word;if(c.measureText(test).width>maxW&&line){lines.push(line);line=word}else line=test}if(line)lines.push(line);lines.forEach((ln,i)=>c.fillText(ln,x,y+i*lineH))}
 function bounds(l){if(l.type==='text'){ctx.save();ctx.font=`${l.weight||700} ${l.size||72}px ${l.font||'Arial'}`;let w=Math.min(l.maxW||canvas.width*.8,Math.max(50,ctx.measureText(l.text||'').width));ctx.restore();return{x:l.x,y:l.y,w,h:(l.size||72)*1.25}}return{x:l.x,y:l.y,w:l.w||100,h:l.h||100}}
@@ -705,7 +732,7 @@ function commitMutation(fn){saveHistory();fn();draw();syncProps()}
 $('#addText').onclick=()=>{saveHistory();let l={type:'text',text:'Your headline',x:canvas.width*.1,y:canvas.height*.12,size:Math.round(canvas.width*.07),color:'#ffffff',font:$('#brandFont').value||'Arial',weight:700,align:'left',maxW:canvas.width*.8};layers.push(l);selected=layers.length-1;syncProps();draw();setTimeout(()=>{let v=prompt('Type your text:',l.text);if(v!==null&&v.trim()){saveHistory();l.text=v.trim();draw();syncProps()}},50)};
 $('#addRect').onclick=()=>{saveHistory();layers.push({type:'rect',x:canvas.width*.1,y:canvas.height*.2,w:canvas.width*.3,h:canvas.height*.18,color:$('#brandColor').value||'#1687ff',opacity:1});selected=layers.length-1;syncProps();draw()};
 $('#uploadBtn').onclick=()=>$('#fileInput').click();
-$('#fileInput').onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{saveHistory();let scale=Math.min(canvas.width*.92/im.naturalWidth,canvas.height*.92/im.naturalHeight,1);layers.push({type:'image',img:im,src:r.result,x:(canvas.width-im.naturalWidth*scale)/2,y:(canvas.height-im.naturalHeight*scale)/2,w:im.naturalWidth*scale,h:im.naturalHeight*scale,sx:0,sy:0,sw:im.naturalWidth,sh:im.naturalHeight,opacity:1,rotation:0});selected=layers.length-1;syncProps();draw()};im.src=r.result};r.readAsDataURL(f);e.target.value=''};
+$('#fileInput').onchange=e=>{let f=e.target.files[0];if(!f)return;window.__ggxPhotoWorkspaceDismissed=false;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{saveHistory();let scale=Math.min(canvas.width*.92/im.naturalWidth,canvas.height*.92/im.naturalHeight,1);layers.push({type:'image',img:im,src:r.result,x:(canvas.width-im.naturalWidth*scale)/2,y:(canvas.height-im.naturalHeight*scale)/2,w:im.naturalWidth*scale,h:im.naturalHeight*scale,sx:0,sy:0,sw:im.naturalWidth,sh:im.naturalHeight,opacity:1,rotation:0,photo:clonePhotoState(photoBase)});selected=layers.length-1;window.__ggxPhotoWorkspaceDismissed=false;syncProps();draw();if(typeof window.refreshMobilePhotoWorkspace==='function')window.refreshMobilePhotoWorkspace()};im.onerror=()=>alert('This image could not be opened. Please choose another photo.');im.src=r.result};r.onerror=()=>alert('The photo could not be read. Please try again.');r.readAsDataURL(f);e.target.value=''};
 $('#clearCanvas').onclick=()=>{if(confirm('Clear all objects from this canvas?')){saveHistory();layers=[];selected=-1;draw();syncProps()}};
 $('#undoBtn').onclick=()=>{if(history.length>1){redoStack.push(history.pop());restore(history[history.length-1])}};
 $('#redoBtn').onclick=()=>{if(redoStack.length){history.push(redoStack.pop());restore(history[history.length-1])}};
@@ -832,9 +859,9 @@ $('#customCreate').onclick=()=>{let w=Math.min(3000,Math.max(100,+$('#customW').
 $('#saveBrand').onclick=()=>{let b={name:$('#brandName').value,color:$('#brandColor').value,font:$('#brandFont').value};localStorage.setItem('ggx-brand',JSON.stringify(b));$('#brandStatus').textContent=`Saved: ${b.name} · ${b.color} · ${b.font}`};
 $('#requestService').onclick=()=>{let name=$('#clientName').value,email=$('#clientEmail').value,service=$('#serviceType').value,details=$('#serviceDetails').value;if(!name||!email){alert('Please add your name and email first.');return}let body=`Name: ${name}%0D%0AEmail: ${email}%0D%0AService: ${service}%0D%0ADetails: ${encodeURIComponent(details)}`;location.href=`mailto:?subject=${encodeURIComponent('Graphics Genix project request: '+service)}&body=${body}`};
 
-newDesign('Instagram Post',1080,1350);
+projectName='Instagram Post';canvas.width=1080;canvas.height=1350;$('#canvasW').value=1080;$('#canvasH').value=1350;$('#editorHeading').textContent=projectName;draw();syncProps();saveHistory();
 // Photo Look engine and multi-image collage workflow.
-const photoBase={brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0,grayscale:0,fade:0};
+const photoBase={brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0,grayscale:0,fade:0,hue:0,vibrance:0,highlights:0,shadows:0,hsl:emptyHsl()};
 const photoLooks={
  auto:{...photoBase,brightness:108,contrast:116,saturation:116,warmth:2},
  natural:{...photoBase},
@@ -865,34 +892,17 @@ function setCropMode(on){
 document.getElementById('cropModeBtn').addEventListener('click',()=>setCropMode(!cropMode));
 function showPhotoControls(){
  const l=selectedPhoto(),p={...photoBase,...(l&&l.photo||{})};
- const controls=[['brightness','photoBrightness','photoBrightnessLabel','%'],['contrast','photoContrast','photoContrastLabel','%'],['saturation','photoSaturation','photoSaturationLabel','%'],['warmth','photoWarmth','photoWarmthLabel',''],['sepia','photoSepia','photoSepiaLabel','%'],['softness','photoSoftness','photoSoftnessLabel',''],['vignette','photoVignette','photoVignetteLabel','%'],['grain','photoGrain','photoGrainLabel','%']];
+ const controls=[['brightness','photoBrightness','photoBrightnessLabel','%'],['contrast','photoContrast','photoContrastLabel','%'],['saturation','photoSaturation','photoSaturationLabel','%'],['warmth','photoWarmth','photoWarmthLabel',''],['highlights','photoHighlights','photoHighlightsLabel',''],['shadows','photoShadows','photoShadowsLabel',''],['vibrance','photoVibrance','photoVibranceLabel',''],['hue','photoHue','photoHueLabel','°'],['sepia','photoSepia','photoSepiaLabel','%'],['softness','photoSoftness','photoSoftnessLabel',''],['vignette','photoVignette','photoVignetteLabel','%'],['grain','photoGrain','photoGrainLabel','%']];
  controls.forEach(([key,id,label,suffix])=>{const a=document.getElementById(id),b=document.getElementById(label);if(a)a.value=p[key];if(b)b.textContent=p[key]+suffix});
 }
-// Mobile photo editor tabs keep the preview fixed in view while editing.
-(function setupMobilePhotoTabs(){
- const panel=document.getElementById('imageControls');
- if(!panel||panel.querySelector('.mobile-photo-tabs'))return;
- const tabs=document.createElement('div');tabs.className='mobile-photo-tabs';tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label','Photo editing tools');
- tabs.innerHTML='<button type="button" data-photo-tab="looks" aria-pressed="true">✦ Looks</button><button type="button" data-photo-tab="adjust" aria-pressed="false">☼ Adjust</button><button type="button" data-photo-tab="effects" aria-pressed="false">◈ Effects</button><button type="button" data-photo-tab="crop" aria-pressed="false">⌗ Crop</button>';
- panel.insertBefore(tabs,panel.firstChild);
- const groups=[...panel.querySelectorAll('details.edit-accordion')];
- const targetIndex={looks:0,adjust:1,effects:2,crop:3};
- tabs.addEventListener('click',e=>{
-  const b=e.target.closest('button[data-photo-tab]');if(!b)return;
-  const key=b.dataset.photoTab,idx=targetIndex[key],target=groups[idx];
-  tabs.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-  groups.forEach((d,i)=>d.open=i===idx);
-  panel.scrollTo({top:0,behavior:'smooth'});
-  if(target){setTimeout(()=>{const pr=panel.getBoundingClientRect(),tr=target.getBoundingClientRect();panel.scrollTo({top:Math.max(0,panel.scrollTop+tr.top-pr.top-tabs.offsetHeight-8),behavior:'smooth'});},60)}
- });
-})();
+// Mobile editing is handled by the fixed workspace dock below.
 window.matchMedia('(max-width: 850px)').addEventListener?.('change',()=>{if(typeof syncProps==='function')syncProps()});
 function updatePhotoValue(key,id,label,suffix){
  const l=selectedPhoto();if(!l)return;
- l.photo={...photoBase,...(l.photo||{}),[key]:Number(document.getElementById(id).value)};
+ l.photo={...clonePhotoState(l.photo||{}),[key]:Number(document.getElementById(id).value)};
  document.getElementById(label).textContent=document.getElementById(id).value+suffix;draw();
 }
-const photoSliders=[['brightness','photoBrightness','photoBrightnessLabel','%'],['contrast','photoContrast','photoContrastLabel','%'],['saturation','photoSaturation','photoSaturationLabel','%'],['warmth','photoWarmth','photoWarmthLabel',''],['sepia','photoSepia','photoSepiaLabel','%'],['softness','photoSoftness','photoSoftnessLabel',''],['vignette','photoVignette','photoVignetteLabel','%'],['grain','photoGrain','photoGrainLabel','%']];
+const photoSliders=[['brightness','photoBrightness','photoBrightnessLabel','%'],['contrast','photoContrast','photoContrastLabel','%'],['saturation','photoSaturation','photoSaturationLabel','%'],['warmth','photoWarmth','photoWarmthLabel',''],['highlights','photoHighlights','photoHighlightsLabel',''],['shadows','photoShadows','photoShadowsLabel',''],['vibrance','photoVibrance','photoVibranceLabel',''],['hue','photoHue','photoHueLabel','°'],['sepia','photoSepia','photoSepiaLabel','%'],['softness','photoSoftness','photoSoftnessLabel',''],['vignette','photoVignette','photoVignetteLabel','%'],['grain','photoGrain','photoGrainLabel','%']];
 photoSliders.forEach(([key,id,label,suffix])=>{
  const el=document.getElementById(id);
  el.addEventListener('input',()=>updatePhotoValue(key,id,label,suffix));
@@ -900,13 +910,13 @@ photoSliders.forEach(([key,id,label,suffix])=>{
 });
 document.querySelectorAll('.photo-look').forEach(b=>b.addEventListener('click',()=>{
  const l=selectedPhoto();if(!l)return;
- commitMutation(()=>l.photo={...photoLooks[b.dataset.look]});
+ commitMutation(()=>l.photo={...clonePhotoState(photoLooks[b.dataset.look]),__look:b.dataset.look});
  document.querySelectorAll('.photo-look').forEach(x=>x.classList.toggle('applied',x===b));
  b.classList.remove('tap-flash');void b.offsetWidth;b.classList.add('tap-flash');
  showPhotoControls();
 }));
 document.getElementById('resetPhoto').addEventListener('click',()=>{
- const l=selectedPhoto();if(!l)return;commitMutation(()=>l.photo={...photoBase});showPhotoControls();
+ const l=selectedPhoto();if(!l)return;commitMutation(()=>l.photo=clonePhotoState(photoBase));showPhotoControls();
 });
 function cropToRatio(ratio){
  const l=selectedPhoto();if(!l)return;
@@ -1163,63 +1173,153 @@ body[data-theme="light"] .hero{background:radial-gradient(ellipse at 88% 0%,#dce
 </style>
 <script id="ggx-iphone-workspace-script">
 (function(){
- const body=document.body;
- if(document.querySelector('.mobile-photo-dock'))return;
- const top=document.createElement('div');top.className='mobile-photo-topbar';top.innerHTML='<button type="button" class="mobile-photo-exit" aria-label="Back to design tools">‹</button><div class="mobile-photo-brand"><span class="mobile-photo-brand-mark">GG</span><span>Edit Photo</span></div><button type="button" class="mobile-photo-compare">Compare</button><button type="button" class="mobile-done">Done</button>';
- const dock=document.createElement('section');dock.className='mobile-photo-dock';dock.setAttribute('aria-label','Photo editing controls');dock.innerHTML='<div class="mobile-photo-tabs" role="tablist" aria-label="Photo editing sections"><button type="button" data-mtab="looks" aria-pressed="false">Looks</button><button type="button" data-mtab="adjust" aria-pressed="true">Adjust</button><button type="button" data-mtab="effects" aria-pressed="false">Effects</button><button type="button" data-mtab="crop" aria-pressed="false">Crop</button></div><div class="mobile-photo-content"></div><div class="mobile-photo-bottom"><button type="button" class="mobile-photo-reset">↺ Reset</button><span class="mobile-photo-hint">Changes preview live</span><button type="button" class="mobile-photo-apply">Done ✓</button></div>';
- body.append(top,dock);
- const content=dock.querySelector('.mobile-photo-content');
- const settings={
-  adjust:[['brightness','Brightness','☼','photoBrightness','photoBrightnessLabel','%'],['contrast','Contrast','◐','photoContrast','photoContrastLabel','%'],['saturation','Saturation','◉','photoSaturation','photoSaturationLabel','%'],['warmth','Warmth','☀','photoWarmth','photoWarmthLabel','']],
-  effects:[['sepia','Sepia','◒','photoSepia','photoSepiaLabel','%'],['softness','Soft focus','◌','photoSoftness','photoSoftnessLabel',''],['vignette','Vignette','◉','photoVignette','photoVignetteLabel','%'],['grain','Grain','▦','photoGrain','photoGrainLabel','%']]
+ const body=document.body;if(document.querySelector('.mobile-photo-dock'))return;
+ const top=document.createElement('div');top.className='mobile-photo-topbar';top.innerHTML='<button type="button" class="mobile-photo-exit" aria-label="Back to canvas">‹ Back</button><div class="mobile-photo-brand"><span class="mobile-photo-brand-mark">GG</span><span>Edit photo</span></div><button type="button" class="mobile-photo-compare" aria-label="Hold to compare original">Compare</button><button type="button" class="mobile-done">Done</button>';
+ const dock=document.createElement('section');dock.className='mobile-photo-dock';dock.setAttribute('aria-label','Photo editing tools');dock.innerHTML='<div class="mobile-photo-tabs" role="tablist" aria-label="Photo tools"><button type="button" data-mtab="looks" aria-pressed="false">Looks</button><button type="button" data-mtab="light" aria-pressed="true">Light</button><button type="button" data-mtab="color" aria-pressed="false">Color</button><button type="button" data-mtab="hsl" aria-pressed="false">HSL</button><button type="button" data-mtab="effects" aria-pressed="false">Effects</button><button type="button" data-mtab="grain" aria-pressed="false">Grain</button><button type="button" data-mtab="crop" aria-pressed="false">Crop</button></div><div class="mobile-photo-content"></div><div class="mobile-photo-bottom"><button type="button" class="mobile-photo-reset">↺ Reset</button><span class="mobile-photo-hint">Changes preview live</span><button type="button" class="mobile-photo-apply">Apply ✓</button></div>';
+ body.append(top,dock);const content=dock.querySelector('.mobile-photo-content');const preview=document.createElement('canvas');preview.id='mobilePhotoPreview';preview.setAttribute('aria-label','Live photo preview');document.querySelector('.stage')?.appendChild(preview);
+ const groups={
+  light:[['brightness','Brightness','☼','photoBrightness','photoBrightnessLabel','%',50,200,1],['contrast','Contrast','◐','photoContrast','photoContrastLabel','%',50,200,1],['highlights','Highlights','☀','photoHighlights','photoHighlightsLabel','',-100,100,1],['shadows','Shadows','◒','photoShadows','photoShadowsLabel','',-100,100,1]],
+  color:[['saturation','Saturation','◉','photoSaturation','photoSaturationLabel','%',0,200,1],['vibrance','Vibrance','✦','photoVibrance','photoVibranceLabel','',-100,100,1],['warmth','Warmth','☀','photoWarmth','photoWarmthLabel','',-40,40,1],['hue','Hue shift','◌','photoHue','photoHueLabel','°',-180,180,1]],
+  effects:[['sepia','Sepia','◒','photoSepia','photoSepiaLabel','%',0,100,1],['softness','Soft focus','◌','photoSoftness','photoSoftnessLabel','',0,4,.5],['vignette','Vignette','◉','photoVignette','photoVignetteLabel','%',0,100,1]],
+  grain:[['grain','Film grain','▦','photoGrain','photoGrainLabel','%',0,100,1]]
  };
- let tab='adjust',activeSetting='brightness',compareBackup=null;
- const originals=()=>Object.fromEntries([...document.querySelectorAll('#imageControls input[type="range"]')].map(el=>[el.id,el]));
+ const labels={red:'Red',orange:'Orange',yellow:'Yellow',green:'Green',aqua:'Aqua',blue:'Blue',purple:'Purple',magenta:'Magenta'};
+ let tab='light',activeSetting='brightness',activeChannel='blue',compareBackup=null;
  function chosen(){return typeof selectedPhoto==='function'?selectedPhoto():null}
- function updateActive(){
-  const conf=(settings[tab]||[]).find(x=>x[0]===activeSetting)||(settings[tab]||[])[0];
-  content.innerHTML='';
-  if(tab==='looks'){
-   const row=document.createElement('div');row.className='mobile-photo-presets';
-   const names=[['auto','Auto'],['natural','Original'],['iphone','Vivid'],['cinematic','Cinematic'],['film','Film'],['warm','Warm'],['mono','Mono'],['dream','Glow'],['night','Night']];
-   names.forEach(([key,label])=>{const b=document.createElement('button');b.type='button';b.className='mobile-photo-preset';b.textContent=label;b.dataset.look=key;b.setAttribute('aria-pressed',String((chosen()?.photo?.__look||'natural')===key));b.addEventListener('click',()=>{const old=document.querySelector('#imageControls .photo-look[data-look="'+key+'"]');if(old)old.click();const l=chosen();if(l)l.photo={...l.photo,__look:key};row.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));updateActive();});row.appendChild(b)});
-   content.appendChild(row);
-   const tip=document.createElement('div');tip.className='mobile-photo-hint';tip.textContent='Tap a look to preview it. Choose Adjust for precise controls.';content.appendChild(tip);
-  }else if(tab==='adjust'||tab==='effects'){
-   const row=document.createElement('div');row.className='mobile-photo-toolstrip';
-   settings[tab].forEach(conf=>{const b=document.createElement('button');b.type='button';b.className='mobile-photo-tool';b.setAttribute('aria-pressed',String(conf[0]===activeSetting));b.innerHTML='<span class="tool-glyph">'+conf[2]+'</span><span>'+conf[1]+'</span>';b.addEventListener('click',()=>{activeSetting=conf[0];updateActive()});row.appendChild(b)});
-   content.appendChild(row);
-   const original=document.getElementById(conf[3]);
-   const val=original?original.value:0;
-   const head=document.createElement('div');head.className='mobile-photo-slider-head';head.innerHTML='<span>'+conf[1]+'</span><strong>'+val+conf[5]+'</strong>';content.appendChild(head);
-   const slider=document.createElement('input');slider.className='mobile-photo-range';slider.type='range';slider.min=original?.min??0;slider.max=original?.max??100;slider.step=original?.step??1;slider.value=val;slider.setAttribute('aria-label',conf[1]);
-   slider.addEventListener('input',()=>{if(!original)return;original.value=slider.value;original.dispatchEvent(new Event('input',{bubbles:true}));head.querySelector('strong').textContent=slider.value+conf[5]});
-   slider.addEventListener('change',()=>{if(!original)return;original.dispatchEvent(new Event('change',{bubbles:true}));});
-   content.appendChild(slider);
-  }else{
-   const row=document.createElement('div');row.className='mobile-photo-crop-tools';
-   [['cropSquare','□ Square'],['cropPortrait','▯ 4:5'],['cropModeBtn',cropMode?'✓ Finish crop':'✂ Reposition / zoom']].forEach(([id,label])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>{document.getElementById(id)?.click();if(id==='cropModeBtn'){b.textContent=cropMode?'✓ Finish crop':'✂ Reposition / zoom';const hint=dock.querySelector('.mobile-photo-hint');if(hint)hint.textContent=cropMode?'Drag the photo or pinch to zoom. Tap Finish crop when ready.':'Crop mode is off.'}});row.appendChild(b)});content.appendChild(row);
-   const hint=document.createElement('div');hint.className='mobile-photo-hint';hint.textContent='Drag the image to reposition it; pinch with two fingers to zoom while crop mode is active.';content.appendChild(hint);
-  }
+ function drawPreview(){const l=chosen();if(!preview||!l||!l.img){if(preview){preview.width=1;preview.height=1}return}const sx=Math.max(0,Number(l.sx)||0),sy=Math.max(0,Number(l.sy)||0),sw=Math.max(1,Math.min(Number(l.sw)||l.img.naturalWidth,l.img.naturalWidth-sx)),sh=Math.max(1,Math.min(Number(l.sh)||l.img.naturalHeight,l.img.naturalHeight-sy));const scale=Math.min(1,1800/Math.max(sw,sh)),pw=Math.max(1,Math.round(sw*scale)),ph=Math.max(1,Math.round(sh*scale));if(preview.width!==pw)preview.width=pw;if(preview.height!==ph)preview.height=ph;const c=preview.getContext('2d');c.clearRect(0,0,pw,ph);const photo=clonePhotoState(l.photo||{});if(photoNeedsProcessing(photo)){const processed=getProcessedPhoto(l,sx,sy,sw,sh,pw,ph,photo);c.drawImage(processed,0,0,pw,ph)}else c.drawImage(l.img,sx,sy,sw,sh,0,0,pw,ph);if(photo.vignette){const vg=c.createRadialGradient(pw/2,ph/2,Math.min(pw,ph)*.12,pw/2,ph/2,Math.max(pw,ph)*.68);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(.58,'rgba(0,0,0,0)');vg.addColorStop(1,`rgba(0,0,0,${Math.min(.9,Number(photo.vignette)/100)})`);c.fillStyle=vg;c.fillRect(0,0,pw,ph)}preview.style.transform=l.rotation?`rotate(${l.rotation}deg)`:'';}
+ window.drawMobilePhotoPreview=drawPreview;
+ function renderSlider(conf){const [key,label,glyph,id,labelId,suffix,min,max,step]=conf;const original=document.getElementById(id),l=chosen();let val=original?Number(original.value):Number(l?.photo?.[key]??({brightness:100,contrast:100,saturation:100}[key]??0));
+  const head=document.createElement('div');head.className='mobile-photo-slider-head';head.innerHTML='<span>'+label+'</span><strong>'+val+suffix+'</strong>';content.appendChild(head);
+  const slider=document.createElement('input');slider.className='mobile-photo-range';slider.type='range';slider.min=min;slider.max=max;slider.step=step;slider.value=val;slider.setAttribute('aria-label',label);slider.setAttribute('title',label);
+  slider.addEventListener('input',()=>{const layer=chosen();if(!layer)return;const n=Number(slider.value);layer.photo=clonePhotoState(layer.photo||{});layer.photo[key]=n;if(original)original.value=String(n);const lab=document.getElementById(labelId);if(lab)lab.textContent=n+suffix;head.querySelector('strong').textContent=n+suffix;draw();});
+  slider.addEventListener('change',()=>{if(chosen())saveHistory()});content.appendChild(slider);
+  const scale=document.createElement('div');scale.className='mobile-photo-scale';scale.innerHTML='<span>'+min+suffix+'</span><span>Default '+({brightness:100,contrast:100,saturation:100}[key]??0)+suffix+'</span><span>'+max+suffix+'</span>';content.appendChild(scale);
  }
- function setTab(next){tab=next;dock.querySelectorAll('[data-mtab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mtab===tab)));if(tab==='adjust'&&!settings.adjust.some(x=>x[0]===activeSetting))activeSetting='brightness';if(tab==='effects'&&!settings.effects.some(x=>x[0]===activeSetting))activeSetting='sepia';updateActive()}
+ function toolStrip(arr){const row=document.createElement('div');row.className='mobile-photo-toolstrip';arr.forEach(conf=>{const b=document.createElement('button');b.type='button';b.className='mobile-photo-tool';b.setAttribute('aria-pressed',String(conf[0]===activeSetting));b.innerHTML='<span class="tool-glyph">'+conf[2]+'</span><span>'+conf[1]+'</span>';b.addEventListener('click',()=>{activeSetting=conf[0];render()});row.appendChild(b)});content.appendChild(row)}
+ function renderHsl(){const row=document.createElement('div');row.className='mobile-photo-colors';hslChannels.forEach(channel=>{const b=document.createElement('button');b.type='button';b.textContent=labels[channel];b.setAttribute('aria-pressed',String(activeChannel===channel));b.className='hsl-'+channel;b.addEventListener('click',()=>{activeChannel=channel;render()});row.appendChild(b)});content.appendChild(row);
+  const channel=(chosen()?.photo?.hsl||{})[activeChannel]||{h:0,s:0,l:0};[['h','Hue',-180,180,'°'],['s','Saturation',-100,100,'%'],['l','Luminance',-100,100,'%']].forEach(([field,label,min,max,suffix])=>{const head=document.createElement('div');head.className='mobile-photo-slider-head';head.innerHTML='<span>'+labels[activeChannel]+' '+label+'</span><strong>'+Number(channel[field]||0)+suffix+'</strong>';content.appendChild(head);const input=document.createElement('input');input.type='range';input.className='mobile-photo-range';input.min=min;input.max=max;input.step=1;input.value=Number(channel[field]||0);input.setAttribute('aria-label',labels[activeChannel]+' '+label);input.addEventListener('input',()=>{const l=chosen();if(!l)return;l.photo=clonePhotoState(l.photo||{});l.photo.hsl[activeChannel][field]=Number(input.value);head.querySelector('strong').textContent=input.value+suffix;draw()});input.addEventListener('change',()=>{if(chosen())saveHistory()});content.appendChild(input)});
+ }
+ function renderLooks(){const row=document.createElement('div');row.className='mobile-photo-presets';const looks=[['auto','Auto'],['natural','Original'],['iphone','Vivid'],['cinematic','Cinematic'],['film','Film fade'],['warm','Golden hour'],['mono','B&W'],['dream','Dream glow'],['night','Night pop']];looks.forEach(([key,label])=>{const b=document.createElement('button');b.type='button';b.className='mobile-photo-preset';b.textContent=label;b.setAttribute('aria-pressed',String((chosen()?.photo?.__look||'natural')===key));b.addEventListener('click',()=>{const l=chosen();if(!l)return;l.photo={...clonePhotoState(photoLooks[key]),__look:key};document.querySelectorAll('.mobile-photo-preset').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelectorAll('#imageControls .photo-look').forEach(x=>x.classList.toggle('applied',x.dataset.look===key));draw();render()});row.appendChild(b)});content.appendChild(row);const hint=document.createElement('p');hint.className='mobile-photo-hint';hint.textContent='Tap a look to preview it. Fine-tune it in Light, Color or HSL.';content.appendChild(hint)}
+ function renderCrop(){const row=document.createElement('div');row.className='mobile-photo-crop-tools';[['cropSquare','Square'],['cropPortrait','Portrait 4:5'],['cropModeBtn',cropMode?'Finish crop':'Reposition / zoom']].forEach(([id,label])=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.addEventListener('click',()=>{document.getElementById(id)?.click();if(id==='cropModeBtn'){b.textContent=cropMode?'Finish crop':'Reposition / zoom'}});row.appendChild(b)});content.appendChild(row);const hint=document.createElement('p');hint.className='mobile-photo-hint';hint.textContent='Choose a crop, or enter reposition mode to drag with one finger and pinch with two.';content.appendChild(hint)}
+ function render(){content.innerHTML='';if(tab==='looks')renderLooks();else if(tab==='hsl')renderHsl();else if(tab==='crop')renderCrop();else{const arr=groups[tab]||groups.light;if(!arr.some(c=>c[0]===activeSetting))activeSetting=arr[0][0];toolStrip(arr);renderSlider(arr.find(c=>c[0]===activeSetting)||arr[0]);}dock.querySelectorAll('[data-mtab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mtab===tab)));}
+ function setTab(next){tab=next;body.dataset.photoCrop=String(tab==='crop');if(tab==='light')activeSetting='brightness';else if(tab==='color')activeSetting='saturation';else if(tab==='effects')activeSetting='sepia';else if(tab==='grain')activeSetting='grain';render()}
  dock.querySelectorAll('[data-mtab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.mtab)));
- function exitWorkspace(){window.__ggxPhotoWorkspaceDismissed=true;if(cropMode&&typeof setCropMode==='function')setCropMode(false);body.dataset.photoEditing='false';body.style.overflow='';if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw()}
+ function exitWorkspace(){if(cropMode&&typeof setCropMode==='function')setCropMode(false);window.__ggxPhotoWorkspaceDismissed=false;selected=-1;body.dataset.photoCrop='false';body.dataset.photoEditing='false';body.style.overflow='';if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw()}
  top.querySelector('.mobile-photo-exit').addEventListener('click',exitWorkspace);
- top.querySelector('.mobile-done').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
- dock.querySelector('.mobile-photo-apply').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
- top.querySelector('.mobile-photo-compare').addEventListener('pointerdown',e=>{e.preventDefault();const l=chosen();if(!l)return;compareBackup=l.photo?{...l.photo}:{};l.photo={...(typeof photoBase!=='undefined'?photoBase:{})};if(typeof draw==='function')draw()});
- function restoreCompare(){if(compareBackup===null)return;const l=chosen();if(l)l.photo=compareBackup;compareBackup=null;if(typeof draw==='function')draw()}
- ['pointerup','pointercancel','pointerleave','blur'].forEach(ev=>top.querySelector('.mobile-photo-compare').addEventListener(ev,restoreCompare));
- dock.querySelector('.mobile-photo-reset').addEventListener('click',()=>{const l=chosen();if(!l)return;if(tab==='adjust'||tab==='effects'){const conf=[...(settings.adjust||[]),...(settings.effects||[])].find(x=>x[0]===activeSetting);if(conf){const input=document.getElementById(conf[3]);if(input){input.value=({brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0})[conf[0]];input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));updateActive()}}else{document.getElementById('resetPhoto')?.click();updateActive()}}else{document.getElementById('resetPhoto')?.click();updateActive()}});
- function refresh(){const l=chosen();const mobile=window.matchMedia('(max-width:850px)').matches;body.dataset.photoEditing=String(!!(mobile&&body.dataset.page==='editor'&&l&&!window.__ggxPhotoWorkspaceDismissed));if(l&&!window.__ggxPhotoWorkspaceDismissed){updateActive()} }
- window.refreshMobilePhotoWorkspace=refresh;
- const pageObserver=new MutationObserver(()=>{if(body.dataset.page==='editor'&&chosen()&&!window.__ggxPhotoWorkspaceDismissed)refresh()});pageObserver.observe(body,{attributes:true,attributeFilter:['data-page']});
- window.addEventListener('resize',refresh);
- // The first direct photo upload opens in Adjust, matching the iPhone/VN workflow.
- const upload=document.getElementById('fileInput');upload?.addEventListener('change',()=>{setTimeout(()=>{if(chosen()){window.__ggxPhotoWorkspaceDismissed=false;setTab('adjust');refresh()}},120)});
+ top.querySelector('.mobile-done').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});dock.querySelector('.mobile-photo-apply').addEventListener('click',()=>{if(typeof saveHistory==='function')saveHistory();exitWorkspace()});
+ const compare=top.querySelector('.mobile-photo-compare');function startCompare(e){e.preventDefault();const l=chosen();if(!l)return;compareBackup=l.photo?JSON.parse(JSON.stringify(l.photo)):clonePhotoState(photoBase);l.photo=clonePhotoState(photoBase);draw()}function endCompare(){if(compareBackup===null)return;const l=chosen();if(l)l.photo=clonePhotoState(compareBackup);compareBackup=null;draw()}compare.addEventListener('pointerdown',startCompare);['pointerup','pointercancel','pointerleave','blur'].forEach(ev=>compare.addEventListener(ev,endCompare));
+ dock.querySelector('.mobile-photo-reset').addEventListener('click',()=>{const l=chosen();if(!l)return;if(tab==='hsl'){l.photo=clonePhotoState(l.photo||{});l.photo.hsl[activeChannel]={h:0,s:0,l:0};}else if(tab==='looks'){l.photo=clonePhotoState(photoBase);}else{const conf=(groups[tab]||[]).find(c=>c[0]===activeSetting);if(conf){const key=conf[0];l.photo=clonePhotoState(l.photo||{});l.photo[key]=({brightness:100,contrast:100,saturation:100,warmth:0,hue:0,vibrance:0,highlights:0,shadows:0,sepia:0,softness:0,vignette:0,grain:0})[key]??0;const input=document.getElementById(conf[3]);if(input)input.value=l.photo[key];}}draw();render();saveHistory()});
+ function refresh(){const l=chosen(),mobile=window.matchMedia('(max-width:850px)').matches;body.dataset.photoEditing=String(!!(mobile&&body.dataset.page==='editor'&&l&&!window.__ggxPhotoWorkspaceDismissed));if(l&&!window.__ggxPhotoWorkspaceDismissed)render()}
+ window.refreshMobilePhotoWorkspace=refresh;new MutationObserver(()=>{if(body.dataset.page==='editor'&&chosen()&&!window.__ggxPhotoWorkspaceDismissed)refresh()}).observe(body,{attributes:true,attributeFilter:['data-page']});window.addEventListener('resize',refresh);
+ const upload=document.getElementById('fileInput');upload?.addEventListener('change',()=>{window.__ggxPhotoWorkspaceDismissed=false;setTimeout(()=>{if(chosen()){setTab('light');refresh()}},350)});
  refresh();
 })();
 </script>
+
+
+<style id="ggx-final-polish">
+:root{--ggx-accent:#4b91ff;--ggx-cyan:#72e6ff;--ggx-radius:18px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;letter-spacing:-.01em}
+button,.btn,input,select,textarea{font-family:inherit}
+button{min-height:44px;font-size:14px;touch-action:manipulation}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #5aa2ff80;outline-offset:2px}
+.home-action-row{margin-top:8px;gap:9px}
+.home-action-row button{min-height:48px;padding:12px 15px;border-radius:14px;font-size:14px}
+.home-action-row #homeEditPhoto{background:linear-gradient(120deg,#1688ff,#6759f4);box-shadow:0 8px 24px #397fff32}
+@media(max-width:600px){
+ .home-action-row{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:9px}
+ .hero .home-action-row button{width:100%;min-height:50px;font-size:14px!important;padding:10px 8px}
+ .home-action-row [data-goto="templates"]{grid-column:1/-1}
+ .home-greeting strong{font-size:20px;line-height:1.3}
+ .section-head h2{font-size:22px}
+ .card{min-height:124px}
+ .card strong{font-size:14px!important;line-height:1.3}
+ .card .muted{font-size:12px!important;line-height:1.4}
+ header .row button{font-size:12px!important;padding:9px 8px}
+ header .brand{font-size:15px}
+ header small{font-size:10px;letter-spacing:2.2px}
+ nav button{font-size:12px!important;min-height:54px}
+ nav button .nav-icon{font-size:17px}
+}
+/* Final photo workspace: fixed preview + always-present horizontal tool rail. */
+.mobile-photo-topbar,.mobile-photo-dock{display:none}
+@media(max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"]{position:fixed!important;inset:0!important;overflow:hidden!important;height:100dvh!important;width:100%!important;overscroll-behavior:none;background:#101115!important}
+ body[data-page="editor"][data-photo-editing="true"] header,body[data-page="editor"][data-photo-editing="true"] nav,body[data-page="editor"][data-photo-editing="true"] #moreMenu,body[data-page="editor"][data-photo-editing="true"] #editorHeading{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] .app,body[data-page="editor"][data-photo-editing="true"] main,body[data-page="editor"][data-photo-editing="true"] #editor,body[data-page="editor"][data-photo-editing="true"] .editor-layout{display:block!important;position:static!important;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;margin:0!important;padding:0!important;overflow:visible!important}
+ body[data-page="editor"][data-photo-editing="true"] main{position:fixed!important;inset:0!important;z-index:10!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{position:fixed!important;top:60px!important;left:0!important;right:0!important;bottom:calc(clamp(282px,43dvh,390px) + env(safe-area-inset-bottom))!important;width:auto!important;height:auto!important;min-height:0!important;max-height:none!important;padding:12px 10px!important;margin:0!important;border:0!important;border-radius:0!important;overflow:hidden!important;z-index:20!important;display:grid!important;place-items:center!important;background:#101115!important;box-shadow:none!important}
+ body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{background:#f2f3f7!important}
+ body[data-page="editor"][data-photo-editing="true"] .canvas-wrap{display:grid!important;place-items:center!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;overflow:hidden!important;box-shadow:none!important;line-height:0!important}
+ body[data-page="editor"][data-photo-editing="true"] .canvas-wrap canvas{display:block!important;width:auto!important;height:auto!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;touch-action:none!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.toolbox,body[data-page="editor"][data-photo-editing="true"] .editor-layout>.properties,body[data-page="editor"][data-photo-editing="true"] #imageControls{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-topbar{display:flex!important;position:fixed!important;z-index:120!important;top:0!important;left:0!important;right:0!important;height:60px!important;align-items:center!important;justify-content:space-between!important;gap:7px!important;padding:0 10px!important;background:rgba(22,23,28,.97)!important;border-bottom:1px solid #30323a!important;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+ body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .mobile-photo-topbar{background:rgba(250,250,252,.97)!important;border-color:#e1e3e9!important}
+ .mobile-photo-brand{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;white-space:nowrap;min-width:0}
+ .mobile-photo-brand-mark{width:27px;height:27px;flex:none;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#1688ff,#7555f5);color:#fff;font-size:11px;font-weight:900}
+ .mobile-photo-topbar button{height:36px;min-height:36px;min-width:0;padding:0 10px;border-radius:11px;font-size:12px;background:#292b32!important;border:1px solid #41434b!important;color:#f5f5f7!important;white-space:nowrap}
+ body[data-theme="light"] .mobile-photo-topbar button{background:#f0f1f5!important;border-color:#dfe1e8!important;color:#20222a!important}
+ .mobile-photo-topbar .mobile-done{background:#0a84ff!important;border-color:#0a84ff!important;color:#fff!important;font-weight:800;padding:0 13px}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{display:flex!important;flex-direction:column!important;position:fixed!important;z-index:110!important;left:0!important;right:0!important;bottom:0!important;height:clamp(282px,43dvh,390px)!important;min-height:0!important;max-height:calc(100dvh - 170px)!important;padding:0 12px calc(8px + env(safe-area-inset-bottom))!important;background:#202126!important;border-top:1px solid #383a42!important;border-radius:22px 22px 0 0!important;box-shadow:0 -18px 50px #0003!important;color:#f5f5f7!important;overflow:hidden!important}
+ body[data-theme="light"][data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{background:#fafafd!important;border-color:#e1e3e9!important;color:#17181c!important;box-shadow:0 -18px 50px #25334d16!important}
+ .mobile-photo-tabs{display:flex!important;flex:0 0 auto!important;gap:4px!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none!important;overscroll-behavior-x:contain!important;padding:11px 0 9px!important;border-bottom:1px solid #383a42!important;white-space:nowrap!important}
+ .mobile-photo-tabs::-webkit-scrollbar,.mobile-photo-toolstrip::-webkit-scrollbar,.mobile-photo-presets::-webkit-scrollbar,.mobile-photo-colors::-webkit-scrollbar{display:none!important}
+ .mobile-photo-tabs button{flex:0 0 auto!important;min-width:58px!important;min-height:39px!important;padding:7px 12px!important;border:0!important;border-radius:11px!important;background:transparent!important;color:#b7b8c0!important;font-size:13px!important;font-weight:750!important;white-space:nowrap!important}
+ .mobile-photo-tabs button[aria-pressed="true"]{background:#34363e!important;color:#fff!important;box-shadow:inset 0 0 0 1px #ffffff0d!important}
+ body[data-theme="light"] .mobile-photo-tabs{border-color:#e2e4eb!important}
+ body[data-theme="light"] .mobile-photo-tabs button{color:#686d78!important}
+ body[data-theme="light"] .mobile-photo-tabs button[aria-pressed="true"]{background:#e5efff!important;color:#075dbb!important}
+ .mobile-photo-content{flex:1 1 auto!important;min-height:0!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+ .mobile-photo-toolstrip{display:flex!important;align-items:stretch!important;gap:5px!important;overflow-x:auto!important;overscroll-behavior-x:contain!important;scrollbar-width:none!important;padding:8px 0 5px!important;min-height:70px!important;flex:0 0 auto!important}
+ .mobile-photo-tool{flex:0 0 66px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:4px!important;min-height:59px!important;padding:4px 2px!important;border:1px solid transparent!important;background:transparent!important;color:#b8bac3!important;font-size:11px!important;white-space:nowrap!important}
+ .mobile-photo-tool .tool-glyph{width:32px;height:32px;display:grid;place-items:center;border-radius:50%;border:1px solid #4a4c54;font-size:16px;color:#f5f5f7;background:#2b2d34}
+ .mobile-photo-tool[aria-pressed="true"]{color:#fff!important}
+ .mobile-photo-tool[aria-pressed="true"] .tool-glyph{background:#0a84ff;border-color:#0a84ff;color:#fff;box-shadow:0 0 0 4px #0a84ff20}
+ body[data-theme="light"] .mobile-photo-tool{color:#656a75!important}
+ body[data-theme="light"] .mobile-photo-tool .tool-glyph{background:#f0f1f5;border-color:#d6d9e1;color:#30343d}
+ body[data-theme="light"] .mobile-photo-tool[aria-pressed="true"] .tool-glyph{background:#0a84ff;border-color:#0a84ff;color:white}
+ .mobile-photo-slider-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin:7px 1px 0!important;font-size:14px!important;color:#d0d1d8!important;font-weight:600!important}
+ .mobile-photo-slider-head strong{font-size:15px!important;color:#fff!important;font-variant-numeric:tabular-nums!important}
+ body[data-theme="light"] .mobile-photo-slider-head{color:#646976!important}body[data-theme="light"] .mobile-photo-slider-head strong{color:#17181c!important}
+ .mobile-photo-range{width:100%!important;min-height:38px!important;height:38px!important;margin:2px 0 0!important;accent-color:#0a84ff!important;touch-action:pan-x!important;cursor:pointer!important}
+ .mobile-photo-range::-webkit-slider-thumb{width:23px;height:23px}
+ .mobile-photo-scale{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#858893;padding:0 2px;flex:0 0 auto}
+ .mobile-photo-presets{display:flex!important;gap:8px!important;overflow-x:auto!important;scrollbar-width:none!important;padding:12px 0 8px!important;flex:0 0 auto!important}
+ .mobile-photo-preset{flex:0 0 88px!important;height:58px!important;min-height:58px!important;border-radius:12px!important;padding:7px!important;font-size:11px!important;background:linear-gradient(135deg,#292b33,#17181d)!important;border-color:#41434b!important;color:#f5f5f7!important;white-space:normal!important}
+ .mobile-photo-preset[aria-pressed="true"]{border:2px solid #0a84ff!important;box-shadow:0 0 0 3px #0a84ff22!important}
+ body[data-theme="light"] .mobile-photo-preset{background:linear-gradient(135deg,#fff,#eceff5)!important;border-color:#dfe2e9!important;color:#2c3039!important}
+ .mobile-photo-colors{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;padding:7px 0 5px;flex:0 0 auto}
+ .mobile-photo-colors button{flex:0 0 auto;min-height:32px;padding:5px 9px;border-radius:9px;font-size:11px;background:#2b2d34;border-color:#444650;color:#f5f5f7}
+ .mobile-photo-colors button[aria-pressed="true"]{background:#0a84ff;border-color:#0a84ff;color:#fff}
+ body[data-theme="light"] .mobile-photo-colors button{background:#f0f1f5;border-color:#dfe1e8;color:#333844}body[data-theme="light"] .mobile-photo-colors button[aria-pressed="true"]{background:#0a84ff;border-color:#0a84ff;color:#fff}
+ .mobile-photo-crop-tools{display:flex;gap:8px;padding:15px 0 8px;flex:0 0 auto}
+ .mobile-photo-crop-tools button{flex:1;min-height:45px;font-size:12px}
+ .mobile-photo-bottom{display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:space-between!important;gap:8px!important;margin-top:auto!important;padding-top:6px!important;border-top:1px solid #383a42!important}
+ body[data-theme="light"] .mobile-photo-bottom{border-color:#e2e4eb!important}
+ .mobile-photo-bottom button{font-size:12px!important;padding:7px 10px!important;min-height:34px!important;background:transparent!important;border-color:transparent!important;color:#c8cad2!important}
+ body[data-theme="light"] .mobile-photo-bottom button{color:#687080!important}
+ .mobile-photo-bottom .mobile-photo-apply{background:#0a84ff!important;color:#fff!important;border-color:#0a84ff!important;border-radius:10px!important;font-weight:800!important}
+ .mobile-photo-hint{font-size:11px;color:#858893;line-height:1.4;padding-top:3px;margin:0}
+ .mobile-photo-tabs button:active,.mobile-photo-tool:active,.mobile-photo-preset:active{transform:scale(.97)}
+}
+@media(max-height:700px) and (max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{height:46dvh!important;max-height:calc(100dvh - 150px)!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{bottom:calc(46dvh + env(safe-area-inset-bottom))!important}
+ .mobile-photo-toolstrip{min-height:60px!important;padding:4px 0!important}.mobile-photo-tool{min-height:52px!important}
+}
+@media(prefers-reduced-motion:reduce){.mobile-photo-topbar,.mobile-photo-dock,.mobile-photo-tool,.mobile-photo-preset{transition:none!important;animation:none!important}}
+</style>
+
+
+<style id="ggx-large-photo-preview">
+#mobilePhotoPreview{display:none}
+@media(max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage>.canvas-wrap{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"] #mobilePhotoPreview{display:block!important;position:relative!important;width:auto!important;height:auto!important;max-width:calc(100vw - 24px)!important;max-height:calc(100dvh - clamp(282px,43dvh,390px) - 84px)!important;object-fit:contain!important;box-shadow:0 10px 36px #0003;border-radius:3px;touch-action:none}
+ body[data-page="editor"][data-photo-editing="true"][data-photo-crop="true"] .editor-layout>.stage>.canvas-wrap{display:grid!important}
+ body[data-page="editor"][data-photo-editing="true"][data-photo-crop="true"] #mobilePhotoPreview{display:none!important}
+ body[data-page="editor"][data-photo-editing="true"][data-photo-crop="true"] .editor-layout>.stage>.canvas-wrap canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100dvh - clamp(282px,43dvh,390px) - 84px)!important}
+}
+</style>
 
 </body></html>

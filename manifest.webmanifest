@@ -1,16 +1,31 @@
 {
-  "name": "Graphics Genix Studio — Creative Design & Photo Editor",
+  "name": "Graphics Genix Studio",
   "short_name": "Graphics Genix",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#070b17",
-  "theme_color": "#070b17",
+  "background_color": "#101115",
+  "theme_color": "#101b35",
   "description": "Create social designs, edit photos, build collages and save your creative projects with Graphics Genix Studio.",
   "icons": [
-    {"src":"icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
-    {"src":"icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},
-    {"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
   ]
 }
