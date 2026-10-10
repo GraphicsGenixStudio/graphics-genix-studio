@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
 <title>Graphics Genix Studio — Creative Workspace</title>
 <style>
 :root{--bg:#050914;--panel:#0a1220;--line:#1a2a40;--blue:#1687ff;--text:#f4f7fb;--muted:#91a2b9}
@@ -951,6 +951,24 @@ const templates=[
  {name:'Community Thank You',desc:'Warm gratitude post',cat:'social',bg:'#13273a',fg:'#ffffff',accent:'#73d6d0',tag:'A QUICK NOTE',headline:'THIS IS\nBECAUSE OF YOU.',sub:'Thank you for being here.',style:'soft'},
  {name:'Workshop Poster',desc:'Workshop / class announcement',cat:'events',bg:'#f3e7cf',fg:'#2b2a26',accent:'#d56b42',tag:'SAVE YOUR SPOT',headline:'MAKE SPACE\nTO CREATE',sub:'A hands-on creative workshop · Register now',style:'editorial',size:[1080,1350]}
 ];
+templates.push(
+ {name:'Sunday Studio',desc:'Warm lifestyle editorial for a quiet Sunday',cat:'social',bg:'#f3eee5',fg:'#252b32',accent:'#c77b52',tag:'SUNDAY NOTES',headline:'SLOW DOWN.\nLOOK CLOSER.',sub:'Make ordinary moments feel considered.',style:'quote'},
+ {name:'Neon Night Drop',desc:'High-energy launch graphic with vivid accents',cat:'brand',bg:'#0b0a19',fg:'#f9f7ff',accent:'#e94fff',tag:'AFTER DARK',headline:'TURN IT\nALL THE WAY UP.',sub:'A new drop for the late-night minds.',style:'promo'},
+ {name:'Wellness Reset',desc:'Calm wellness and self-care announcement',cat:'stories',bg:'#e3eee5',fg:'#1c3b31',accent:'#79a58b',tag:'A GENTLE REMINDER',headline:'REST IS PART\nOF THE PLAN.',sub:'Take a breath. Begin again.',style:'soft'},
+ {name:'Restaurant Special',desc:'Premium food special or menu feature',cat:'brand',bg:'#20140f',fg:'#fff4e6',accent:'#e5a45f',tag:'TODAY’S SPECIAL',headline:'MADE FRESH.\nSERVED WITH LOVE.',sub:'Good ingredients. No shortcuts.',style:'editorial'},
+ {name:'Real Estate Feature',desc:'Clean property listing cover',cat:'brand',bg:'#e9edf0',fg:'#172c3b',accent:'#bc985e',tag:'PROPERTY SPOTLIGHT',headline:'ROOM TO\nLIVE WELL.',sub:'A place to make your own.',style:'editorial'},
+ {name:'Podcast Episode',desc:'Bold cover for a new podcast episode',cat:'social',bg:'#1b1430',fg:'#ffffff',accent:'#b69aff',tag:'THE CREATOR FILES · EP 08',headline:'THE WORK\nBEHIND THE WORK.',sub:'New episode available now.',style:'promo'},
+ {name:'Sale Weekend',desc:'Simple, high-contrast retail promotion',cat:'brand',bg:'#fff0e8',fg:'#27150f',accent:'#f05b35',tag:'WEEKEND OFFER',headline:'GOOD THINGS.\nBETTER PRICES.',sub:'A limited-time offer · Shop the edit.',style:'promo'},
+ {name:'Graduation Day',desc:'Celebration announcement with elegant type',cat:'events',bg:'#101e35',fg:'#f7f4e9',accent:'#e4c77d',tag:'CLASS OF 2026',headline:'THE NEXT\nCHAPTER STARTS.',sub:'A moment worth remembering.',style:'editorial'},
+ {name:'Wedding Save the Date',desc:'Minimal wedding announcement',cat:'events',bg:'#f6f0e9',fg:'#47382e',accent:'#b88f77',tag:'SAVE THE DATE',headline:'A DAY FOR\nOUR STORY.',sub:'Together with our favourite people.',style:'quote'},
+ {name:'Travel Postcard',desc:'Travel journal cover with adventurous tones',cat:'stories',bg:'#0c333b',fg:'#f8f5e9',accent:'#f1c36b',tag:'POSTCARD NO. 04',headline:'SOMEWHERE\nNEW.',sub:'Take the scenic route.',style:'travel'},
+ {name:'Tech Product Launch',desc:'Sleek product announcement for technology',cat:'brand',bg:'#08111d',fg:'#f4f8ff',accent:'#51d9f5',tag:'INTRODUCING',headline:'BUILT FOR\nWHAT’S NEXT.',sub:'Thoughtful tools. Better everyday work.',style:'product'},
+ {name:'Book Club Pick',desc:'Editorial book-club recommendation card',cat:'quotes',bg:'#f0e7d9',fg:'#332b27',accent:'#a54f3c',tag:'THIS MONTH’S READ',headline:'A STORY THAT\nSTAYS WITH YOU.',sub:'Read slowly. Talk about everything.',style:'quote'},
+ {name:'Fitness Challenge',desc:'Strong energetic challenge announcement',cat:'stories',bg:'#11191b',fg:'#f8fbf7',accent:'#b6f36b',tag:'7-DAY CHALLENGE',headline:'SHOW UP\nFOR YOURSELF.',sub:'Small steps. Strong habits.',style:'promo'},
+ {name:'Creative Portfolio',desc:'Minimal portfolio or case-study cover',cat:'social',bg:'#e7efff',fg:'#142746',accent:'#3976e8',tag:'SELECTED WORK · 2026',headline:'IDEAS MADE\nVISIBLE.',sub:'Design, direction and details.',style:'editorial'},
+ {name:'Holiday Invitation',desc:'Warm invitation for a seasonal gathering',cat:'events',bg:'#18352e',fg:'#fff7e7',accent:'#e5b66d',tag:'YOU’RE INVITED',headline:'LET’S MAKE\nA LITTLE MAGIC.',sub:'Good food, good company, good memories.',style:'soft'},
+ {name:'Minimal Brand Story',desc:'Quiet luxury brand introduction',cat:'brand',bg:'#efede8',fg:'#242522',accent:'#8c8d78',tag:'OUR PHILOSOPHY',headline:'LESS NOISE.\nMORE MEANING.',sub:'Made carefully. Chosen intentionally.',style:'quote'}
+);
 function addTemplateDesign(t){const dims=t.size||[1080,1350];newDesign(t.name,dims[0],dims[1]);bg=t.bg;$('#bgColor').value=bg;const W=canvas.width,H=canvas.height,margin=Math.round(W*.075),accentW=Math.round(W*.018);const small=Math.max(20,Math.round(W*.023)),headline=Math.round(W*(t.style==='quote'?.082:.073)),sub=Math.round(W*.027);layers=[];
  if(t.style==='promo'||t.style==='product'){layers.push({type:'rect',x:margin,y:Math.round(H*.16),w:W-margin*2,h:Math.max(8,Math.round(H*.008)),color:t.accent,opacity:1});layers.push({type:'rect',x:W-margin-accentW,y:Math.round(H*.23),w:accentW,h:Math.round(H*.42),color:t.accent,opacity:.92});}
  else if(t.style==='soft'){layers.push({type:'rect',x:margin,y:Math.round(H*.12),w:W-margin*2,h:Math.round(H*.0025),color:t.accent,opacity:1});layers.push({type:'rect',x:margin,y:Math.round(H*.77),w:Math.round(W*.18),h:Math.max(8,Math.round(W*.018)),color:t.accent,opacity:1});}
@@ -971,6 +989,12 @@ const collageTemplates=[
  {name:'Wide Contact Sheet',desc:'Four side-by-side snapshots',layout:'4x1',kind:'strip'},
  {name:'Two-Photo Feature',desc:'Two wide stacked photos',layout:'1x2',kind:'split'}
 ];
+collageTemplates.push(
+ {name:'Eight-Frame Journal',desc:'Eight moments in a tall photo diary',layout:'2x4',kind:'stack'},
+ {name:'Eight-Frame Contact Sheet',desc:'Eight landscape snapshots in one row-based grid',layout:'4x2',kind:'grid'},
+ {name:'Five-Photo Story',desc:'A tall, scroll-like memory strip',layout:'1x5',kind:'stack'},
+ {name:'Five-Photo Panorama',desc:'Five frames across a wide canvas',layout:'5x1',kind:'strip'}
+);
 function renderCollageTemplates(){const el=$('#collageTemplateGrid');el.innerHTML='';collageTemplates.forEach(t=>{const b=document.createElement('button');b.className='collage-card';b.innerHTML=`<span class="collage-art ${t.kind}" data-layout="${t.layout}">${Array.from({length:Math.min(9,t.layout.split('x').reduce((a,n)=>a*Number(n),1))},(_,i)=>`<i style="--tile:${i}"></i>`).join('')}</span><strong>${esc(t.name)}</strong><small>${esc(t.desc)}</small><span class="collage-card-cta">Choose photos <b>→</b></span>`;b.addEventListener('click',()=>{const sel=$('#collageLayout');if(![...sel.options].some(o=>o.value===t.layout)){const opt=document.createElement('option');opt.value=t.layout;opt.textContent=t.layout.replace('x',' × ')+' — '+t.name;sel.append(opt)}sel.value=t.layout;newDesign(t.name,1080,1350);go('editor');setTimeout(()=>$('#collageFiles').click(),180)});el.append(b)});}
 renderCollageTemplates();
 $('#customCreate').onclick=()=>{let w=Math.min(3000,Math.max(100,+$('#customW').value||1080)),h=Math.min(3000,Math.max(100,+$('#customH').value||1350));newDesign('Custom design',w,h)};
@@ -1439,5 +1463,94 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
  body[data-page="editor"][data-photo-editing="true"][data-photo-crop="true"] .editor-layout>.stage>.canvas-wrap canvas{max-width:calc(100vw - 20px)!important;max-height:calc(100dvh - clamp(282px,43dvh,390px) - 84px)!important}
 }
 </style>
+
+
+<style id="ggx-premium-mobile-polish-v15">
+:root{color-scheme:light dark;--focus-ring:rgba(64,143,255,.45)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-width:320px;overflow-x:hidden;transition:background-color .22s ease,color .22s ease}
+button,.btn,input,select,textarea{font:inherit}
+button,.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;white-space:normal;overflow-wrap:anywhere;word-break:normal;min-width:0}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+button:disabled{transform:none!important}
+.card,.template-card,.collage-card{min-width:0;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.template-card{display:flex;flex-direction:column;align-items:stretch;gap:7px;text-align:left}
+.template-card>strong,.template-card>.muted{overflow-wrap:anywhere}
+.template-art{min-width:0;overflow:hidden;border-radius:12px}
+.template-art strong{overflow-wrap:anywhere;word-break:normal;line-height:1.05}
+.collage-card{display:flex;flex-direction:column;align-items:stretch;gap:7px;text-align:left}
+.collage-card strong,.collage-card small{overflow-wrap:anywhere}
+.collage-card-cta{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.collage-art[data-layout="2x4"]{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr)}
+.collage-art[data-layout="4x2"]{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr)}
+.collage-art[data-layout="1x5"]{grid-template-columns:1fr;grid-template-rows:repeat(5,1fr)}
+.collage-art[data-layout="5x1"]{grid-template-columns:repeat(5,1fr);grid-template-rows:1fr}
+#templateSearch{min-height:46px;font-size:16px}
+#saveBtn,#exportBtn,#themeToggle{flex-shrink:0;min-height:42px;white-space:normal;overflow-wrap:anywhere}
+#saveBtn,#exportBtn{display:flex;align-items:center;justify-content:center;text-align:center}
+.save-option{white-space:normal!important;overflow-wrap:anywhere!important}
+.save-option>span:nth-child(2){min-width:0;flex:1}
+.save-option strong,.save-option small{display:block;overflow-wrap:anywhere}
+/* The header uses a brand row and a dedicated action row on phones. */
+@media(max-width:600px){
+ header{height:auto!important;min-height:0!important;padding:10px 12px 11px!important;display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:9px!important;align-items:center!important;position:sticky;top:0;z-index:50}
+ header .brand{width:100%;min-width:0;flex:none!important;font-size:15px!important;line-height:1.15;gap:10px!important}
+ header .brand>div:last-child{min-width:0;overflow-wrap:anywhere}
+ header .brand small{font-size:9px!important;letter-spacing:2.1px!important;line-height:1.3}
+ header .logo{width:42px!important;height:42px!important;flex:none!important}
+ header .row{display:grid!important;grid-template-columns:42px minmax(0,1fr) minmax(0,1fr)!important;gap:7px!important;width:100%!important;min-width:0!important;flex:none!important;align-items:stretch!important}
+ header .row button{width:100%!important;min-width:0!important;max-width:100%!important;min-height:42px!important;height:auto!important;padding:7px 5px!important;margin:0!important;font-size:12px!important;line-height:1.15!important;text-align:center!important;white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;display:flex!important;align-items:center!important;justify-content:center!important}
+ header #themeToggle{width:42px!important;min-width:42px!important;max-width:42px!important;padding:6px!important;font-size:17px!important}
+ .app{min-width:0;grid-template-columns:minmax(0,1fr)!important}
+ main{min-width:0!important;width:100%;padding:14px 12px calc(20px + env(safe-area-inset-bottom))!important}
+ h1{font-size:clamp(28px,7.6vw,38px)!important;line-height:1.08!important;letter-spacing:-1px!important;overflow-wrap:anywhere}
+ h2{font-size:22px!important;line-height:1.18!important;letter-spacing:-.35px!important}
+ .hero{padding:20px 17px!important;border-radius:18px!important}
+ .hero p{font-size:15px!important;line-height:1.55!important}
+ .home-action-row button{min-width:0!important;white-space:normal!important;overflow-wrap:anywhere!important}
+ .grid,.template-grid,.collage-template-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ .template-card,.collage-card{padding:10px!important;border-radius:15px!important;min-width:0!important}
+ .template-art{min-height:148px!important;padding:11px!important}
+ .template-art b{font-size:9px!important;letter-spacing:1px!important}
+ .template-art strong{font-size:clamp(16px,4.8vw,22px)!important;line-height:1.02!important;max-width:100%;overflow-wrap:anywhere}
+ .template-art small{font-size:10px!important;line-height:1.25!important;overflow-wrap:anywhere}
+ .template-card>strong{font-size:13px!important;line-height:1.25!important}
+ .template-card>.muted{font-size:11px!important;line-height:1.35!important}
+ .collage-art{height:100px!important}
+ .collage-card strong{font-size:13px!important;line-height:1.25!important}
+ .collage-card small{font-size:11px!important;line-height:1.35!important}
+ .section{margin-top:24px!important}
+ .input,select,textarea{font-size:16px!important;min-height:44px}
+ .editor-layout{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
+ .editor-layout>.stage{min-width:0!important;width:100%!important;padding:10px!important;min-height:240px!important;overflow:hidden!important}
+ .canvas-wrap{max-width:100%!important}
+ .canvas-wrap canvas{max-width:100%!important;height:auto!important}
+ .toolbox,.properties{min-width:0!important;padding:12px!important}
+ .toolbox button,.properties button{min-height:42px!important;white-space:normal!important;overflow-wrap:anywhere!important}
+ .two-col{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .properties .field,.toolbox .field{min-width:0}
+ .properties input,.properties select,.toolbox input,.toolbox select{max-width:100%;min-width:0}
+ .mobile-photo-topbar{padding-left:12px!important;padding-right:12px!important}
+ .mobile-photo-brand{font-size:12px!important}
+ .mobile-photo-topbar button{padding:0 8px!important}
+ .mobile-photo-dock{padding-left:12px!important;padding-right:12px!important}
+ .mobile-photo-content{min-width:0!important}
+ .mobile-photo-toolstrip{overflow-x:auto!important;overscroll-behavior-x:contain!important}
+}
+@media(min-width:601px) and (max-width:950px){header{padding:12px 16px!important;gap:12px;flex-wrap:wrap;height:auto!important;min-height:68px}.brand{min-width:0}.app{grid-template-columns:170px minmax(0,1fr)!important}.template-grid,.collage-template-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<script id="ggx-system-theme-v15">
+(function(){
+ const original=document.getElementById('themeToggle');if(!original)return;
+ const btn=original.cloneNode(true);original.replaceWith(btn);
+ const media=window.matchMedia('(prefers-color-scheme: dark)');let mode='system';
+ try{const saved=localStorage.getItem('ggx-theme-mode');if(['light','dark'].includes(saved))mode=saved;}catch(e){}
+ function apply(){const actual=mode==='system'?(media.matches?'dark':'light'):mode;document.body.dataset.theme=actual;document.documentElement.style.colorScheme=actual;btn.textContent=mode==='system'?'◐':(actual==='dark'?'☼':'☾');btn.setAttribute('aria-label','Theme: '+(mode==='system'?'System — '+actual:actual)+'; tap to change');btn.title='Theme: '+(mode==='system'?'System ('+actual+')':actual)+'. Tap to cycle System, Light, Dark.';btn.dataset.mode=mode;}
+ btn.addEventListener('click',()=>{mode=mode==='system'?'light':mode==='light'?'dark':'system';try{if(mode==='system')localStorage.removeItem('ggx-theme-mode');else localStorage.setItem('ggx-theme-mode',mode)}catch(e){}apply();});
+ const onSystemChange=()=>{if(mode==='system')apply()};if(media.addEventListener)media.addEventListener('change',onSystemChange);else if(media.addListener)media.addListener(onSystemChange);
+ apply();
+})();
+</script>
 
 </body></html>
