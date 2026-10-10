@@ -348,6 +348,9 @@ body[data-theme="light"] .home-badge{background:#edf5ff;border-color:#cfe0ff;col
   body[data-page="editor"][data-photo-editing="true"] #imageControls { height:36dvh !important; min-height:190px !important; }
 }
 
+
+/* App identity: use the custom GG monogram artwork consistently in the header and launch screen. */
+.logo,.splash-logo{background-image:url("icon.svg")!important;background-size:cover!important;background-position:center!important;color:transparent!important;font-size:0!important;letter-spacing:0!important;padding:0!important}
 </style><meta name="theme-color" content="#050914">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -540,18 +543,46 @@ function updateHistoryButtons(){$('#undoBtn').disabled=history.length<=1;$('#red
 function newDesign(name,w,h){projectName=name;canvas.width=w;canvas.height=h;$('#canvasW').value=w;$('#canvasH').value=h;layers=[];selected=-1;bg='#08172b';$('#bgColor').value=bg;history=[];redoStack=[];saveHistory();draw();syncProps();$('#editorHeading').textContent=name;go('editor')}
 window.applyIdeaSpark=function(name,description){newDesign(name,1080,1350);layers.push({type:'text',text:String(name||'CREATIVE IDEA').toUpperCase(),x:84,y:150,size:66,color:'#ffffff',font:'Arial',weight:700,align:'left',maxW:900});layers.push({type:'text',text:String(description||'Make something memorable.'),x:86,y:280,size:30,color:'#b7d5ff',font:'Arial',weight:400,align:'left',maxW:880});saveHistory();draw();syncProps()};
 
+// Pixel-based photo rendering: reliable on iPhone Safari even when CanvasRenderingContext2D.filter is unavailable.
+const ggxImageIds=new WeakMap();let ggxNextImageId=1;
+function getProcessedPhoto(l,sx,sy,sw,sh,w,h,p){
+ const values=['brightness','contrast','saturation','warmth','sepia','grayscale','softness','vignette','grain','fade'].map(k=>Number(p[k]??0));
+ const key=[(ggxImageIds.get(l.img)||(ggxImageIds.set(l.img,ggxNextImageId),ggxNextImageId++)),sx,sy,sw,sh,Math.round(w),Math.round(h),...values].join('|');
+ if(l._ggxPhotoCache?.key===key)return l._ggxPhotoCache.canvas;
+ const scale=Math.min(1,1800/Math.max(w,h)),pw=Math.max(1,Math.round(w*scale)),ph=Math.max(1,Math.round(h*scale));
+ const out=document.createElement('canvas');out.width=pw;out.height=ph;const oc=out.getContext('2d',{willReadFrequently:true});
+ oc.drawImage(l.img,sx,sy,sw,sh,0,0,pw,ph);
+ const frame=oc.getImageData(0,0,pw,ph),d=frame.data;
+ const bright=Number(p.brightness??100)/100,contrast=Number(p.contrast??100)/100,sat=Number(p.saturation??100)/100,warm=Number(p.warmth??0),sepia=Math.max(0,Math.min(1,Number(p.sepia??0)/100)),gray=Math.max(0,Math.min(1,Number(p.grayscale??0)/100)),fade=Math.max(0,Math.min(1,Number(p.fade??0)/100));
+ const cf=contrast, cb=128*(1-cf);
+ for(let i=0;i<d.length;i+=4){
+  let r=d[i]*bright,g=d[i+1]*bright,b=d[i+2]*bright;
+  r=r*cf+cb;g=g*cf+cb;b=b*cf+cb;
+  const lum=.2126*r+.7152*g+.0722*b;
+  r=lum+(r-lum)*sat;g=lum+(g-lum)*sat;b=lum+(b-lum)*sat;
+  if(sepia){const sr=.393*r+.769*g+.189*b,sg=.349*r+.686*g+.168*b,sb=.272*r+.534*g+.131*b;r=r*(1-sepia)+sr*sepia;g=g*(1-sepia)+sg*sepia;b=b*(1-sepia)+sb*sepia}
+  if(gray){const y=.2126*r+.7152*g+.0722*b;r=r*(1-gray)+y*gray;g=g*(1-gray)+y*gray;b=b*(1-gray)+y*gray}
+  if(warm){r+=warm*.78;g+=warm*.12;b-=warm*.72}
+  if(fade){r=r*(1-fade*.28)+255*fade*.28;g=g*(1-fade*.28)+255*fade*.28;b=b*(1-fade*.28)+255*fade*.28}
+  d[i]=Math.max(0,Math.min(255,r));d[i+1]=Math.max(0,Math.min(255,g));d[i+2]=Math.max(0,Math.min(255,b));
+ }
+ oc.putImageData(frame,0,0);
+ // A lightweight soft-focus blend works without browser-specific canvas filters.
+ const softness=Math.max(0,Number(p.softness??0));
+ if(softness>0){const blur=document.createElement('canvas');const factor=Math.max(2,Math.round(3+softness*2));blur.width=Math.max(1,Math.round(pw/factor));blur.height=Math.max(1,Math.round(ph/factor));const bc=blur.getContext('2d');bc.imageSmoothingEnabled=true;bc.drawImage(out,0,0,blur.width,blur.height);oc.globalAlpha=Math.min(.55,softness*.17);oc.imageSmoothingEnabled=true;oc.drawImage(blur,0,0,blur.width,blur.height,0,0,pw,ph);oc.globalAlpha=1;}
+ l._ggxPhotoCache={key,canvas:out};return out;
+}
 function draw(){
  ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle=bg;ctx.fillRect(0,0,canvas.width,canvas.height);
  layers.forEach((l,i)=>{ctx.save();ctx.globalAlpha=l.opacity==null?1:l.opacity;
   if(l.type==='text'){ctx.fillStyle=l.color||'#fff';ctx.font=`${l.weight||700} ${l.size||72}px ${l.font||'Arial'}`;ctx.textBaseline='top';ctx.textAlign=l.align||'left';let mw=l.maxW||canvas.width*.8;let tx=l.align==='center'?l.x+mw/2:l.align==='right'?l.x+mw:l.x;wrapText(ctx,l.text||'',tx,l.y,mw,(l.size||72)*1.2)}
   else if(l.type==='rect'){ctx.fillStyle=l.color||'#1687ff';ctx.fillRect(l.x,l.y,l.w||100,l.h||100)}
-  else if(l.type==='image'&&l.img){let sx=Math.max(0,l.sx||0),sy=Math.max(0,l.sy||0),sw=Math.max(1,Math.min(l.sw||l.img.naturalWidth,l.img.naturalWidth-sx)),sh=Math.max(1,Math.min(l.sh||l.img.naturalHeight,l.img.naturalHeight-sy)),w=l.w||sw,h=l.h||sh;ctx.translate(l.x+w/2,l.y+h/2);ctx.rotate((l.rotation||0)*Math.PI/180);ctx.scale(l.flipX?-1:1,l.flipY?-1:1);const p=l.photo||{};const supportedFilter='filter' in ctx;
-  if(supportedFilter){ctx.filter=`brightness(${p.brightness??100}%) contrast(${p.contrast??100}%) saturate(${p.saturation??100}%) sepia(${p.sepia??0}%) grayscale(${p.grayscale??0}%) blur(${p.softness??0}px)`}
-  ctx.drawImage(l.img,sx,sy,sw,sh,-w/2,-h/2,w,h);
-  if(supportedFilter)ctx.filter='none';
-  if(p.warmth){ctx.globalAlpha=Math.min(.24,Math.abs(p.warmth)/180);ctx.fillStyle=p.warmth>0?'#ff9b45':'#438fff';ctx.fillRect(-w/2,-h/2,w,h);ctx.globalAlpha=l.opacity==null?1:l.opacity}
-  if(p.vignette){const vg=ctx.createRadialGradient(0,0,Math.min(w,h)*.15,0,0,Math.max(w,h)*.72);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,`rgba(0,0,0,${Math.min(.72,p.vignette/100)})`);ctx.fillStyle=vg;ctx.fillRect(-w/2,-h/2,w,h)}
-  if(p.grain){let seed=17;ctx.globalAlpha=Math.min(.15,p.grain/100);for(let n=0;n<Math.min(700,Math.round(w*h/1500));n++){seed=(seed*9301+49297)%233280;const gx=-w/2+(seed/233280)*w;seed=(seed*9301+49297)%233280;const gy=-h/2+(seed/233280)*h;ctx.fillStyle=seed%2?'#fff':'#000';ctx.fillRect(gx,gy,1.5,1.5)}ctx.globalAlpha=l.opacity==null?1:l.opacity}}
+  else if(l.type==='image'&&l.img){let sx=Math.max(0,l.sx||0),sy=Math.max(0,l.sy||0),sw=Math.max(1,Math.min(l.sw||l.img.naturalWidth,l.img.naturalWidth-sx)),sh=Math.max(1,Math.min(l.sh||l.img.naturalHeight,l.img.naturalHeight-sy)),w=l.w||sw,h=l.h||sh;ctx.translate(l.x+w/2,l.y+h/2);ctx.rotate((l.rotation||0)*Math.PI/180);ctx.scale(l.flipX?-1:1,l.flipY?-1:1);const p=l.photo||{};
+  const edited=['brightness','contrast','saturation','warmth','sepia','grayscale','softness','fade'].some(k=>Number(p[k]??({'brightness':100,'contrast':100,'saturation':100}[k]??0))!==({'brightness':100,'contrast':100,'saturation':100}[k]??0));
+  const image=edited?getProcessedPhoto(l,sx,sy,sw,sh,w,h,p):l.img;
+  if(edited)ctx.drawImage(image,0,0,image.width,image.height,-w/2,-h/2,w,h);else ctx.drawImage(image,sx,sy,sw,sh,-w/2,-h/2,w,h);
+  if(p.vignette){const vg=ctx.createRadialGradient(0,0,Math.min(w,h)*.12,0,0,Math.max(w,h)*.68);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(.58,'rgba(0,0,0,0)');vg.addColorStop(1,`rgba(0,0,0,${Math.min(.82,Number(p.vignette)/100)})`);ctx.fillStyle=vg;ctx.fillRect(-w/2,-h/2,w,h)}
+  if(p.grain){let seed=17;ctx.globalAlpha=Math.min(.23,Number(p.grain)/100);for(let n=0;n<Math.min(2200,Math.round(w*h/800));n++){seed=(seed*9301+49297)%233280;const gx=-w/2+(seed/233280)*w;seed=(seed*9301+49297)%233280;const gy=-h/2+(seed/233280)*h;ctx.fillStyle=seed%2?'#fff':'#000';ctx.fillRect(gx,gy,Math.max(.7,w/1000),Math.max(.7,w/1000))}ctx.globalAlpha=l.opacity==null?1:l.opacity}}
   ctx.restore();
  });
  if(document.body.dataset.photoEditing!=='true')drawSelectionUI();
@@ -803,17 +834,17 @@ $('#requestService').onclick=()=>{let name=$('#clientName').value,email=$('#clie
 
 newDesign('Instagram Post',1080,1350);
 // Photo Look engine and multi-image collage workflow.
-const photoBase={brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0,grayscale:0};
+const photoBase={brightness:100,contrast:100,saturation:100,warmth:0,sepia:0,softness:0,vignette:0,grain:0,grayscale:0,fade:0};
 const photoLooks={
- auto:{...photoBase,brightness:106,contrast:108,saturation:108,warmth:2},
+ auto:{...photoBase,brightness:108,contrast:116,saturation:116,warmth:2},
  natural:{...photoBase},
- iphone:{...photoBase,brightness:105,contrast:112,saturation:128},
- cinematic:{...photoBase,brightness:96,contrast:128,saturation:88,warmth:-12,vignette:28},
- film:{...photoBase,brightness:105,contrast:84,saturation:78,sepia:12,grain:18},
- warm:{...photoBase,brightness:106,contrast:108,saturation:115,warmth:22},
- mono:{...photoBase,brightness:103,contrast:120,saturation:0,grayscale:100},
- dream:{...photoBase,brightness:110,contrast:88,saturation:106,softness:1.5},
- night:{...photoBase,brightness:92,contrast:138,saturation:122,vignette:32}
+ iphone:{...photoBase,brightness:106,contrast:122,saturation:152,warmth:2},
+ cinematic:{...photoBase,brightness:94,contrast:148,saturation:82,warmth:-15,vignette:48},
+ film:{...photoBase,brightness:108,contrast:78,saturation:66,warmth:8,sepia:24,grain:30,fade:24,vignette:12},
+ warm:{...photoBase,brightness:107,contrast:116,saturation:126,warmth:24,sepia:8},
+ mono:{...photoBase,brightness:104,contrast:132,saturation:0,grayscale:100,vignette:18},
+ dream:{...photoBase,brightness:112,contrast:86,saturation:116,warmth:8,softness:2},
+ night:{...photoBase,brightness:90,contrast:148,saturation:140,warmth:-8,vignette:52}
 };
 function selectedPhoto(){const l=getSelected();return l&&l.type==='image'?l:null}
 function setCropMode(on){
