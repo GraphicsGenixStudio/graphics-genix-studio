@@ -765,7 +765,7 @@ let cropMode=false,cropGesture=null;const cropPointers=new Map();
 const canvas=$('#canvas'),ctx=canvas.getContext('2d');
 if(window.matchMedia('(max-width:850px)').matches){const advanced=document.querySelector('.advanced-tools');if(advanced)advanced.open=false;}
 
-function go(p){
+window.go=window.go||function(p){
   $$('.page').forEach(x=>x.classList.toggle('active',x.id===p));
   $$('nav button[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===p));
   document.body.dataset.page=p;$('#moreMenu')?.classList.remove('open');
@@ -3000,4 +3000,94 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
   window.addEventListener('resize',shell,{passive:true});
 })();
 </script>
+
+<style id="ggx-v30-compact-click-fix">
+@media(max-width:850px){
+  /* Compact mobile scale: keep the whole app visible and reduce vertical bulk. */
+  body:not([data-page="editor"]) > header{height:64px!important;min-height:64px!important;padding:calc(6px + env(safe-area-inset-top)) 13px 6px!important;gap:7px!important;}
+  body:not([data-page="editor"]) > header .logo{width:36px!important;height:36px!important;min-width:36px!important;border-radius:10px!important;}
+  body:not([data-page="editor"]) > header .brand{gap:8px!important;font-size:14px!important;}
+  body:not([data-page="editor"]) > header small{font-size:7px!important;letter-spacing:1.8px!important;}
+  body:not([data-page="editor"]) > header #themeToggle{width:38px!important;height:38px!important;min-width:38px!important;border-radius:11px!important;font-size:17px!important;}
+  body:not([data-page="editor"]) > .app{min-height:calc(100dvh - 64px)!important;}
+  body:not([data-page="editor"]) main{padding:11px 12px calc(84px + env(safe-area-inset-bottom))!important;}
+  #home .home-topline{margin:1px 2px 9px!important;}
+  #home .home-greeting{font-size:8px!important;letter-spacing:2px!important;}
+  #home .home-greeting strong{margin-top:4px!important;font-size:22px!important;letter-spacing:-.9px!important;}
+  #home .home-badge{font-size:8px!important;padding:6px 8px!important;}
+  #home .home-search{height:46px!important;margin-bottom:11px!important;border-radius:14px!important;padding:0 12px!important;}
+  #home .home-search input{font-size:12px!important;}
+  #home .home-search span{font-size:17px!important;}
+  #home .home-search kbd{font-size:7px!important;}
+  #home .hero{min-height:282px!important;padding:21px 18px 17px!important;border-radius:20px!important;}
+  #home .hero h1{font-size:35px!important;letter-spacing:-1.8px!important;margin:17px 0 13px!important;}
+  #home .hero p{font-size:12px!important;line-height:1.45!important;margin-bottom:15px!important;max-width:300px!important;}
+  #home .home-action-row{gap:7px!important;}
+  #home .home-action-row button{min-height:46px!important;border-radius:12px!important;font-size:10px!important;padding:8px 6px!important;}
+  #home .section{margin-top:19px!important;}
+  #home .section-head{margin-bottom:8px!important;}
+  #home .section-head h2{font-size:18px!important;}
+  #home .section-head p{font-size:9px!important;}
+  #home #quick{gap:7px!important;}
+  #home #quick .card{min-height:94px!important;padding:10px!important;border-radius:14px!important;}
+  #home #quick .card .icon{width:31px!important;height:31px!important;border-radius:9px!important;margin-bottom:7px!important;}
+  #home #quick .card strong{font-size:10px!important;}
+  #home #quick .card .muted{font-size:8px!important;}
+  #ggxHomeTemplates .ggx-template-rail{gap:8px!important;padding-bottom:5px!important;}
+  #ggxHomeTemplates .ggx-photo-template{flex-basis:126px!important;border-radius:14px!important;}
+  #ggxHomeTemplates .ggx-photo-template div{left:9px!important;right:8px!important;bottom:9px!important;}
+  #ggxHomeTemplates .ggx-photo-template strong{font-size:11px!important;}
+  #ggxHomeTemplates .ggx-photo-template span{font-size:8px!important;}
+
+  /* Make all interactive surfaces reliably tappable above decorative layers. */
+  body:not([data-page="editor"]) header,
+  body:not([data-page="editor"]) header *,
+  body:not([data-page="editor"]) main,
+  body:not([data-page="editor"]) main button,
+  body:not([data-page="editor"]) main input,
+  body:not([data-page="editor"]) nav,
+  body:not([data-page="editor"]) nav button{pointer-events:auto!important;}
+  body:not([data-page="editor"]) .hero:before,
+  body:not([data-page="editor"]) .hero:after{pointer-events:none!important;}
+  body:not([data-page="editor"]) button{touch-action:manipulation!important;-webkit-tap-highlight-color:transparent!important;}
+  body:not([data-page="editor"]) button:active{transform:translateY(1px) scale(.985)!important;}
+  body:not([data-page="editor"]) input[type="search"]{touch-action:manipulation!important;}
+
+  /* Never let an invisible stale editor layer intercept taps on Home. */
+  body:not([data-page="editor"]) #editor,
+  body:not([data-page="editor"]) #ggxMobileEditorBar,
+  body:not([data-page="editor"]) #ggxV28Dock,
+  body:not([data-page="editor"]) #ggxV26Dock,
+  body:not([data-page="editor"]) #ggxV26Bar{visibility:hidden!important;pointer-events:none!important;}
+}
+</style>
+<script id="ggx-v30-click-routing">
+(function(){
+  const B=document.body;
+  function route(){
+    if(!B)return;
+    const p=B.dataset.page||'home';
+    if(p!=='editor'){
+      const stale=['#editor','#ggxMobileEditorBar','#ggxV28Dock','#ggxV26Dock','#ggxV26Bar'];
+      stale.forEach(sel=>{const el=document.querySelector(sel);if(el){el.style.pointerEvents='none';if(sel==='#editor')el.style.visibility='hidden';}});
+    }
+  }
+  route();
+  new MutationObserver(route).observe(B,{attributes:true,attributeFilter:['data-page']});
+  document.addEventListener('click',function(e){
+    const b=e.target.closest('button,[role="button"],a');
+    if(!b||B.dataset.page==='editor')return;
+    if(b.closest('#launchSplash') && !document.querySelector('#launchSplash.hide'))return;
+    /* If a navigation target exists, always send it through the app router. */
+    const target=b.dataset.page||b.dataset.goto||b.dataset.more;
+    if(target && typeof window.go==='function'){
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      window.go(target);
+      return;
+    }
+  },true);
+})();
+</script>
+
 </body></html>
