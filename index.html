@@ -3090,4 +3090,67 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
 })();
 </script>
 
+
+<style id="ggx-v31-routing-layout-fix">
+/* v31: app pages must obey .active; Home must never remain forced visible. */
+@media (max-width: 850px){
+  body:not([data-page="editor"]) main > .page{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+  body:not([data-page="editor"]) main > .page.active{display:block!important;visibility:visible!important;pointer-events:auto!important;}
+  body:not([data-page="editor"]) #home:not(.active){display:none!important;}
+  body:not([data-page="editor"]) #templates:not(.active),
+  body:not([data-page="editor"]) #create:not(.active),
+  body:not([data-page="editor"]) #projects:not(.active),
+  body:not([data-page="editor"]) #brand:not(.active),
+  body:not([data-page="editor"]) #services:not(.active),
+  body:not([data-page="editor"]) #photoEditor:not(.active){display:none!important;}
+  body:not([data-page="editor"]) main{overflow-x:hidden!important;}
+}
+</style>
+<script id="ggx-v31-routing-fix">
+(function(){
+  const B=document.body;
+  const pages=()=>[...document.querySelectorAll('main > .page')];
+  function activate(p){
+    if(!p || !document.getElementById(p)) return;
+    pages().forEach(el=>{const on=el.id===p;el.classList.toggle('active',on);el.setAttribute('aria-hidden',on?'false':'true');});
+    B.dataset.page=p;
+    document.querySelectorAll('nav button[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+    if(p==='templates'){ if(typeof renderTemplateCards==='function')renderTemplateCards(); if(typeof renderCollageTemplates==='function')renderCollageTemplates(); }
+    if(p==='create' && typeof renderFormats==='function')renderFormats();
+    if(p==='projects' && typeof renderProjects==='function')renderProjects();
+    if(p==='home' && typeof renderHome==='function')renderHome();
+    if(p==='editor' && typeof draw==='function'){draw(); if(typeof syncProps==='function')syncProps();}
+    window.scrollTo(0,0);
+  }
+  const original=window.go;
+  window.go=function(p){ activate(p); };
+  document.addEventListener('click',function(e){
+    const b=e.target.closest('button[data-page],button[data-goto],button[data-more]');
+    if(!b || B.dataset.page==='editor')return;
+    const target=b.dataset.page||b.dataset.goto||b.dataset.more;
+    if(!target)return;
+    e.preventDefault(); e.stopImmediatePropagation(); activate(target);
+  },true);
+  document.addEventListener('pointerup',function(e){
+    if(e.pointerType!=='touch' || B.dataset.page==='editor')return;
+    const b=e.target.closest('button[data-page],button[data-goto],button[data-more]');
+    if(!b)return;
+    const target=b.dataset.page||b.dataset.goto||b.dataset.more;
+    if(target) activate(target);
+  },{passive:false,capture:true});
+  function normalize(){
+    const p=B.dataset.page||document.querySelector('main > .page.active')?.id||'home';
+    activate(p);
+  }
+  new MutationObserver(()=>{
+    const p=B.dataset.page;
+    if(p && document.getElementById(p)){
+      pages().forEach(el=>el.classList.toggle('active',el.id===p));
+      document.querySelectorAll('nav button[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===p));
+    }
+  }).observe(B,{attributes:true,attributeFilter:['data-page']});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',normalize);else setTimeout(normalize,0);
+})();
+</script>
+
 </body></html>
