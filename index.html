@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
-<title>Graphics Genix Studio — Creative Studio v28</title>
+<title>Graphics Genix Studio — Creative Workspace v29</title>
 <style>
 :root{--bg:#050914;--panel:#0a1220;--line:#1a2a40;--blue:#1687ff;--text:#f4f7fb;--muted:#91a2b9}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px Inter,system-ui,Segoe UI,Arial,sans-serif}
@@ -2928,5 +2928,76 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
  .ggx-v28-handle{width:38px;height:4px;border-radius:99px;background:#71839b66;margin:0 auto 1px;flex:none}.ggx-v28-main-tools{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;flex:none}.ggx-v28-main-tools button,.ggx-v28-context button{border:0;background:transparent;color:#9fb0c7;border-radius:12px;min-width:0;font-weight:800}.ggx-v28-main-tools button{height:57px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-size:9px}.ggx-v28-main-tools b{font-size:18px;line-height:1}.ggx-v28-main-tools button.active{background:linear-gradient(145deg,#1d82ff,#6159ee);color:#fff;box-shadow:0 8px 20px rgba(49,119,255,.24)}body[data-theme="light"] .ggx-v28-main-tools button{color:#718197}body[data-theme="light"] .ggx-v28-main-tools button.active{color:#fff}.ggx-v28-context{display:flex;gap:6px;overflow-x:auto;padding:1px 1px 2px;scrollbar-width:none}.ggx-v28-context::-webkit-scrollbar{display:none}.ggx-v28-context button{flex:0 0 auto;height:40px;padding:0 13px;background:#152238;border:1px solid #243854;color:#eaf1fc;font-size:10px;white-space:nowrap}.ggx-v28-context button:active{transform:scale(.96)}body[data-theme="light"] .ggx-v28-context button{background:#f0f4f9;border-color:#d7e1ec;color:#25364d}.ggx-v28-hint{display:block;padding:10px 4px;color:#8495ab;font-size:10px;text-align:center}
 }
 </style>
-
+<style id="ggx-v29-final-shell">
+@media(max-width:850px){
+  /* FINAL SHELL: page state owns the viewport. Never mix Home and Editor chrome. */
+  body[data-page="editor"] > header,
+  body[data-page="editor"] > .app > nav,
+  body[data-page="editor"] > .app > #moreMenu{display:none!important;}
+  body:not([data-page="editor"]) > #ggxMobileEditorBar,
+  body:not([data-page="editor"]) > #ggxV26Bar,
+  body:not([data-page="editor"]) > #ggxV26Dock,
+  body:not([data-page="editor"]) > #ggxV28Dock{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+  body[data-page="editor"] .app{display:block!important;position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important;}
+  body[data-page="editor"] main{position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;overflow:hidden!important;padding:0!important;margin:0!important;}
+  body[data-page="editor"] main > .page:not(#editor){display:none!important;visibility:hidden!important;pointer-events:none!important;}
+  body[data-page="editor"] main > #editor{display:block!important;visibility:visible!important;pointer-events:auto!important;position:fixed!important;inset:0!important;width:100%!important;height:100dvh!important;margin:0!important;padding:0!important;z-index:100!important;}
+  body[data-page="editor"] #ggxMobileEditorBar{display:grid!important;visibility:visible!important;pointer-events:auto!important;}
+  body[data-page="editor"] #ggxV28Dock{display:flex!important;visibility:visible!important;pointer-events:auto!important;}
+  /* Home header: safe-area aware, compact enough that logo + theme always fit together. */
+  body:not([data-page="editor"]) > header{position:sticky!important;top:0!important;height:72px!important;min-height:72px!important;padding:calc(8px + env(safe-area-inset-top)) 16px 8px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;z-index:500!important;}
+  body:not([data-page="editor"]) > header .brand{flex:1 1 auto!important;min-width:0!important;overflow:hidden!important;}
+  body:not([data-page="editor"]) > header .logo{width:42px!important;height:42px!important;min-width:42px!important;border-radius:12px!important;background:#0d1728 url("icon.svg") center/cover no-repeat!important;}
+  body:not([data-page="editor"]) > header .brand > div:last-child{min-width:0!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
+  body:not([data-page="editor"]) > header .row{flex:0 0 auto!important;width:auto!important;display:flex!important;align-items:center!important;gap:7px!important;}
+  body:not([data-page="editor"]) > header #themeToggle{width:46px!important;height:46px!important;min-width:46px!important;border-radius:14px!important;padding:0!important;display:grid!important;place-items:center!important;}
+  body:not([data-page="editor"]) > .app{display:block!important;min-height:calc(100dvh - 72px)!important;}
+  body:not([data-page="editor"]) main{padding:16px 15px calc(96px + env(safe-area-inset-bottom))!important;}
+  /* Keep Home itself visually independent from any stale editor state. */
+  body:not([data-page="editor"]) #home{display:block!important;visibility:visible!important;pointer-events:auto!important;}
+}
+</style>
+<script id="ggx-v29-final-state-js">
+(function(){
+  const body=document.body;
+  const pages=[...document.querySelectorAll('main > .page')];
+  function shell(){
+    const p=body.dataset.page||'home';
+    pages.forEach(el=>{
+      const on=el.id===p;
+      el.classList.toggle('active',on);
+      if(p==='editor'){
+        el.style.display=on?'block':'none';
+        el.style.visibility=on?'visible':'hidden';
+        el.style.pointerEvents=on?'auto':'none';
+      }else if(el.id==='editor'){
+        el.style.display='none';
+        el.style.visibility='hidden';
+        el.style.pointerEvents='none';
+      }else{
+        el.style.display=on?'block':'';
+        el.style.visibility=on?'visible':'';
+        el.style.pointerEvents=on?'auto':'';
+      }
+    });
+    const editor=p==='editor';
+    const eh=document.getElementById('ggxMobileEditorBar');
+    const dock=document.getElementById('ggxV28Dock');
+    if(eh){eh.style.display=editor?'grid':'none';eh.setAttribute('aria-hidden',editor?'false':'true');}
+    if(dock)dock.style.display=editor?'flex':'none';
+    const header=document.querySelector('body > header');
+    if(header)header.style.display=editor?'none':'flex';
+    const nav=document.querySelector('body > .app > nav');
+    if(nav)nav.style.display=editor?'none':'';
+  }
+  shell();
+  new MutationObserver(shell).observe(body,{attributes:true,attributeFilter:['data-page']});
+  document.addEventListener('click',function(e){
+    const home=e.target.closest('button[data-page="home"],#ggxEditorBack');
+    if(home && !e.target.closest('#ggxEditorBack')){setTimeout(shell,0);}
+  },true);
+  window.addEventListener('pageshow',shell);
+  window.addEventListener('resize',shell,{passive:true});
+})();
+</script>
 </body></html>
