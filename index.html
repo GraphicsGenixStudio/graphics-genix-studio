@@ -3487,6 +3487,100 @@ button{cursor:pointer}
 })();
 </script>
 
+
+<style id="ggx-v39-editing-reliability">
+/* v39: keep the established visual design; fix text and template discovery behavior. */
+@media(max-width:850px){
+ body[data-page="editor"] #editor{padding-top:env(safe-area-inset-top)!important;box-sizing:border-box!important}
+ body[data-page="editor"] #mobileObjectControls{padding-bottom:calc(10px + env(safe-area-inset-bottom))!important}
+ #mobileTextValue{min-height:76px!important;font-size:16px!important;line-height:1.4!important;touch-action:manipulation!important}
+ #templateFilters{scrollbar-width:none;flex-wrap:nowrap!important;overflow-x:auto!important;max-width:100%;padding-bottom:6px}
+ #templateFilters button{flex:0 0 auto!important;white-space:nowrap}
+}
+.ggx-v39-template-filter{border:1px solid var(--line,#29374b);border-radius:999px;padding:9px 13px;background:var(--panel,#111c2d);color:var(--text,#f6f8fc);font:inherit;white-space:nowrap}
+.ggx-v39-template-filter.active{background:var(--accent,#267dff);color:white;border-color:transparent}
+.ggx-v39-edit-hint{font-size:12px;opacity:.78;margin:5px 0 10px}
+</style>
+<script id="ggx-v39-text-template-photo">
+(()=>{
+ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+ // Add a dedicated photo-only filter without changing existing categories.
+ const filters=$('#templateFilters');
+ if(filters&&!$('#ggxPhotoOnlyFilter')){
+   const b=document.createElement('button');b.type='button';b.id='ggxPhotoOnlyFilter';b.className='ggx-v39-template-filter';b.textContent='Photo templates';b.dataset.filter='__photo__';filters.appendChild(b);
+ }
+ const originalRender=window.renderTemplateCards;
+ // The original renderer is lexical, so update its category UI and wrap the grid after each render.
+ function setPhotoFilter(on){
+   const grid=$('#templateGrid'); if(!grid)return;
+   const cards=$$('.template-card');
+   cards.forEach(card=>{const photo=!!card.querySelector('.template-photo');card.style.display=(!on||photo)?'':'none'});
+   const empty=$('#ggxPhotoFilterEmpty');
+   if(on&&!cards.some(c=>c.querySelector('.template-photo'))){
+     if(!empty){const e=document.createElement('div');e.id='ggxPhotoFilterEmpty';e.className='empty';e.textContent='No photo templates match this search. Clear the search or choose another category.';grid.appendChild(e)}
+   }else empty?.remove();
+ }
+ let photoOnly=false;
+ if(filters){filters.addEventListener('click',e=>{
+   const b=e.target.closest('button');if(!b)return;
+   if(b.id==='ggxPhotoOnlyFilter'){
+     e.stopImmediatePropagation(); photoOnly=!photoOnly;
+     $$('#templateFilters button').forEach(x=>x.classList.toggle('active',x===b));
+     b.classList.toggle('active',photoOnly);
+     // When photo-only is toggled off, return to All and invoke the existing renderer.
+     if(!photoOnly){const all=$('#templateFilters [data-filter="all"]');if(all){all.classList.add('active');b.classList.remove('active');all.click();}}
+     else {const q=$('#templateSearch')?.value?.trim().toLowerCase()||''; $$('.template-card').forEach(c=>{const matches=(!q||c.textContent.toLowerCase().includes(q));c.style.display=c.querySelector('.template-photo')&&matches?'':'none'});}
+   }
+ },true);
+ }
+ $('#templateSearch')?.addEventListener('input',()=>{if(photoOnly)setTimeout(()=>setPhotoFilter(true),0)});
+ // Text editing reliability: always select the Edit tab, sync controls, and keep edits in the live layer.
+ const addText=$('#addText');
+ if(addText)addText.addEventListener('click',()=>{
+   setTimeout(()=>{
+     const panel=$('#mobileObjectControls');
+     panel?.querySelector('[data-object-tab="content"]')?.click();
+     const field=$('#mobileTextValue');
+     if(field){field.focus({preventScroll:true});field.select?.()}
+   },60);
+ },{capture:false});
+ const field=$('#mobileTextValue');
+ if(field){
+   field.setAttribute('autocomplete','off');field.setAttribute('aria-label','Edit selected text');
+   let timer;
+   field.addEventListener('input',()=>{
+     const l=(typeof getSelected==='function')?getSelected():null;
+     if(!l||l.type!=='text')return;
+     l.text=field.value;
+     if(typeof draw==='function')draw();
+     clearTimeout(timer);timer=setTimeout(()=>{try{if(typeof saveHistory==='function')saveHistory()}catch(e){}},450);
+   });
+   field.addEventListener('focus',()=>{document.body.dataset.textEditing='true'});
+   field.addEventListener('blur',()=>{document.body.dataset.textEditing='false';clearTimeout(timer);try{if(typeof saveHistory==='function')saveHistory()}catch(e){}});
+ }
+ // Ensure image upload replaces the selected template photo slot. Offer a clear action in the mobile dock.
+ const dock=$('#ggxV26Dock')||$('.ggx-v26-dock')||$('#mobileObjectControls');
+ if(dock&&!$('#ggxV39ReplacePhoto')){
+   const b=document.createElement('button');b.id='ggxV39ReplacePhoto';b.type='button';b.textContent='Replace photo';b.className='ggx-v39-template-filter';b.style.display='none';
+   const host=$('#mobileObjectControls')||dock;host.prepend(b);
+   b.addEventListener('click',()=>{
+     const l=(typeof getSelected==='function')?getSelected():null;
+     if(l&&l.type==='image'&&l.templatePhotoSlot){$('#uploadBtn')?.click();return}
+     // If this template has a designated photo slot, select it before opening the picker.
+     if(typeof layers!=='undefined'){
+       const i=layers.findIndex(x=>x.type==='image'&&x.templatePhotoSlot);
+       if(i>=0){selected=i;if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw();$('#uploadBtn')?.click();return}
+     }
+     $('#uploadBtn')?.click();
+   });
+   const updateReplace=()=>{let show=false;try{show=typeof layers!=='undefined'&&layers.some(x=>x.type==='image'&&x.templatePhotoSlot)}catch(e){}b.style.display=show?'inline-flex':'none'};
+   new MutationObserver(updateReplace).observe(document.body,{attributes:true,attributeFilter:['data-page','data-photo-editing']});
+   setInterval(updateReplace,900);
+ }
+ // Replace selected image or designated template image, preserving all text/shape layers (the core upload handler does this).
+})();
+</script>
+
 </body></html>
 <style id="ggx-v35-responsive-stability">
 /* v35: scoped polish only — preserve existing screen structure and editor logic. */
