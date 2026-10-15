@@ -3542,3 +3542,69 @@ body[data-theme="light"] .opacity-head,body[data-theme="light"] .opacity-head st
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
+
+
+<style id="ggx-v38-safe-area-photo-workspace">
+/* v38: correct the top safe-area overlap and keep photo-edit controls usable on short phones. */
+@media(max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-topbar{
+   box-sizing:border-box!important;top:0!important;height:calc(60px + env(safe-area-inset-top))!important;
+   padding:calc(6px + env(safe-area-inset-top)) 10px 6px!important;
+ }
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{
+   top:calc(60px + env(safe-area-inset-top))!important;
+   bottom:calc(clamp(276px,42dvh,370px) + env(safe-area-inset-bottom))!important;
+ }
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{
+   height:clamp(276px,42dvh,370px)!important;
+   max-height:calc(100dvh - 60px - env(safe-area-inset-top))!important;
+   box-sizing:border-box!important;padding-bottom:calc(8px + env(safe-area-inset-bottom))!important;
+ }
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-content{
+   flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior:contain!important;
+   -webkit-overflow-scrolling:touch!important;padding-bottom:5px!important;
+ }
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-tabs{flex-shrink:0!important}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-bottom{flex:0 0 auto!important;padding-top:5px!important}
+ body[data-page="editor"] .ggx-mobile-editor-bar-static,body[data-page="editor"] #ggxV26Bar{
+   box-sizing:border-box!important;padding-top:calc(6px + env(safe-area-inset-top))!important;
+ }
+ body[data-page="editor"] .editor-layout>.stage:not(:has(+ .mobile-photo-dock)){
+   scroll-margin-top:env(safe-area-inset-top);
+ }
+}
+@media(max-height:700px) and (max-width:850px){
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-dock{height:44dvh!important;min-height:252px!important;max-height:calc(100dvh - 60px - env(safe-area-inset-top))!important}
+ body[data-page="editor"][data-photo-editing="true"] .editor-layout>.stage{bottom:calc(44dvh + env(safe-area-inset-bottom))!important}
+ body[data-page="editor"][data-photo-editing="true"] .mobile-photo-tabs button{min-width:53px!important;padding-inline:9px!important}
+}
+/* Selected template image gets a persistent, obvious replacement action in the editor's image controls. */
+@media(max-width:850px){
+ body[data-page="editor"] #ggxV26Sub [data-ggx-replace-template-photo]{display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-height:42px!important;margin:0 0 7px!important;border-radius:12px!important;font-weight:800!important}
+ body[data-page="editor"] #ggxV26Sub [data-ggx-replace-template-photo]::before{content:'▧';font-size:16px}
+}
+</style>
+<script id="ggx-v38-template-photo-replace">
+(function(){
+  const $=s=>document.querySelector(s);
+  function ensureReplaceButton(){
+    if(document.body.dataset.page!=='editor')return;
+    const sub=$('#ggxV26Sub');
+    if(!sub)return;
+    const slot=typeof layers!=='undefined'&&Array.isArray(layers)?layers.find(l=>l&&l.type==='image'&&l.templatePhotoSlot):null;
+    let btn=sub.querySelector('[data-ggx-replace-template-photo]');
+    if(!slot){btn?.remove();return;}
+    if(!btn){btn=document.createElement('button');btn.type='button';btn.dataset.ggxReplaceTemplatePhoto='true';btn.className='primary';btn.textContent='Replace template photo';btn.addEventListener('click',function(){
+      const idx=typeof layers!=='undefined'?layers.indexOf(slot):-1;
+      if(idx>=0){selected=idx;if(typeof syncProps==='function')syncProps();if(typeof draw==='function')draw();}
+      const input=$('#fileInput');if(input){input.value='';input.click();}
+    });}
+    if(btn.parentElement!==sub)sub.prepend(btn);else if(sub.firstElementChild!==btn)sub.prepend(btn);
+  }
+  const mo=new MutationObserver(ensureReplaceButton);
+  function start(){const sub=$('#ggxV26Sub');if(sub)mo.observe(sub,{childList:true,subtree:false});ensureReplaceButton();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+  document.addEventListener('click',e=>{if(e.target.closest('#ggxV26Dock [data-tool="template"],#ggxV26Dock [data-tool="adjust"]'))setTimeout(ensureReplaceButton,80)},true);
+  document.addEventListener('change',e=>{if(e.target.id==='fileInput')setTimeout(ensureReplaceButton,100)},true);
+})();
+</script>
