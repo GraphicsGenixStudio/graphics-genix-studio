@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
-<title>Graphics Genix Studio — Creative Workspace v29</title>
+<title>Graphics Genix Studio — Creative Workspace v35</title>
 <style>
 :root{--bg:#050914;--panel:#0a1220;--line:#1a2a40;--blue:#1687ff;--text:#f4f7fb;--muted:#91a2b9}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px Inter,system-ui,Segoe UI,Arial,sans-serif}
@@ -3388,3 +3388,57 @@ body[data-theme="light"] #home .home-greeting strong{color:#17243a!important}
 </script>
 
 </body></html>
+<style id="ggx-v35-responsive-stability">
+/* v35: scoped polish only — preserve existing screen structure and editor logic. */
+:root{--ggx-safe-top:env(safe-area-inset-top,0px);--ggx-safe-bottom:env(safe-area-inset-bottom,0px);--ggx-focus:rgba(67,139,255,.42)}
+html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(76px + var(--ggx-safe-top))}
+body{min-height:100dvh;overscroll-behavior-y:contain}
+button,.btn,input,select,textarea{-webkit-tap-highlight-color:transparent}
+button,.btn{touch-action:manipulation;transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease,transform .12s ease}
+button:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--ggx-focus);outline-offset:2px}
+button:active:not(:disabled){transform:translateY(1px)}
+img,canvas,svg{max-width:100%}
+main,.page,.section,.grid,.card,.hero,.editor-layout,.stage,.toolbox,.properties{min-width:0}
+/* Consistent light palette: readable neutral surfaces with restrained blue accents. */
+body[data-theme="light"]{--bg:#f4f7fc;--panel:#fff;--line:#dce4ef;--text:#17243a;--muted:#61718a;background:radial-gradient(ellipse at 50% -18%,#e0ebff 0,transparent 44%),var(--bg);color:var(--text)}
+body[data-theme="light"] header{background:rgba(255,255,255,.96);border-color:#dce4ef;color:#17243a}
+body[data-theme="light"] nav{background:#f8faff;border-color:#dce4ef}
+body[data-theme="light"] nav button{color:#4b5e78}
+body[data-theme="light"] nav button.active{background:#e5efff;border-color:#bfd5fb;color:#174b9b}
+body[data-theme="light"] .hero{background:radial-gradient(ellipse at 85% 0%,#e1edff 0%,transparent 48%),linear-gradient(120deg,#fff,#f5f8ff);border-color:#dbe5f2}
+body[data-theme="light"] .card,body[data-theme="light"] .project,body[data-theme="light"] .toolbox,body[data-theme="light"] .properties{background:#fff;border-color:#dce4ef;color:#17243a}
+body[data-theme="light"] button:not(.primary),body[data-theme="light"] .btn{background:#fff;border-color:#d2dce9;color:#263750}
+body[data-theme="light"] button.primary{background:#246eea;border-color:#246eea;color:#fff}
+body[data-theme="light"] .input,body[data-theme="light"] select,body[data-theme="light"] textarea{background:#fff;color:#17243a;border-color:#cbd7e6}
+body[data-theme="light"] .stage{background:#e9eef6;border-color:#d6dfeb}
+body[data-theme="light"] .notice{background:#edf5ff;border-color:#c7ddfb;color:#244d83}
+body[data-theme="light"] .empty{border-color:#cbd7e6;color:#61718a}
+body[data-theme="light"] .opacity-control{background:#f7f9fd;border-color:#dce4ef}
+body[data-theme="light"] .opacity-head,body[data-theme="light"] .opacity-head strong{color:#34465e}
+@media(max-width:850px){
+ html{scroll-padding-top:calc(68px + var(--ggx-safe-top))}
+ body{padding-bottom:var(--ggx-safe-bottom)}
+ main{padding-left:clamp(10px,3vw,18px);padding-right:clamp(10px,3vw,18px)}
+ .hero{border-radius:20px;gap:2px}
+ .hero .row button{min-height:44px}
+ .grid{gap:10px}
+ .card{min-height:108px;padding:14px}
+ .stage{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .toolbox button,.properties button{min-height:42px}
+ #themeToggle{flex:0 0 40px;min-width:40px;min-height:40px}
+}
+@media(max-width:390px){
+ header{padding-left:10px!important;padding-right:10px!important}
+ body:not([data-page="editor"]) > header .brand{gap:7px!important;font-size:13px!important}
+ body:not([data-page="editor"]) > header .logo{flex-basis:34px!important;width:34px!important;height:34px!important;min-width:34px!important}
+ body:not([data-page="editor"]) > header .brand small{letter-spacing:1.5px!important}
+ .hero{padding:18px!important}
+ .hero .row{display:grid;grid-template-columns:1fr;width:100%}
+ .hero .row button{width:100%;min-height:44px}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .card{overflow-wrap:anywhere}
+ .ggx-v28-main-tools{gap:2px!important}
+ .ggx-v28-main-tools button{min-height:48px!important}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
