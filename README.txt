@@ -15,3 +15,6 @@ PUBLISHING
 
 QA NOTE
 JavaScript syntax, editor factory presence, 3,600 generated-template count, 15 mapped photographic styles, and ZIP integrity are checked. A headless-browser smoke test with mocked photo responses verified startup, template browsing, opening a collage template with four photo layers, adding text, and undo/redo without JavaScript runtime exceptions. Live Unsplash URL availability, actual network image loading, photo replacement with a local file, and final PNG/JPG export still need a real online browser check before public release.
+
+
+Final UX repair pass (2.5): tightened template-card containment to prevent artwork escaping its grid card, made template activation explicitly stop propagation and blur focused cards, fixed a malformed line break in the Creator Desk headline, and added a compact contextual toolbar for selected text (Edit, Style, Duplicate, Delete). The four controls are positioned relative to the selected text and constrained within the canvas. JavaScript syntax and archive integrity are checked; automated interactive browser testing was attempted but blocked by the execution environment's browser policy. Please smoke-test on a phone before production deployment.
