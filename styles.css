@@ -59,3 +59,24 @@
 .thumb.layout-editorial .thumb-title,.thumb.layout-cover .thumb-title,.thumb.layout-type .thumb-title{font-size:clamp(20px,2.4vw,31px);max-width:94%}.thumb.layout-type .thumb-title{text-transform:uppercase;letter-spacing:-1.2px}.thumb.layout-collage .thumb-title,.thumb.layout-grid .thumb-title,.thumb.layout-moodboard .thumb-title,.thumb.layout-polaroid .thumb-title,.thumb.layout-scrapbook .thumb-title,.thumb.layout-dump .thumb-title,.thumb.layout-film .thumb-title{font-size:clamp(15px,1.8vw,22px);text-shadow:0 2px 12px #0008}
 .template-more{grid-column:1/-1;text-align:center;padding:22px;border:1px solid #20334a;border-radius:12px;background:#0c1724}.template-more p{color:#8196b3;font-size:11px;margin:0 0 12px}.template-more .outline-btn{padding:12px 22px}
 @media(max-width:760px){.thumb.layout-editorial .thumb-title,.thumb.layout-cover .thumb-title,.thumb.layout-type .thumb-title{font-size:19px}.layout-tiles{inset:12% 6% 20%}}
+
+/* Photo-template fix: render real stock photography as the base layer; never cover it with the old placeholder gradient. */
+.thumb{isolation:isolate;background-color:#152a40;overflow:hidden}
+.thumb:before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,#07111d08 0%,#07111d14 48%,#07111d9c 100%)}
+.thumb:after{z-index:1;pointer-events:none;background:linear-gradient(135deg,#ffffff06,transparent 45%)}
+.thumb img.thumb-photo{position:absolute;inset:0;z-index:0;display:block;width:100%;height:100%;object-fit:cover;opacity:1;transition:transform .35s ease;pointer-events:none}
+.template-card:hover .thumb img.thumb-photo{transform:scale(1.035)}
+.thumb .tiny-top,.thumb .thumb-title,.thumb .thumb-sub,.thumb .thumb-mark{position:relative;z-index:3}
+.thumb .layout-tiles,.thumb .layout-polaroid,.thumb .layout-film,.thumb .layout-cover{z-index:2}
+.thumb .layout-tiles i,.thumb .layout-polaroid i,.thumb .layout-film i{background-size:cover;background-position:center}
+@media(prefers-reduced-motion:reduce){.template-card,.thumb img.thumb-photo{transition:none}}
+
+.thumb img.thumb-photo{opacity:.01;transition:opacity .22s ease,transform .35s ease}
+.thumb img.thumb-photo.photo-loaded{opacity:1}
+.design-object img{opacity:0;transition:opacity .2s ease}
+.design-object img.photo-loaded{opacity:1}
+.design-object.photo-load-failed{background:linear-gradient(135deg,#20374a,#101a27)!important}
+@media(prefers-reduced-motion:reduce){.thumb img.thumb-photo,.design-object img{transition:none}}
+/* Keep photo pixels above the photo-frame fill, while text and overlays remain separate higher layers. */
+#canvas .design-object:has(> img){isolation:isolate}
+#canvas .design-object > img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
