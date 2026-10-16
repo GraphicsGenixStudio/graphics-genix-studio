@@ -20,7 +20,17 @@ const templates=[
 {id:'photojourney',name:'Take the long way',category:'Photo',tag:'FIELD NOTES',bg:'#355346',title:'Take the\nlong way.',sub:'The best parts were never rushed.',accent:'#c7edb5',style:'mountain'},
 {id:'photodream',name:'Somewhere new',category:'Photo',tag:'TRAVEL DIARY',bg:'#35405d',title:'Somewhere\nnew.',sub:'Go where you feel most alive.',accent:'#c4d5ff',style:'sunset'},
 {id:'wellness',name:'Return to yourself',category:'Lifestyle',tag:'WELLNESS NOTES',bg:'#32473d',title:'Return to\nyourself.',sub:'Small rituals. Softer mornings.',accent:'#c6e3bb',style:'sunset'},
-{id:'design',name:'Less, but better',category:'Quote',tag:'DESIGN PRINCIPLE',bg:'#e8e0d1',title:'Less, but\nbetter.',sub:'Clarity is a creative advantage.',accent:'#1d3347',style:'minimal'}
+{id:'design',name:'Less, but better',category:'Quote',tag:'DESIGN PRINCIPLE',bg:'#e8e0d1',title:'Less, but\nbetter.',sub:'Clarity is a creative advantage.',accent:'#1d3347',style:'minimal'},
+{id:'photo-dump',name:'Camera roll dump',category:'Photo',tag:'PHOTO DUMP / 2026',bg:'#202d3b',title:'Lately,\nin little moments.',sub:'A few things I want to remember.',accent:'#d9e8f8',style:'mountain'},
+{id:'photo-film',name:'Digital film diary',category:'Photo',tag:'FILM DIARY',bg:'#3c302a',title:'Life, in\nsoft focus.',sub:'Unfiltered days and golden hours.',accent:'#f0c99a',style:'sunset'},
+{id:'photo-carousel',name:'Swipe for the feeling',category:'Photo',tag:'CAROUSEL COVER',bg:'#183b52',title:'A little\nlife lately.',sub:'Swipe through the good parts →',accent:'#9edbff',style:'mountain'},
+{id:'photo-fitcheck',name:'Fit check / daily look',category:'Photo',tag:'DAILY UNIFORM',bg:'#25252c',title:'The fit.\nThe mood.',sub:'Wear what feels like you.',accent:'#d6b5ff',style:'product'},
+{id:'photo-editorial',name:'Editorial photo story',category:'Photo',tag:'VISUAL JOURNAL',bg:'#1c2734',title:'A study in\nlight & life.',sub:'Collected frames from ordinary days.',accent:'#b8d5e8',style:'mountain'},
+{id:'photo-sunday',name:'Sunday reset',category:'Photo',tag:'SLOW SUNDAY',bg:'#4a5144',title:'Slow down.\nCome back.',sub:'A softer pace looks good on you.',accent:'#d7e5b8',style:'sunset'},
+{id:'photo-travel-log',name:'Travel photo log',category:'Photo',tag:'POSTCARDS TO MYSELF',bg:'#1d4655',title:'Wish you\nwere here.',sub:'Places that stay with you.',accent:'#a9e5e8',style:'mountain'},
+{id:'photo-moodboard',name:'Moodboard collage',category:'Photo',tag:'CURRENT OBSESSION',bg:'#2e2744',title:'Things I\nam into lately.',sub:'Colours, places, little inspirations.',accent:'#d4b9ff',style:'abstract'},
+{id:'photo-portrait',name:'Portrait spotlight',category:'Photo',tag:'PORTRAIT STUDY',bg:'#352a2a',title:'A moment\nof being.',sub:'Real light. Real life. Your story.',accent:'#e9b9a4',style:'sunset'},
+{id:'photo-memory',name:'Memory of the month',category:'Photo',tag:'MONTHLY RECAP',bg:'#233d4b',title:'October,\nyou were good.',sub:'A little recap of what mattered.',accent:'#c1e5f4',style:'mountain'}
 ];
 let state={view:'home',filter:'All',search:'',layers:[],selected:null,history:[],future:[],size:'post',bg:'#0b1928',title:'Untitled design',photoURL:null,photoImage:null,photoAdjust:{brightness:100,contrast:100,saturation:100,warmth:0,fade:0},photoPreset:'original',exportFormat:'png',zoom:1,projectId:null};
 const sizes={post:{w:1080,h:1350,label:'INSTAGRAM PORTRAIT · 1080 × 1350'},square:{w:1080,h:1080,label:'SQUARE POST · 1080 × 1080'},story:{w:1080,h:1920,label:'STORY / REEL · 1080 × 1920'},landscape:{w:1200,h:675,label:'LANDSCAPE · 1200 × 675'},custom:{w:1080,h:1350,label:'CUSTOM CANVAS · 1080 × 1350'}};
@@ -69,5 +79,12 @@ $('#photoUploadBtn').onclick=()=>$('#photoInputStandalone').click();$('#photoEmp
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();go('templates');$('#templateSearch').focus()}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)&&!document.activeElement.isContentEditable){e.preventDefault();e.shiftKey?redo():undo()}if(e.key==='Escape'){$('#exportModal').classList.add('hidden');$('#sidebar').classList.remove('open')}});
 // Keep project title and selection state coherent on save.
 const originalSave=saveCurrent;function updateUndoRedo(){$('#undo').disabled=state.history.length<2;$('#redo').disabled=!state.future.length}
+// First-launch welcome intro and touch-friendly quick actions.
+const intro=$('#introScreen');
+function closeIntro(){if(!intro)return;intro.classList.add('intro-dismiss');try{localStorage.setItem('ggx-intro-seen','1')}catch(e){}setTimeout(()=>intro.remove(),420)}
+try{if(localStorage.getItem('ggx-intro-seen')==='1')intro.remove()}catch(e){}
+$('#introStart')?.addEventListener('click',closeIntro);$('#introSkip')?.addEventListener('click',closeIntro);
+$$('[data-mobile-action]').forEach(b=>b.addEventListener('click',()=>{const tool=b.dataset.mobileAction;if(tool==='text')addText();else if(tool==='photo')openPhoto();else if(tool==='shape')addShape();else if(tool==='background'){$('#bgColor').click()}}));
+$('#mobileUndo')?.addEventListener('click',undo);$('#mobileRedo')?.addEventListener('click',redo);
 renderHome();renderTemplates();$('#sizeSelect').value=state.size;try{const current=JSON.parse(localStorage.getItem('ggx-studio-current')||'null');if(current&&current.layers&&current.layers.length){state.layers=current.layers;state.bg=current.bg||state.bg;state.size=current.size||'post';state.title=current.title||'Untitled design';state.projectId=current.projectId||null;state.history=[];state.future=[];}}catch(e){}renderEditor();pushHistory();
 })();
