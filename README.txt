@@ -18,3 +18,11 @@ JavaScript syntax, editor factory presence, 3,600 generated-template count, 15 m
 
 
 Final UX repair pass (2.5): tightened template-card containment to prevent artwork escaping its grid card, made template activation explicitly stop propagation and blur focused cards, fixed a malformed line break in the Creator Desk headline, and added a compact contextual toolbar for selected text (Edit, Style, Duplicate, Delete). The four controls are positioned relative to the selected text and constrained within the canvas. JavaScript syntax and archive integrity are checked; automated interactive browser testing was attempted but blocked by the execution environment's browser policy. Please smoke-test on a phone before production deployment.
+
+
+Version 2.8 visual refinement:
+- Header Export action replaced by persistent Light/Dark theme toggle; export remains available in the editor export controls.
+- Added light theme with coordinated background, surface, border, and text colours. Artwork/canvas colours are not recoloured when switching theme.
+- Refined brand palette to deep navy, restrained cobalt, and pale sky blue; removed violet from the app icon and primary action styling.
+- PWA icons regenerated to match the updated brand mark.
+- Service worker cache bumped to ggx-studio-2-8-0.
